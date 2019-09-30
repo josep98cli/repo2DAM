@@ -25,7 +25,7 @@ public class App {
      */
     public static void main(String[] args) {
 
-        ObjectOutputStream os = null;
+        ObjectOutputStream os;
         File archiu = new File("vehiculo.bin");
         try {
             Scanner s = new Scanner(System.in);
