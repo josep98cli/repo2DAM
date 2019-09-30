@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<alumnos>
+    <alumno>
+        <nombre>Juan</nombre>
+        <apellido>Marti Lopez</apellido>
+        <edad>18</edad>
+        <nombre>Pepe</nombre>
+        <apellido>Martinez Juan</apellido>
+        <edad>58</edad>
+    </alumno>
+</alumnos>
