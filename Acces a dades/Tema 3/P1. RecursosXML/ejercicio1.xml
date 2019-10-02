@@ -1,9 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
---><libros>
+<?xml version="1.0" encoding="UTF-8"?>
+<libros>
     <prestamo>
         <libro isbn="978­84­8346­520­2">
             <titulo>El Ocho</titulo>
@@ -17,31 +13,7 @@ and open the template in the editor.
             <anyo>1997</anyo>
             <editorial>Ediciones B</editorial>
         </libro>
-<libro isbn="84-857-547-R">
-<titulo>Pepe 11</titulo>
-<autor>Pepe</autor>
-<año>1990</año>
-<editorial>Eclipse</editorial>
-</libro>
-<libro isbn="84-857-547-R">
-<titulo>Pepe 11</titulo>
-<autor>Pepe</autor>
-<año>1990</año>
-<editorial>Eclipse</editorial>
-</libro>
-<libro isbn="84-857-547-R">
-<titulo>Pepe 11</titulo>
-<autor>Pepe</autor>
-<año>1990</año>
-<editorial>Eclipse</editorial>
-</libro>
-<libro isbn="84-857-547-R">
-<titulo>Pepe 11</titulo>
-<autor>Pepe</autor>
-<año>1990</año>
-<editorial>Eclipse</editorial>
-</libro>
-</prestamo>
+    </prestamo>
     <venta>
         <libro isbn="84­675­069­X">
             <titulo>Memorias de Idhún I ­ La Resistencia</titulo>
