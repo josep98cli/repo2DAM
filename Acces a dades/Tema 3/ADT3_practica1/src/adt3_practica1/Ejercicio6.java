@@ -47,13 +47,13 @@ public class Ejercicio6 {
                     String curs = element.getElementsByTagName("curs").item(0).getTextContent();
                     int nota = Integer.parseInt(element.getElementsByTagName("nota").item(0).getTextContent()); 
                     Alumno alumne = new Alumno(id, nom, cognom, curs, nota);
-
+                    
                     if (alumne.getCurs().equals("2nDAM")) {
                         listaAlumnosDAM.add(alumne);
                     } else {
                         listaAlumnosASIX.add(alumne);
                     }
-
+                    
                     listaAlumnosDAM.sort(new Comparator<Alumno>() {
                         @Override
                         public int compare(Alumno o1, Alumno o2) {
@@ -71,7 +71,8 @@ public class Ejercicio6 {
         } catch (Exception e) {
             e.printStackTrace();
         }
-            System.out.println("\nALUMNOS EN DAM: ");
+            System.out.println("ALUMNOS ORDENADOS DE MAYOR A MENOR NOTA : \n");
+            System.out.println("ALUMNOS EN DAM: ");
             for (int i = 0; i < listaAlumnosDAM.size(); i++) {
                 System.out.println(listaAlumnosDAM.get(i).toString());
             }

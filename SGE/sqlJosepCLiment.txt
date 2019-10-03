@@ -1,0 +1,9 @@
+1.-select pu.partner_id, res.name from purchase_order as pu, res_partner as res where pu.partner_id in (select s.partner_id from ssale_order as s , res_partner as p where s.partner_id = p.id group by s.partner_id) and res.id = pu.partner_id;
+
+
+2.-select r.name, r.id from res_partner as r where r.is_company='true' AND r.id NOT IN (select partner_id from sale_order where);
+
+
+3.-select partner_id from purchase_order where invoice_count=0;
+
+4.-select r.name, r.id from res_partner as r where r.is_company='false' AND r.phone='';
