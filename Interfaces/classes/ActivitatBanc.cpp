@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+
 #define BORRAPANTALLA(X) for (int i=0; i<X; i++, cout << endl);
 
 using namespace std;
@@ -22,11 +23,11 @@ public:
     Cuenta(){}
 
     bool  reintegrar(float cantidad){
-	  if (cantidad > saldo) return false;
-	  saldo -= cantidad;
+	  if (cantidad > this->saldo) return false;
+	  this->saldo -= cantidad;
 	  return true;
 	}
-    void ingresar(float cantidad) { saldo += cantidad; }
+    void ingresar(float cantidad) { this->saldo += cantidad; }
 private:
     float interes;
 };
@@ -47,9 +48,16 @@ void menu(void){
 	BORRAPANTALLA(10);
 }
 
-void inicializarCuentas(Cuenta cuentas[10]){
-   for (int i=0; i<5; i++) 
-	cuentas[i] = Cuenta(100+i,i*1000,nombres[i]);
+void inicializarCuentas(Cuenta * cuentas[10]){
+   for (int i=0; i<10; i++) {
+    cuentas[i]=NULL;
+    }
+
+	for (int i=0; i<5; i++) {
+    Cuenta * temporal = new Cuenta(100+i, i*1000,nombres[i]);
+    cuentas[i] = temporal;
+    }
+
 }
 
 /*void inicializarCuentas(  Cuenta cuentas[10]){
@@ -81,81 +89,80 @@ void crearCuenta(Cuenta * cuentas[10]){
 
 }
 
-void mostrar(Cuenta cuentaMostrar){
-    cout << "La cuenta " << cuentaMostrar.numCuenta 
-	<< " de " << cuentaMostrar.titular
-        << " tiene " << cuentaMostrar.saldo
+void mostrar(Cuenta * cuentaMostrar){
+    cout << "La cuenta " << cuentaMostrar->numCuenta 
+	<< " de " << cuentaMostrar->titular
+        << " tiene " << cuentaMostrar->saldo
 	<<" euros " <<endl;
 }
 
-void mostrarCuentas(Cuenta todas[]){
+void mostrarCuentas(Cuenta * todas[]){
 
 	for (int i = 0; i < 10; i++)
 	{
-		if (todas[i].titular!="")
+		if (todas[i]!=NULL)
 		{
-			cout << "La cuenta " << todas[i].numCuenta 
-			<< " de " << todas[i].titular
-        	<< " tiene " << todas[i].saldo
+			cout << "La cuenta " << todas[i]->numCuenta 
+			<< " de " << todas[i]->titular
+        	<< " tiene " << todas[i]->saldo
 			<<" euros " <<endl;
 		}
 		
 	}
 }
 
-/*Cuenta * mostrarCuentaConMasSaldo(Cuenta todas[]){
-	int saldoMax =todas[0].saldo;
-	for (int i = 0; i < 10; i++)
-	{
-		if (saldoMax<todas[i].saldo)
-		{
-			saldoMax=todas[i].saldo;
-		}
-	}
-	for (int i = 0; i < 10; i++)
-	{
-		if (todas[i].saldo==saldoMax)
-		{
-			return todas[i].saldo;
-		}
-	}
-	return NULL;
-}*/
+Cuenta * mostrarCuentaConMasSaldo(Cuenta * cuentas[10]){
 
-Cuenta * seleccionarCuenta(Cuenta cts[]) {
-  
-  Cuenta *encontrada = NULL;
+	Cuenta * cMaxima = cuentas[0];
+
+	for(int i; cMaxima == NULL && i<10; i++, cMaxima=cuentas[i]);
+	
+
+	float saldoMax =cuentas[0]->saldo;
+	for (int i = 0; i < 10 && cMaxima; i++)
+	{
+		if (cuentas[i] && cMaxima->saldo < cuentas[i]->saldo)
+		{
+			cMaxima=cuentas[i];
+		}
+	}
+	
+	return cMaxima;
+}
+
+Cuenta * seleccionarCuenta(Cuenta * cts[]) {
 	cout << "méteme el numero de cuenta. Machote!" <<endl;
 	int numCuenta ;
 	cin >> numCuenta;
     for (int i = 0; i < 10; i++)
     {
-        if (numCuenta==cts[i].numCuenta)
+        if (cts[i]!=NULL && cts[i]->numCuenta == numCuenta)
         {
-            encontrada = &(cts[i]);
+            return cts[i];
         }
     }
-  return encontrada;  //EXPLICA ESTO
+  return NULL;  //EXPLICA ESTO devuelve null porque en caso de que no encuentre la cuenta hace que el puntero apunte a null y no salte error
 	
 }
-void ingresar(Cuenta &c) {
+void ingresar(Cuenta * c) {
 	float cantidad;
-	cout << "Dame la cantidad a ingresar en la cuenta "<< c.numCuenta << endl;
+	cout << "Dame la cantidad a ingresar en la cuenta "<< c->numCuenta << endl;
 	cin >> cantidad;
-	c.ingresar(cantidad);	
+	c->ingresar(cantidad);	
 }
 
-bool reintegrar(Cuenta &c) {
+bool reintegrar(Cuenta * c) {
 	float cantidad;
 	cout << " Introduce la cantidad a reintegrar:" << endl;
 	cin >> cantidad;
-	bool resultado =  c.reintegrar(cantidad);
+	bool resultado =  c->reintegrar(cantidad);
 	return resultado;
 }
 int main (int argc, char *argv[] ) {
 
-  Cuenta cuentas[10];
+  Cuenta * cuentas[10];
 
+  
   //for (int i=0; i < 10; i++) cuentas[i]=NULL;  // EXPLÍCATE ESTO
 
   Cuenta * cuentaSeleccionada;
@@ -173,7 +180,7 @@ int main (int argc, char *argv[] ) {
 	case '1': // opción uno es la de seleccionar una cuenta
 	        cuentaSeleccionada = seleccionarCuenta(cuentas);
 			 if (cuentaSeleccionada)
-			 	mostrar(*cuentaSeleccionada);
+			 	mostrar(cuentaSeleccionada);
 			else
 			{
 				cout << "No existe la cuenta seleccionada" <<endl;
@@ -182,12 +189,13 @@ int main (int argc, char *argv[] ) {
 		break;
 
 	case '2': if (cuentaSeleccionada != NULL)
-			ingresar( *cuentaSeleccionada ); break;
-	case '3': if ((cuentaSeleccionada!=NULL)&&(!reintegrar(*cuentaSeleccionada))) 
+			ingresar(cuentaSeleccionada); 
+			break;
+	case '3': if ((cuentaSeleccionada!=NULL)&&(!reintegrar(cuentaSeleccionada))) 
 			cout << "Error sacando pasta" << endl;
 		  break;
-	case '4': if (cuentaSeleccionada!=NULL ) mostrar(*cuentaSeleccionada); break;
-	//case '5': cuentaSeleccionada = mostrarCuentaConMasSaldo(*cuentas); break;
+	case '4': if (cuentaSeleccionada!=NULL ) mostrar(cuentaSeleccionada); break;
+	case '5': cuentaSeleccionada = mostrarCuentaConMasSaldo(cuentas); cout <<"Cuenta con mas saldo seleccionada"<<endl; break;
 	case '6': mostrarCuentas(cuentas); break;
 	/*case '7': crearCuenta(cuentas);break;
 	case '8': eliminarCuenta(cuentas,cuentaSeleccionada);
