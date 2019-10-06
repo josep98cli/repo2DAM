@@ -25,5 +25,6 @@ public class Ejercicio1 extends AppCompatActivity implements View.OnClickListene
     public void onClick(View view) {
         txt1.setVisibility(View.VISIBLE);
         b1.setVisibility(View.INVISIBLE);
+
     }
 }

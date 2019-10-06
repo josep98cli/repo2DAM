@@ -4,6 +4,6 @@
 2.-select r.name, r.id from res_partner as r where r.is_company='true' AND r.id NOT IN (select partner_id from sale_order where);
 
 
-3.-select partner_id from purchase_order where invoice_count=0;
+3.-select prod.id from product_template as prod, purchase_order as purch where purch.invoince_count > 0 and prod.id in (select product_id from purchase_order_line where pruch.id = id);
 
 4.-select r.name, r.id from res_partner as r where r.is_company='false' AND r.phone='';
