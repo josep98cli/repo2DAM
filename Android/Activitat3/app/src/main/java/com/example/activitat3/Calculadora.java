@@ -26,12 +26,11 @@ public class Calculadora extends AppCompatActivity implements View.OnClickListen
     private Button botonIgual;
     private Button botonBorrar;
 
-    private double num1=0;
-    private double num2=0;
+    private String num1;
+    private String num2;
     private String result= "0";
-    private boolean nextMarca =true;
-    private boolean marcadoNum2 = false;
-    private String ultTeclaPulsada =null;
+    private boolean marcado;
+
 
     private Operaciones operacion;
 
@@ -85,79 +84,81 @@ public class Calculadora extends AppCompatActivity implements View.OnClickListen
                 borrarTodo();
                 break;
             case R.id.suma:
-                operacion.operacionSuma(num1, num2);
+                textView.append(" + ");
                 break;
             case R.id.resta:
-                operacion.operacionResta(num1, num2);
+                textView.append(" - ");
                 break;
             case R.id.multiplicacion:
-                operacion.operacionMulti(num1, num2);
+                textView.append(" * ");
                 break;
             case R.id.barra_division:
-                operacion.operacionDivision(num1,num2);
+                textView.append(" / ");
                 break;
             case R.id.num_0:
-                checkNumero( view.getId());
+                textView.append("0");
                 break;
             case R.id.num_1:
-                checkNumero( view.getId());
+                textView.append("0");
                 break;
             case R.id.num_2:
-                checkNumero( view.getId());
+                textView.append("2");
                 break;
             case R.id.num_3:
-                checkNumero( view.getId());
+                textView.append("3");
                 break;
             case R.id.num_4:
-                checkNumero( view.getId());
+                textView.append("4");
                 break;
             case R.id.num_5:
-                checkNumero( view.getId());
+                textView.append("5");
                 break;
             case R.id.num_6:
-                checkNumero( view.getId());
+                textView.append("6");
                 break;
             case R.id.num_7:
-                checkNumero( view.getId());
+                textView.append("7");
                 break;
             case R.id.num_8:
-                checkNumero( view.getId());
+                textView.append("8");
                 break;
             case R.id.num_9:
-                checkNumero( view.getId());
+                textView.append("9");
                 break;
             case R.id.igual:
-                marcadoNum2=false;
-                ultTeclaPulsada="=";
+                resolverOperacion();
                 break;
-
         }
 
     }
-    public void checkNumero(int numero){
-        if (operacion.getNumero1()==0){
-            operacion.setNumero1(numero);
-        }else{
-            operacion.setNumero2(numero);
+
+    public void resolverOperacion(){
+        String operacionInicial = textView.getText().toString();
+        String[] operacionSplit = operacionInicial.split(" ");
+        int num1 = Integer.parseInt(operacionSplit[0]);
+        int num2 = Integer.parseInt(operacionSplit[2]);
+        String signo = operacionSplit[1];
+
+        switch (signo){
+            case "+":
+                textView.setText(Double.toString(operacion.operacionSuma(num1,num2)));
+                break;
+            case "-":
+                textView.setText(Double.toString(operacion.operacionResta(num1,num2)));
+                break;
+            case "*":
+                textView.setText(Double.toString(operacion.operacionMulti(num1,num2)));
+                break;
+            case "/":
+                textView.setText(Double.toString(operacion.operacionDivision(num1,num2)));
+                break;
         }
-    }
-    public void comprobarOperacion(String operar, Button boton){
-        if (ultTeclaPulsada!=operar){
-            nextMarca= false;
-            marcadoNum2= false;
-            operacion.setOperacion1(operar);
-        }else{
-            checkNumero(0);
-        }
+
     }
 
     public void borrarTodo(){
-        num1= 0;
-        num2 = 0;
-        result = "0";
-        nextMarca= true;
-        marcadoNum2= false;
-        ultTeclaPulsada=null;
+        textView.setHint("0");
+        textView.setText("");
     }
 
 }
