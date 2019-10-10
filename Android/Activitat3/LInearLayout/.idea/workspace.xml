@@ -16,12 +16,22 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/LInearLayout.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/app.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -43,19 +53,18 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="737" />
-    <option name="y" value="81" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="70" />
+    <option name="y" value="27" />
     <option name="width" value="925" />
     <option name="height" value="789" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -63,15 +72,37 @@
               <item name="LInearLayout" type="b2602c69:ProjectViewProjectNode" />
               <item name="LInearLayout" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="LInearLayout" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LInearLayout" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="LInearLayout" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/repoDam/repo2DAM/Android/Activitat3/LInearLayout" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="LInearLayout" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/repoDam/repo2DAM/Android/Activitat3/LInearLayout" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -165,10 +196,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="737" y="81" width="925" height="789" extended-state="0" />
+    <frame x="70" y="27" width="1850" height="1053" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37583148" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18555008" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -197,5 +228,11 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/linearlayout/MainActivity.java" />
+    <entry file="file://$PROJECT_DIR$/.idea/LInearLayout.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
   </component>
 </project>
