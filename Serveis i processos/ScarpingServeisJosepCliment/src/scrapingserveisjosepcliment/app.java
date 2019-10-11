@@ -25,7 +25,7 @@ public class app {
 	
 	static class Pelicules implements Callable<String>{
 		
-		//funcion override de callable que retorna la string con el titulo y año
+		//funcion override de callable que retorna la string con el titulo y aï¿½o
 		
 		@Override
 		public String call() throws Exception {
@@ -54,39 +54,33 @@ public class app {
 				Pattern patro = Pattern.compile(pattern);
 				Matcher m;
 				
+				boolean haEntrado= false;
+				
 				URL web = new URL("https://www.imdb.com/title/tt00"+cadena+"/");
 				BufferedReader entradaWeb = new BufferedReader(new
 				InputStreamReader(web.openStream()));
 				File ficheroHtml = new File("fitxers/tt00"+cadena+".html");
 				PrintWriter pw = new PrintWriter(ficheroHtml);
 				
-				if (!ficheroHtml.exists()) {
-					ficheroHtml.createNewFile();
-				}
 				//recorro el html y lo guardo en un fichero html de nombre su id.html
-				while((linia = entradaWeb.readLine())!=null) {
-					
-					pw.write(linia);
-					
-					}
-					
-					pw.close();
-					
+				
+			
 					//recorro el archivo en busca del patron y le hago dos split para conseguir el titulo que se guarda en la posicion 0 de la array[]
-				while((linia = entradaWeb.readLine())!=null) {
+					while((linia = entradaWeb.readLine())!=null) {
 					
 					pw.write(linia);
 					m = patro.matcher(linia);
 					
-					if(m.find()) {
+					if(m.find() && !haEntrado) {
 						array=linia.split("-");
 						array2=array[0].split(">");
-						break;
+						haEntrado=true;
 					}
 				
 				}
-				entradaWeb.close();
+					pw.close();
 				retorno = array2[1];
+				entradaWeb.close();
 				
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
@@ -117,10 +111,10 @@ public class app {
 			listaResultados = executor.invokeAll(llistaTasques);
 			executor.shutdown();
 			for (int i = 0; i <listaResultados.size(); i++) {
-				Future<String> resultat = listaResultados.get(i);
+				String resultat = listaResultados.get(i).get();
 				
 					//--------------error asi---------------------
-					System.out.println(resultat.get());
+					System.out.println(i+"pos."+resultat);
 					
 				
 			}

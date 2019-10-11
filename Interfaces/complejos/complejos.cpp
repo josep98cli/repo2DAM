@@ -10,8 +10,10 @@ class Complejo{
     public:
     float p_real;
     float p_imag;
+    Complejo(){
+    }
 
-    string mostrar(){
+    string toString(){
         stringstream ss;
         ss << "(" << p_real<<","<< p_imag<<")";
         return ss.str();
@@ -23,21 +25,23 @@ class Complejo{
     }
 };
 
+Complejo operator+ (Complejo primero, Complejo segundo){
+    
+    Complejo resultado ;
+
+    resultado.p_imag=primero.p_imag+segundo.p_imag;
+    resultado.p_real=primero.p_real+segundo.p_real;
+
+    return resultado;
+}   
+
 int main(int argc, char *argv[]){
-    Complejo c(2,4);
+    
     Complejo a(-2,8);
+    Complejo b(2,4);
+    Complejo c;
 
-    Complejo b(3,5);
-
-    a= b + c;
-    a+=b;
-
-    a << b;
-    a[1];
-
-    if (a==b)
-    if (a==0)
-
-    a = -b;    
-    cout << c.mostrar()<<endl;
+    c = a + b;
+       
+    cout << c.toString()<<endl;
 }
