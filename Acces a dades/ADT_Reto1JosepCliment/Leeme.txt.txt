@@ -1,0 +1,5 @@
+Opcion 1- Funciona
+Opcion 2- Funciona pero solo saca coordenadas ya que no hay ninguna libreria para hacer la parte de las ciudades
+Opcion 3- No funciona
+Opcion 4- No funciona
+Opcion 5- Reakuzado por consola
