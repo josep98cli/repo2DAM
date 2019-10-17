@@ -61,8 +61,7 @@ public class app {
 			     printw.println("</html>");
 			          
 			     printw.close();//cerramos el archivo
-			           
-			     System.out.println("Generado exitosamente");//si todo sale bien mostramos un mensaje de guardado exitoso
+			
 		}catch (Exception e) {
 			e.getMessage();
 		}

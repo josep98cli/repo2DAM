@@ -17,6 +17,20 @@ import org.jsoup.select.Elements;
  * @author vesprada
  */
 public class app {
+    public static String sacarSinopsis(Document documentPelicula, Elements infoPelicula){
+        Element lista = infoPelicula.first();
+        return lista.child(17).text();
+    }
+    
+    public static String sacarAutor(Document documentPelicula, Elements infoPelicula){
+        Element lista = infoPelicula.first();
+        return lista.child(9).text();
+    }
+    
+    public static String sacarDuracion(Document documentPelicula, Elements infoPelicula){
+        Element lista = infoPelicula.first();
+        return lista.child(5).text();
+    }
 
     public static String sacarAnyo(Document documentPelicula, Elements infoPelicula) {
 
@@ -38,9 +52,13 @@ public class app {
             Document documentPelicula = Jsoup.connect(urlPelicula).get();
 
             Elements infoPelicula = documentPelicula.getElementsByClass("movie-info");
-            String titulo = sacarTitulo(documentPelicula, infoPelicula);
+            //String titulo = sacarTitulo(documentPelicula, infoPelicula);
             //String ano = sacarAnyo(documentPelicula, infoPelicula);
-            System.out.println(titulo);
+            //String duracion = sacarDuracion(documentPelicula, infoPelicula);
+            //String autor = sacarAutor(documentPelicula, infoPelicula);
+            //String sinopsis = sacarSinopsis(documentPelicula, infoPelicula);
+            
+            
 
         } catch (IOException ex) {
             ex.getMessage();
@@ -60,7 +78,7 @@ public class app {
             
             for (Element img : parhaps) {
                 String attr = img.attr("data-movie-id");
-                System.out.println(attr);
+                
                 sacarInfo(attr);
             }
 
