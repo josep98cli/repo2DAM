@@ -1,12 +1,12 @@
 
 #include <QApplication>
 
-#include "findDialog.h"
+#include "dialogAtivity.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    FindDialog *dialog = new FindDialog;
+    DialogAtivity *dialog = new DialogAtivity;
     dialog->show();
     return app.exec();
 }

@@ -16,6 +16,9 @@
  public:
      FindDialog(QWidget *parent = 0);
 
+	void esteMetodo(int hola);
+		void sube(int);
+
 
  signals:
      void findNext(const QString &str, Qt::CaseSensitivity cs);

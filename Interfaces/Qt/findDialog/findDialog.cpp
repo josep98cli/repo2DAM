@@ -8,6 +8,7 @@
 #include <QHBoxLayout>
  #include "findDialog.h"
 
+// FindDialog:: significa que esta fent el metodo de la clase FindDialog ja que si no es posara al no estar dins de la clase seria un metodo apart, sense res a vorer en la clase
 
  FindDialog::FindDialog(QWidget *parent)
       : QDialog(parent)
@@ -52,6 +53,7 @@
     mainLayout->addLayout(leftLayout);
     mainLayout->addLayout(rightLayout);
     setLayout(mainLayout);
+
  setWindowTitle(tr("Find"));
     setFixedHeight(sizeHint().height());
  }
