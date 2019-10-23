@@ -29,8 +29,10 @@
 
   connect(lineEdit, SIGNAL(textChanged(const QString &)),
            this, SLOT(enableFindButton(const QString &)));
+
    connect(findButton, SIGNAL(clicked()),
           this, SLOT(findClicked()));
+
    connect(closeButton, SIGNAL(clicked()),
            this, SLOT(close()));
 
