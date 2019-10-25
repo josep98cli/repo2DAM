@@ -1,13 +1,12 @@
-
 #include <QApplication>
 
-#include "Calculadora.h"
+ #include "calculadora.h"
 
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-    Calculadora *dialog = new Calculadora;
-    dialog->show();
-    return app.exec();
+ int main(int argc, char *argv[])
+ {
+     QApplication app(argc, argv);
+     Calculadora *calc = new Calculadora();
+     calc->show();
+     
+     return app.exec();
 }
-

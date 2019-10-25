@@ -4,7 +4,7 @@ START:
 
 El juego comienza con una limitacion de 500 materiales de cada uno menos de uno que empiezas con 50 (el ultimo es el más valioso en la parte final del juego). Con estos materiales puedes contruir las fabricas para poder excavar más materiales de estos menos la ultima que se podra construir con una investigación. Las investigaciones se pueden a empezar a hacer mediante un laboratorio el qual se construira con 1000 de los dos materiales basicos.
 
-Este laboratio tendra de investigaciones los almacenes(los cuales pueden almacenenar 10000 de material por cada nivel, el cual subira el doble de su costa cada mejora), naves para poder atacar o explorar, para conseguir recursos para upgradear las fabricas y su laboratorio.
+Este laboratio tendra de investigaciones naves para poder atacar o explorar, para conseguir recursos para upgradear las fabricas y su laboratorio.
 
 Cuando atacas demasiado te pone un estado de pirata el cual baja tus defensas un 30% para que otros puedan atacarte.
 
