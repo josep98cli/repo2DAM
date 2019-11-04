@@ -1,0 +1,38 @@
+DROP DATABASE IF EXISTS adt4_ejemplo0;
+
+CREATE DATABASE adt4_ejemplo0;
+
+USE adt4_ejemplo0;
+
+CREATE TABLE articulos(
+
+	id INT AUTO_INCREMENT,
+	nombre VARCHAR(100),
+	precio DECIMAL(4,2),
+	stock INT,
+	descripcion VARCHAR(100),
+	PRIMARY KEY(id)
+); 
+
+INSERT INTO articulos(nombre, precio, stock, descripcion) VALUES('pepe',25.32,6,'pepe epep epep'),('juan',65.54,9,'aasdasdfasdf');
+
+
+CREATE USER 'josep'@'localhost';
+GRANT ALL PRIVILEGES ON * . * TO 'josep'@'localhost';
+
+
+EJERCICIO_1:
+
+CREATE PROCEDURE sacarResultado(IN num1 INT, IN num2 INT)
+BEGIN
+	DECLARE resultado INT;
+	SET resultado = num1-num2;
+
+	IF resultado <= 50 THEN
+		SELECT 'La diferencia es pequeña';
+	ELSEIF resultado > 150 THEN 
+		SELECT 'La diferencia es grande';
+	ELSE
+		SELECT 'La diferencia es mediana';
+	END IF;		
+END//
