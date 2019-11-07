@@ -1,0 +1,214 @@
+{
+    "peliculas": [
+        {
+            "name": "Los Descendientes 3",
+            "link": "https://www.elitetorrent.nu/peliculas/los-descendientes-3-castellano/",
+            "image": "images/LosDescendientes3.jpg",
+            "id": "d72f03bd-74d2-4950-a3fc-37f4f3e7c4ea",
+            "res": "1080p"
+        },
+        {
+            "name": "Terminator: Destino Oscuro",
+            "link": "https://www.elitetorrent.nu/peliculas/terminator-destino-oscuro-ts-castellano/",
+            "image": "images/TerminatorDestinoOscuro.jpg",
+            "id": "db1e6660-7b2c-4de0-b970-10abd9fc0ba9",
+            "res": "TS"
+        },
+        {
+            "name": "Mal\u00e9fica: Maestra del Mal",
+            "link": "https://www.elitetorrent.nu/peliculas/malefica-maestra-del-mal-ts-castellano/",
+            "image": "images/Mal\u00e9ficaMaestradelMal.jpg",
+            "id": "8e2358f7-78bd-48fe-a1dd-6b76d1a50ba9",
+            "res": "TS"
+        },
+        {
+            "name": "Zombieland: Mata y remata",
+            "link": "https://www.elitetorrent.nu/peliculas/zombieland-mata-y-remata-2/",
+            "image": "images/ZombielandMatayremata.jpg",
+            "id": "7b0194c7-1b2c-4164-98d1-cc3cf8b07826",
+            "res": "TS"
+        },
+        {
+            "name": "Mr. Link: El origen perdido",
+            "link": "https://www.elitetorrent.nu/peliculas/mr-link-el-origen-perdido/",
+            "image": "images/Mr.LinkElorigenperdido.jpg",
+            "id": "b8ab9c3c-839f-4fc3-abc0-902af4523f67",
+            "res": "HDRIP"
+        },
+        {
+            "name": "El vendedor de tabaco",
+            "link": "https://www.elitetorrent.nu/peliculas/el-vendedor-de-tabaco/",
+            "image": "images/Elvendedordetabaco.jpg",
+            "id": "fa7ee795-e1f9-4cfe-9d56-f8623e591a45",
+            "res": "1080p"
+        },
+        {
+            "name": "Wounds",
+            "link": "https://www.elitetorrent.nu/peliculas/wounds/",
+            "image": "images/Wounds.jpg",
+            "id": "960a3d3e-6a3d-4e2b-a185-3ebb24ba1012",
+            "res": "1080p"
+        },
+        {
+            "name": "La Lavander\u00eda",
+            "link": "https://www.elitetorrent.nu/peliculas/la-lavanderia/",
+            "image": "images/LaLavander\u00eda.jpg",
+            "id": "7f1c4840-2b97-45ee-9a4c-63ab07ec52b1",
+            "res": "1080p"
+        },
+        {
+            "name": "Diecisiete",
+            "link": "https://www.elitetorrent.nu/peliculas/diecisiete/",
+            "image": "images/Diecisiete.jpg",
+            "id": "d955375d-402e-490d-8634-48a69a3a0585",
+            "res": "1080p"
+        },
+        {
+            "name": "Eli",
+            "link": "https://www.elitetorrent.nu/peliculas/eli/",
+            "image": "images/Eli.jpg",
+            "id": "ddd1db7d-cafe-48c6-8c49-75cad6f0f52c",
+            "res": "1080p"
+        },
+        {
+            "name": "Driven: El origen de la leyenda",
+            "link": "https://www.elitetorrent.nu/peliculas/driven-el-origen-de-la-leyenda/",
+            "image": "images/DrivenElorigendelaleyenda.jpg",
+            "id": "f778ea24-854e-4860-9e50-b2b5d49b85c7",
+            "res": "720p"
+        },
+        {
+            "name": "Una peque\u00f1a mentira",
+            "link": "https://www.elitetorrent.nu/peliculas/una-pequena-mentira/",
+            "image": "images/Unapeque\u00f1amentira.jpg",
+            "id": "8dc53131-b761-4329-a49f-80f99fa02e55",
+            "res": "TS"
+        },
+        {
+            "name": "El sol tambi\u00e9n es una estrella",
+            "link": "https://www.elitetorrent.nu/peliculas/el-sol-tambien-es-una-estrella-7/",
+            "image": "images/Elsoltambi\u00e9nesunaestrella.jpg",
+            "id": "809f953c-783d-4d5f-84c0-a294c0f57803",
+            "res": "1080p"
+        },
+        {
+            "name": "La canci\u00f3n de mi padre",
+            "link": "https://www.elitetorrent.nu/peliculas/la-cancion-de-mi-padre/",
+            "image": "images/Lacanci\u00f3ndemipadre.jpg",
+            "id": "72d1bc15-4d0e-493a-b95c-b799da9d1a76",
+            "res": "1080p"
+        },
+        {
+            "name": "Hurricane",
+            "link": "https://www.elitetorrent.nu/peliculas/hurricane-2/",
+            "image": "images/Hurricane.jpg",
+            "id": "6ffd49ce-dcc5-4174-b66d-9202e6a43593",
+            "res": "1080p"
+        },
+        {
+            "name": "Dobles vidas",
+            "link": "https://www.elitetorrent.nu/peliculas/dobles-vidas-4/",
+            "image": "images/Doblesvidas.jpg",
+            "id": "7f31102d-e864-4040-8dc1-32f759c7fba4",
+            "res": "1080p"
+        },
+        {
+            "name": "Enemigos \u00edntimos",
+            "link": "https://www.elitetorrent.nu/peliculas/enemigos-intimos-2/",
+            "image": "images/Enemigos\u00edntimos.jpg",
+            "id": "be466111-57bd-4a0e-84af-dee8188cce29",
+            "res": "1080p"
+        },
+        {
+            "name": "Vitoria, 3 de marzo",
+            "link": "https://www.elitetorrent.nu/peliculas/vitoria-3-de-marzo/",
+            "image": "images/Vitoria,3demarzo.jpg",
+            "id": "6984c934-5553-49d8-be71-5a137f542dbb",
+            "res": "1080p"
+        },
+        {
+            "name": "10 d\u00edas sin mam\u00e1",
+            "link": "https://www.elitetorrent.nu/peliculas/10-dias-sin-mama/",
+            "image": "images/10d\u00edassinmam\u00e1.jpg",
+            "id": "ccbaa832-dbc0-44bc-b521-842a6d17d83a",
+            "res": "1080p"
+        },
+        {
+            "name": "Vuela como una mariposa",
+            "link": "https://www.elitetorrent.nu/peliculas/vuela-como-una-mariposa/",
+            "image": "images/Vuelacomounamariposa.jpg",
+            "id": "c6d7c69b-81fe-4c01-aeb8-92f625f2c9f8",
+            "res": "HDRIP"
+        },
+        {
+            "name": "Una nueva identidad",
+            "link": "https://www.elitetorrent.nu/peliculas/una-nueva-identidad/",
+            "image": "images/Unanuevaidentidad.jpg",
+            "id": "94811733-8449-4d6e-9fa0-cc06152e926e",
+            "res": "720p"
+        },
+        {
+            "name": "Toy Story 4",
+            "link": "https://www.elitetorrent.nu/peliculas/toy-story-4-4/",
+            "image": "images/ToyStory4.jpg",
+            "id": "a9ca2719-6eaf-4ad6-a443-ead26028387c",
+            "res": "1080p"
+        },
+        {
+            "name": "Suburbanos",
+            "link": "https://www.elitetorrent.nu/peliculas/suburbanos/",
+            "image": "images/Suburbanos.jpg",
+            "id": "b44e6de8-70cc-44af-87c5-e159ba5f378b",
+            "res": "1080p"
+        },
+        {
+            "name": "Necesitamos tu voto",
+            "link": "https://www.elitetorrent.nu/peliculas/necesitamos-tu-voto/",
+            "image": "images/Necesitamostuvoto.jpg",
+            "id": "ccd30668-a8ea-4f47-ba9d-65b832e82681",
+            "res": "1080p"
+        },
+        {
+            "name": "La Influencia",
+            "link": "https://www.elitetorrent.nu/peliculas/la-influencia/",
+            "image": "images/LaInfluencia.jpg",
+            "id": "b8a86cc6-8e22-418d-a877-e50a3938d3a7",
+            "res": "1080p"
+        },
+        {
+            "name": "La biblioteca de los libros rechazados",
+            "link": "https://www.elitetorrent.nu/peliculas/la-biblioteca-de-los-libros-rechazados/",
+            "image": "images/Labibliotecadeloslibrosrechazados.jpg",
+            "id": "19680765-7b01-49e9-892a-dbbcad3d2879",
+            "res": "1080p"
+        },
+        {
+            "name": "Kin",
+            "link": "https://www.elitetorrent.nu/peliculas/kin-2/",
+            "image": "images/Kin.jpg",
+            "id": "945329a4-b6b1-4eca-b0ab-4e675736af40",
+            "res": "1080p"
+        },
+        {
+            "name": "Hotel Artemis",
+            "link": "https://www.elitetorrent.nu/peliculas/hotel-artemis/",
+            "image": "images/HotelArtemis.jpg",
+            "id": "71a2c7a0-882b-4bbc-b20c-cb2dec6fbb45",
+            "res": "1080p"
+        },
+        {
+            "name": "Historias de miedo para contar en la oscuridad",
+            "link": "https://www.elitetorrent.nu/peliculas/historias-de-miedo-para-contar-en-la-oscuridad/",
+            "image": "images/Historiasdemiedoparacontarenlaoscuridad.jpg",
+            "id": "8f12fc57-9178-4297-bac1-24604f92b879",
+            "res": "BRS"
+        },
+        {
+            "name": "Fractura",
+            "link": "https://www.elitetorrent.nu/peliculas/fractura/",
+            "image": "images/Fractura.jpg",
+            "id": "aca89dea-a95c-45fd-8ead-9df19f565d57",
+            "res": "1080p"
+        }
+    ]
+}
