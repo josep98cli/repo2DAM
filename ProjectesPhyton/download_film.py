@@ -2,7 +2,6 @@ from main import *
 import sys
 
 
-print("Hola")
 
 # method for download the
 """
