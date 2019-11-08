@@ -69,12 +69,9 @@ void mostrarCuentas(vector <Cuenta> todas){
 
 	for (int i = 0; i < todas.size(); i++)
 	{
-			mostrar(todas[i]);
-		
+			mostrar(todas[i]);		
 	}
 }
-
-
 
 
 int main (int argc, char *argv[] ) {
