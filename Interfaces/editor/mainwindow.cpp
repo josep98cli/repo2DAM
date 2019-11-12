@@ -5,6 +5,9 @@
 #include <QMenu>
 #include <QAction>
 #include <QToolBar>
+#include <QLabel>
+#include <QString>
+#include <QTextCursor>
 
 VentanaPrincipal::VentanaPrincipal(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(parent,flags) {
 
@@ -12,10 +15,15 @@ VentanaPrincipal::VentanaPrincipal(QWidget * parent ,Qt::WindowFlags flags ) : Q
         editorCentral = new QTextEdit(this);
         setCentralWidget(editorCentral);
         crearQActions();
-        
+	columna = new QLabel("Columna: 1");
+	fila = new QLabel("Fila: 1");
+
+        crearBarraEstado();
         crearMenus();
-        
+        crearBarrasHerramientas();
     	setWindowIcon(QIcon(":/images/icon.png"));
+	
+	
     
     
 }
@@ -44,8 +52,14 @@ void VentanaPrincipal::crearQActions(){
         accionGuardar -> setShortcut(QKeySequence::Save);
       
         
-	accion1TB = new QAction("1", this);
+	accion1TB = new QAction("Boton 1", this);
 	accion1TB-> setIcon(QIcon(":/images/icon.png"));
+
+	accion2TB = new QAction("Boton 2", this);
+	accion2TB-> setIcon(QIcon(":/images/icon.png"));
+
+	accion3TB = new QAction("Boton 3", this);
+	accion3TB-> setIcon(QIcon(":/images/icon.png"));
 
         connect(accionSalir, SIGNAL(triggered()),this, SLOT(slotCerrar()));
         connect(accionCopiar, SIGNAL(triggered()),this, SLOT(slotCopiar()));
@@ -54,7 +68,12 @@ void VentanaPrincipal::crearQActions(){
         connect(accionNuevo, SIGNAL(triggered()),this,SLOT(slotNuevo()));
         connect(editorCentral, SIGNAL(textChanged()),this,SLOT(slotComprobar()));
         connect(accionGuardar, SIGNAL(triggered()),this, SLOT(slotGuardar()));
-        
+	
+	connect(accion1TB, SIGNAL(triggered()),this, SLOT(slotmostrarTB()));
+	connect(accion2TB, SIGNAL(triggered()),this, SLOT(slotmostrarTB()));
+	connect(accion3TB, SIGNAL(triggered()),this, SLOT(slotmostrarTB()));
+	
+	connect(editorCentral, SIGNAL(cursorPositionChanged()),this, SLOT(slotCambioEstado()));
         
         
 }
@@ -80,8 +99,16 @@ void VentanaPrincipal::crearBarrasHerramientas(){
 	QToolBar * barraPrincipal;
 	
 	barraPrincipal = this->addToolBar("Barra Herramientas");
-	barraPrincipal->addAction(accion1TB);
 
+	barraPrincipal->addAction(accion1TB);
+	barraPrincipal->addAction(accion2TB);
+	barraPrincipal->addAction(accion3TB);
+
+}
+
+void VentanaPrincipal::crearBarraEstado(){
+	statusBar()->addWidget(columna);
+	statusBar()->addWidget(fila);
 }
 
 void VentanaPrincipal::slotCerrar(void){
@@ -128,8 +155,7 @@ void VentanaPrincipal::slotNuevo(void){
 
 void VentanaPrincipal::slotGuardar(void){
 	guardar = true;
-	
-	
+
 }
 
 void VentanaPrincipal::slotComprobar(void){
@@ -138,7 +164,24 @@ void VentanaPrincipal::slotComprobar(void){
 }
 
 
+void VentanaPrincipal::slotmostrarTB(void){
+	
+	QAction * accionCogerAction = qobject_cast<QAction *>(sender());
+	editorCentral->append(accionCogerAction->text());
+}
 
+void VentanaPrincipal::slotCambioEstado(void){
 
+	QTextCursor cursor = editorCentral->textCursor();
+	
+	fila->setText("Fila: "+QString::number(cursor.blockNumber()));
+	columna->setText("Columna: "+QString::number(cursor.columnNumber()));
+}
 
+void VentanaPrincipal::mostrarBotonPalabra(void){
+	if(editorCentral->getText()=="coche"){
+		QButton * botonEscondido = new QButton("Coche");
+		statusBar()->addWidget(botonEscondido);
+	}
+}
 

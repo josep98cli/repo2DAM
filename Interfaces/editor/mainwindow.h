@@ -5,6 +5,7 @@
 #include <QTextEdit>
 #include <QAction>
 #include <QMenu>
+#include <QLabel>
 
 
 class VentanaPrincipal : public QMainWindow {
@@ -22,11 +23,18 @@ private:
         QAction * accionNuevo;
         QAction * accionGuardar;
 	QAction * accion1TB;
+	QAction * accion2TB;
+	QAction * accion3TB;
+	QLabel *fila;
+	QLabel *columna;
         QMenu * menuArchivo;
         QMenu * menuEditar;
+	
+	void crearBarraEstado();
 	void crearBarrasHerramientas();
         void crearQActions();
         void crearMenus();
+	void mostrarBotonPalabra();
         bool guardar;
         
         
@@ -38,6 +46,8 @@ public slots:
 	void slotNuevo();
 	void slotComprobar();
 	void slotGuardar();
+	void slotmostrarTB();
+	void slotCambioEstado();
 	
 
 };
