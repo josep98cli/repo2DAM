@@ -25,6 +25,7 @@ private:
 	QAction * accion1TB;
 	QAction * accion2TB;
 	QAction * accion3TB;
+	QAction *accionAbrir;
 	QLabel *fila;
 	QLabel *columna;
         QMenu * menuArchivo;
@@ -36,6 +37,7 @@ private:
         void crearMenus();
 	void mostrarBotonPalabra();
         bool guardar;
+	void closeEvent(QCloseEvent *event);
         
         
 public slots:
@@ -48,6 +50,7 @@ public slots:
 	void slotGuardar();
 	void slotmostrarTB();
 	void slotCambioEstado();
+	void slotAbrir();
 	
 
 };
