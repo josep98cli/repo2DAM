@@ -15,6 +15,8 @@
 #include <QTextBlock>
 #include <QApplication>
 
+#include "DBuscarReemplazar.h"
+
 VentanaPrincipal::VentanaPrincipal(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(parent,flags) {
 
 	guardar = false;
@@ -23,7 +25,7 @@ VentanaPrincipal::VentanaPrincipal(QWidget * parent ,Qt::WindowFlags flags ) : Q
         crearQActions();
 	columna = new QLabel("Columna: 1");
 	fila = new QLabel("Fila: 1");
-
+	
         crearBarraEstado();
         crearMenus();
         crearBarrasHerramientas();
@@ -67,7 +69,10 @@ void VentanaPrincipal::crearQActions(){
 	accionAbrir = new QAction("Abrir archivo", this);
 	accionAbrir->setShortcut(QKeySequence::Open);
 
+	accionDialogo = new QAction("Buscar y reemplazar", this);
 	
+
+	connect(accionDialogo, SIGNAL(triggered()),this, SLOT(slotBuscarReemplazar()));
 	connect(accionAbrir, SIGNAL(triggered()), this, SLOT(slotAbrir()));
         connect(accionSalir, SIGNAL(triggered()),this, SLOT(slotCerrar()));
         connect(accionCopiar, SIGNAL(triggered()),this, SLOT(slotCopiar()));
@@ -93,7 +98,8 @@ void VentanaPrincipal::crearMenus(){
 	menuArchivo ->addAction(accionAbrir);
 	menuArchivo ->addAction(accionGuardar);
         menuArchivo ->addAction(accionSalir);
-        
+	menuArchivo ->addAction(accionDialogo);        
+
         menuEditar = menuBar()->addMenu("Editar");
 	menuEditar->addAction(accionCopiar);
 	menuEditar->addAction(accionCortar);
@@ -264,18 +270,22 @@ void VentanaPrincipal::slotAbrir(void){
 
 void VentanaPrincipal::closeEvent(QCloseEvent *event)
   {
-      if (!guardar) {
-          slotGuardar();
-	  event->ignore();
+     if (!guardar) {
+         event->accept();
       } else {
           event->ignore();
       }
+
+	//event->ignore(); hace que cuando le hago override al metodo close event de la clase closeEvent ignore la operacion si no guarda
   }
 
 
+void VentanaPrincipal::slotBuscarReemplazar(void){
 
-
-
+	QString texto = editorCentral->textCursor().selectedText();
+	DBuscarReemplazar * dbr = new DBuscarReemplazar(texto);
+	dbr->show();
+}
 
 
 

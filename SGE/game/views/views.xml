@@ -1,0 +1,65 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="game.jugador_list">
+      <field name="name">Lista jugadores</field>
+      <field name="model">game.jugador</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+  -->
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="game.action_window">
+      <field name="name">Jugador</field>
+      <field name="res_model">game.jugador</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="game.action_window">
+      <field name="name">Ciutat</field>
+      <field name="res_model">game.ciutat</field>
+      <field name="view_mode">tree,form</field>
+
+    </record>
+    <!-- server action to the one above -->
+
+    <!--<record model="ir.actions.server" id="game.action_server">
+      <field name="name">game server</field>
+      <field name="model_id" ref="model_game_game"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record> -->
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Game" id="game.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="game.menu_1" parent="game.menu_root"/>
+
+
+    <!-- actions -->
+
+    <menuitem name="Jugador" id="game.jugador" parent="game.menu_root"
+              action="game.action_window"/>
+
+    <menuitem name="Ciutats" id="game.ciutat" parent="game.jugador"
+              action="game.action_window"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="game.cerio" model="game.jugador">
+            <field name="name">cerio</field>
+        </record>
+
+        <record id="game.lanthanu" model="game.jugador">
+            <field name="name">lanthanum</field>
+        </record>
+
+        <record id="game.erbio" model="game.jugador">
+            <field name="name">erbio</field>
+        </record>
+    </data>
+</odoo>

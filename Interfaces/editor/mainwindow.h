@@ -26,6 +26,7 @@ private:
 	QAction * accion2TB;
 	QAction * accion3TB;
 	QAction *accionAbrir;
+	QAction * accionDialogo;
 	QLabel *fila;
 	QLabel *columna;
         QMenu * menuArchivo;
@@ -51,6 +52,7 @@ public slots:
 	void slotmostrarTB();
 	void slotCambioEstado();
 	void slotAbrir();
+	void slotBuscarReemplazar();
 	
 
 };
