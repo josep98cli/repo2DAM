@@ -1,32 +1,38 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="game.jugador_list">
-      <field name="name">Lista jugadores</field>
-      <field name="model">game.jugador</field>
+
+    <record model="ir.ui.view" id="game.recurs_list">
+      <field name="name">Llista recursos</field>
+      <field name="model">game.recurs</field>
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
+          <field name="image" widget="image"/>
+          <field name="cantidad"/>
         </tree>
       </field>
     </record>
-  -->
+
 
     <!-- actions opening views on models -->
 
-    <record model="ir.actions.act_window" id="game.action_window">
+    <record model="ir.actions.act_window" id="game.jugador_action_window">
       <field name="name">Jugador</field>
       <field name="res_model">game.jugador</field>
       <field name="view_mode">tree,form</field>
     </record>
 
-
-    <record model="ir.actions.act_window" id="game.action_window">
-      <field name="name">Ciutat</field>
+    <record model="ir.actions.act_window" id="game.ciutat_action_window">
+      <field name="name">Ciutats</field>
       <field name="res_model">game.ciutat</field>
       <field name="view_mode">tree,form</field>
+    </record>
 
+    <record model="ir.actions.act_window" id="game.recurs_action_window">
+      <field name="name">Recursos</field>
+      <field name="res_model">game.recurs</field>
+      <field name="view_mode">tree,form</field>
     </record>
     <!-- server action to the one above -->
 
@@ -52,14 +58,16 @@
 
     <menuitem name="Menu 1" id="game.menu_1" parent="game.menu_root"/>
 
-
     <!-- actions -->
 
     <menuitem name="Jugador" id="game.jugador" parent="game.menu_root"
-              action="game.action_window"/>
+              action="game.jugador_action_window"/>
 
     <menuitem name="Ciutats" id="game.ciutat" parent="game.jugador"
-              action="game.action_window"/>
+              action="game.ciutat_action_window"/>
+
+     <menuitem name="Recursos" id="game.recurs" parent="game.jugador"
+              action="game.recurs_action_window"/>
 
   </data>
 </odoo>
