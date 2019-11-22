@@ -24,4 +24,26 @@ Si la defensa es mayor al ataque, el ataque tendra un 20% de posibilidades de po
 
 
 
+  for i in p.recursos:
+                    i.unlink()
+                r = self.env['game.cerio'].create({
+                    'name': 'Cerio',
+                    'player': p.id,
+                    'recurs': self.env.ref('game.cerio').id,
+                    'cantidad': 500
+                })
+
+                r = self.env['game.holmio'].create({
+                    'name': 'Holmio',
+                    'player': p.id,
+                    'recurs': self.env.ref('game.holmio').id,
+                    'cantidad': 100
+                })
+
+                r = self.env['game.lutecio'].create({
+                    'name': 'Lutecio',
+                    'player': p.id,
+                    'recurs': self.env.ref('game.lutecio').id,
+                    'cantidad': 50
+                })
 

@@ -393,6 +393,8 @@ moc_DBuscarReemplazar.cpp: DBuscarReemplazar.h \
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/vesprada/repoDam/repo2DAM/Interfaces/editor/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/vesprada/repoDam/repo2DAM/Interfaces/editor -I/home/vesprada/repoDam/repo2DAM/Interfaces/editor -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DBuscarReemplazar.h -o moc_DBuscarReemplazar.cpp
 
 moc_mainwindow.cpp: mainwindow.h \
+		DBuscarReemplazar.h \
+		ui_DBuscarReemplazar.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/vesprada/repoDam/repo2DAM/Interfaces/editor/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/vesprada/repoDam/repo2DAM/Interfaces/editor -I/home/vesprada/repoDam/repo2DAM/Interfaces/editor -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
@@ -422,10 +424,14 @@ DBuscarReemplazar.o: DBuscarReemplazar.cpp DBuscarReemplazar.h \
 		ui_DBuscarReemplazar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DBuscarReemplazar.o DBuscarReemplazar.cpp
 
-main.o: main.cpp mainwindow.h
+main.o: main.cpp mainwindow.h \
+		DBuscarReemplazar.h \
+		ui_DBuscarReemplazar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
-mainwindow.o: mainwindow.cpp mainwindow.h
+mainwindow.o: mainwindow.cpp mainwindow.h \
+		DBuscarReemplazar.h \
+		ui_DBuscarReemplazar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 qrc_resources.o: qrc_resources.cpp 

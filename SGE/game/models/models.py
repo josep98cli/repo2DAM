@@ -6,7 +6,7 @@ import random
 
 class jugador(models.Model):
     _name = 'game.jugador'
-    #imageJugador = fields.Binary()
+    # imageJugador = fields.Binary()
     name = fields.Char(string='Nom jugadors',
                        default=lambda self: self._get_default_name(), )
 
@@ -19,6 +19,20 @@ class jugador(models.Model):
         return random_name
 
     ciutat = fields.One2many('game.ciutat', 'jugador')
+
+    @api.model
+    def create(self, values):
+        res = super(jugador, self).create(values)
+        names = ['Vulcano', 'Minshara', 'Khan', 'Voyager', 'Tau', 'Cyanga V', 'Defiant', 'Mudd', 'Elanna',
+                 'Tholianos', 'Tholia', 'Medusanos']
+
+        f = self.env['game.ciutat'].create({
+            'name': str(random.choice(names)),
+            'vida': 1000,
+            'jugador': res.id
+
+        })
+        return res
 
 
 class ciutat(models.Model):
@@ -35,14 +49,14 @@ class ciutat(models.Model):
 
     vida = fields.Float(default=1000)
     jugador = fields.Many2one('game.jugador')
-    recurs = fields.One2many('game.recurs', 'ciutat')
-    """
-    @api.model
-    def create(self, vals):
-        res = super(ciutat, self).create(vals)
+    recursos = fields.One2many('game.recursos', 'ciutat')
 
-        return res
-    """
+
+class recursos(models.Model):
+    _name = 'game.recursos'
+    ciutat = fields.Many2one('ciutat')
+    recurs = fields.Many2one('recurs')
+
 
 class recurs(models.Model):
     _name = 'game.recurs'

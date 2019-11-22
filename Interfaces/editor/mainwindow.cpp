@@ -15,7 +15,7 @@
 #include <QTextBlock>
 #include <QApplication>
 
-#include "DBuscarReemplazar.h"
+
 
 VentanaPrincipal::VentanaPrincipal(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(parent,flags) {
 
@@ -25,7 +25,8 @@ VentanaPrincipal::VentanaPrincipal(QWidget * parent ,Qt::WindowFlags flags ) : Q
         crearQActions();
 	columna = new QLabel("Columna: 1");
 	fila = new QLabel("Fila: 1");
-	
+	dialogoBuscar =NULL;
+
         crearBarraEstado();
         crearMenus();
         crearBarrasHerramientas();
@@ -71,6 +72,12 @@ void VentanaPrincipal::crearQActions(){
 
 	accionDialogo = new QAction("Buscar y reemplazar", this);
 	
+	for(int i = 0; i< MAXARCHIVOS; i++){
+		QAction * nueva = new QAction(QString::number(i),this);
+		actRecientes.append(nueva);
+		connect(nueva, SIGNAL(triggered()),this, SLOT(slotAbrirRecientes()));
+	
+	}
 
 	connect(accionDialogo, SIGNAL(triggered()),this, SLOT(slotBuscarReemplazar()));
 	connect(accionAbrir, SIGNAL(triggered()), this, SLOT(slotAbrir()));
@@ -105,6 +112,11 @@ void VentanaPrincipal::crearMenus(){
 	menuEditar->addAction(accionCortar);
 	menuEditar->addAction(accionPegar);
 	
+	for (int i= 0; i<MAXARCHIVOS;i++){
+		menuArchivo->addAction(actRecientes[i]);	
+	}
+
+
 	editorCentral->addAction(accionNuevo);
 	editorCentral->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
@@ -242,30 +254,15 @@ void VentanaPrincipal::slotAbrir(void){
 	QString rutaArchivo;
 	//le asigno al QString la ruta del documento seleccionado 
 	rutaArchivo=QFileDialog::getOpenFileName(this, QString("abrir documentillo"));
-	//debuggeo la ruta del archivo	
-	qDebug()<<rutaArchivo;
 	
 	//limpio el editor
-	editorCentral->clear();
 	
-	//creo un objeto de clase FILE con la ruta del dialogo del fichero	
-	QFile fichero(rutaArchivo);
 	
-	//compruebo las excepciones y le digo que abra el fichero en solo lectura
-	if(! fichero.open(QIODevice::ReadOnly)){
-		qDebug()<<"Algo va mal en el fichero";	
-		return;	
-	}
-	//creo un objeto de tipo QTextStream y le paso por referencia el fichero 
-	QTextStream stream(&fichero);
-	//uso la funcion readAll() que lee todo el fichero
-	QString texto =stream.readAll();
-	//pongo el texto en el editor
-	editorCentral->append(texto);
-	//cierro el fichero
-	fichero.close();
+	
+	abrirArchivo(rutaArchivo);
+	actualizarMenus(rutaArchivo);
+	
 
-		
 }
 
 void VentanaPrincipal::closeEvent(QCloseEvent *event)
@@ -283,13 +280,76 @@ void VentanaPrincipal::closeEvent(QCloseEvent *event)
 void VentanaPrincipal::slotBuscarReemplazar(void){
 
 	QString texto = editorCentral->textCursor().selectedText();
-	DBuscarReemplazar * dbr = new DBuscarReemplazar(texto);
-	dbr->show();
+	
+	if(dialogoBuscar == NULL || !dialogoBuscar->isVisible()){
+
+	dialogoBuscar = new DBuscarReemplazar(texto);
+	connect(dialogoBuscar, SIGNAL(buscar(QString)), this, SLOT(slotAnyadirPalabra(QString)));	
+	dialogoBuscar->show();
+	}
 }
 
 
+void VentanaPrincipal::actualizarMenus(QString ruta){
+
+	listaArchivos.removeAll(ruta);
+	listaArchivos.prepend(ruta);
+	
+	
+		
+	for(int i=0; i< MAXARCHIVOS && i<listaArchivos.length(); i++){
+				
+		actRecientes[i]->setVisible(false);
+		QString rutaCompleta = listaArchivos[i];
+		if(actRecientes[i]->text()!=i){
+			actRecientes[i]->setVisible(true);
+		}
+
+		QFileInfo fi(listaArchivos[i]);
+		QString nombreCorto = fi.fileName();
+		actRecientes[i]->setText(nombreCorto);
+
+		QVariant contenidoMaletero(rutaCompleta);
+		actRecientes[i]->setData(contenidoMaletero);	
+	}
+	
+}
+
+void VentanaPrincipal::slotAbrirRecientes(){
+	
+	QAction * culpable;
+	culpable = qobject_cast<QAction*>(sender());
+	QString ruta = culpable->data().toString();
+
+	abrirArchivo(ruta);	
 
 
+}
 
+void VentanaPrincipal::abrirArchivo(QString rutaArchivo){
+
+	editorCentral->clear();
+	//creo un objeto de clase FILE con la ruta del dialogo del fichero	
+	QFile fichero(rutaArchivo);
+	
+	//compruebo las excepciones y le digo que abra el fichero en solo lectura
+	if(! fichero.open(QIODevice::ReadOnly)){
+		qDebug()<<"Algo va mal en el fichero";	
+		return;	
+	}
+	//creo un objeto de tipo QTextStream y le paso por referencia el fichero 
+	QTextStream stream(&fichero);
+	//uso la funcion readAll() que lee todo el fichero
+	QString texto =stream.readAll();
+	//pongo el texto en el editor
+	editorCentral->append(texto);
+	//cierro el fichero
+	fichero.close();
+}
+
+
+void VentanaPrincipal::slotAnyadirPalabra(QString palabra){
+	editorCentral->setText(palabra);
+}
 
 

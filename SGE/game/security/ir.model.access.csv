@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_game_jugador,game.jugador,model_game_jugador,,1,1,1,1
 access_game_ciutat,game.ciutat,model_game_ciutat,,1,1,1,1
 access_game_recurs,game.recurs,model_game_recurs,,1,1,1,1
+access_game_recursos,game.recursos,model_game_recursos,,1,1,1,1

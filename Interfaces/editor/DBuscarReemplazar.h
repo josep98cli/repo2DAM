@@ -10,6 +10,9 @@ Q_OBJECT
 	public:
 		DBuscarReemplazar(QString cadena, QWidget * parent = 0);
 
+	signals:
+
+		void buscar(const QString &str);
 
 };
 

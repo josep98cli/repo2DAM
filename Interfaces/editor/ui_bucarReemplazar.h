@@ -15,6 +15,7 @@
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
 
@@ -26,6 +27,7 @@ public:
     QLabel *label_2;
     QLineEdit *leBuscar;
     QLineEdit *leReemplazar;
+    QPushButton *botonBuscar;
 
     void setupUi(QDialog *DBuscarReemplazar)
     {
@@ -49,6 +51,9 @@ public:
         leReemplazar = new QLineEdit(DBuscarReemplazar);
         leReemplazar->setObjectName(QString::fromUtf8("leReemplazar"));
         leReemplazar->setGeometry(QRect(190, 100, 113, 25));
+        botonBuscar = new QPushButton(DBuscarReemplazar);
+        botonBuscar->setObjectName(QString::fromUtf8("botonBuscar"));
+        botonBuscar->setGeometry(QRect(310, 60, 89, 25));
 
         retranslateUi(DBuscarReemplazar);
         QObject::connect(buttonBox, SIGNAL(accepted()), DBuscarReemplazar, SLOT(accept()));
@@ -62,6 +67,7 @@ public:
         DBuscarReemplazar->setWindowTitle(QApplication::translate("DBuscarReemplazar", "Dialog", nullptr));
         label->setText(QApplication::translate("DBuscarReemplazar", "Buscar", nullptr));
         label_2->setText(QApplication::translate("DBuscarReemplazar", "Reemplazar", nullptr));
+        botonBuscar->setText(QApplication::translate("DBuscarReemplazar", "Buscar", nullptr));
     } // retranslateUi
 
 };

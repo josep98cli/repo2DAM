@@ -1,5 +1,6 @@
 <odoo>
     <data>
+
         <record id="game.cerio" model="game.recurs">
             <field name="name">Celio</field>
             <field name="image">iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAgu3pUWHRSYXcgcHJvZmlsZSB0eXBl

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_VentanaPrincipal_t {
-    QByteArrayData data[13];
-    char stringdata0[159];
+    QByteArrayData data[15];
+    char stringdata0[197];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -43,14 +43,17 @@ QT_MOC_LITERAL(8, 85, 11), // "slotGuardar"
 QT_MOC_LITERAL(9, 97, 13), // "slotmostrarTB"
 QT_MOC_LITERAL(10, 111, 16), // "slotCambioEstado"
 QT_MOC_LITERAL(11, 128, 9), // "slotAbrir"
-QT_MOC_LITERAL(12, 138, 20) // "slotBuscarReemplazar"
+QT_MOC_LITERAL(12, 138, 20), // "slotBuscarReemplazar"
+QT_MOC_LITERAL(13, 159, 18), // "slotAbrirRecientes"
+QT_MOC_LITERAL(14, 178, 18) // "slotAnyadirPalabra"
 
     },
     "VentanaPrincipal\0slotCerrar\0\0slotCopiar\0"
     "slotCortar\0slotPegar\0slotNuevo\0"
     "slotComprobar\0slotGuardar\0slotmostrarTB\0"
     "slotCambioEstado\0slotAbrir\0"
-    "slotBuscarReemplazar"
+    "slotBuscarReemplazar\0slotAbrirRecientes\0"
+    "slotAnyadirPalabra"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,7 +63,7 @@ static const uint qt_meta_data_VentanaPrincipal[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -68,17 +71,19 @@ static const uint qt_meta_data_VentanaPrincipal[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   69,    2, 0x0a /* Public */,
-       3,    0,   70,    2, 0x0a /* Public */,
-       4,    0,   71,    2, 0x0a /* Public */,
-       5,    0,   72,    2, 0x0a /* Public */,
-       6,    0,   73,    2, 0x0a /* Public */,
-       7,    0,   74,    2, 0x0a /* Public */,
-       8,    0,   75,    2, 0x0a /* Public */,
-       9,    0,   76,    2, 0x0a /* Public */,
-      10,    0,   77,    2, 0x0a /* Public */,
-      11,    0,   78,    2, 0x0a /* Public */,
-      12,    0,   79,    2, 0x0a /* Public */,
+       1,    0,   79,    2, 0x0a /* Public */,
+       3,    0,   80,    2, 0x0a /* Public */,
+       4,    0,   81,    2, 0x0a /* Public */,
+       5,    0,   82,    2, 0x0a /* Public */,
+       6,    0,   83,    2, 0x0a /* Public */,
+       7,    0,   84,    2, 0x0a /* Public */,
+       8,    0,   85,    2, 0x0a /* Public */,
+       9,    0,   86,    2, 0x0a /* Public */,
+      10,    0,   87,    2, 0x0a /* Public */,
+      11,    0,   88,    2, 0x0a /* Public */,
+      12,    0,   89,    2, 0x0a /* Public */,
+      13,    0,   90,    2, 0x0a /* Public */,
+      14,    1,   91,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
@@ -92,6 +97,8 @@ static const uint qt_meta_data_VentanaPrincipal[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    2,
 
        0        // eod
 };
@@ -113,10 +120,11 @@ void VentanaPrincipal::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 8: _t->slotCambioEstado(); break;
         case 9: _t->slotAbrir(); break;
         case 10: _t->slotBuscarReemplazar(); break;
+        case 11: _t->slotAbrirRecientes(); break;
+        case 12: _t->slotAnyadirPalabra((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject VentanaPrincipal::staticMetaObject = { {
@@ -148,13 +156,13 @@ int VentanaPrincipal::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 13)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 11;
+        _id -= 13;
     }
     return _id;
 }
