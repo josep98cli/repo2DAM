@@ -697,7 +697,15 @@ RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
 
             </field>
             <field name="cantidad">0.0</field>
-        </record>
 
+     </record>
+
+            <!-- DATA DE LES MINES -->
+
+            <record id="game.centralFusion" model="game.mina">
+                <field name="name">Central de fusion nuclear</field>
+                <field name="nivel">0</field>
+                <field name="produccion">0</field>
+            </record>
     </data>
 </odoo>
