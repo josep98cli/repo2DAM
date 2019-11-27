@@ -29,7 +29,8 @@ class jugador(models.Model):
         f = self.env['game.ciutat'].create({
             'name': str(random.choice(names)),
             'vida': 1000,
-            'jugador': res.id
+            'jugador': res.id,
+            'image': self.env.ref('game.img_ciutat').image
 
         })
         return res
@@ -40,6 +41,8 @@ class ciutat(models.Model):
     name = fields.Char(string='Nom ciutats',
                        default=lambda self: self._get_default_name(), )
 
+    image = fields.Binary()
+
     @api.model
     def _get_default_name(self):
         lista_nombres = ['Vulcano', 'Minshara', 'Khan', 'Voyager', 'Tau', 'Cyanga V', 'Defiant', 'Mudd', 'Elanna',
@@ -47,25 +50,36 @@ class ciutat(models.Model):
         random_name = random.choice(lista_nombres)
         return random_name
 
+    vida = fields.Float()
+    jugador = fields.Many2one('game.jugador')
+    recursos = fields.One2many('game.recursos', 'ciutat')
+    mines = fields.One2many('game.mines', 'ciutat')
+
     @api.model
     def create(self, values):
         res = super(ciutat, self).create(values)
+        array_recursos = ['game.cerio', 'game.holmio', 'game.lutecio', 'game.itrio']
+        array_mines = ['game.central_fusion', 'game.arco_electrico', 'game.cavitacion', 'rayo_laser']
+        for i in array_recursos:
+            res.recursos.create({
+                'ciutat': res.id,
+                'recurs': self.env.ref(i).id,
+                'name': self.env.ref(i).name
+            })
+        for i in array_mines:
+            res.mines.create({
+                'ciutat': res.id,
+                'name': self.env.ref(i).name,
+                'nivel': self.env.ref(i).nivel,
+                'produccion': self.env.ref(i).nivel
+            })
 
-        f = self.env['game.mina'].create({
-            'name': self.env['game.centralFusion'].name,
-            'ciutat': res.id
-
-        })
         return res
-
-    vida = fields.Float(default=1000)
-    jugador = fields.Many2one('game.jugador')
-    recursos = fields.One2many('game.recursos', 'ciutat')
-    mina = fields.One2many('game.mines', 'ciutat')
 
 
 class recursos(models.Model):
     _name = 'game.recursos'
+    name = fields.Char()
     ciutat = fields.Many2one('game.ciutat')
     recurs = fields.Many2one('game.recurs')
 
@@ -75,11 +89,11 @@ class recurs(models.Model):
     name = fields.Char()
     image = fields.Binary()
     cantidad = fields.Float()
-    ciutat = fields.Many2one('game.ciutat')
 
 
 class mines(models.Model):
     _name = 'game.mines'
+    name = fields.Char()
     ciutat = fields.Many2one('game.ciutat')
     mina = fields.Many2one('game.mina')
 
@@ -87,16 +101,13 @@ class mines(models.Model):
 class mina(models.Model):
     _name = 'game.mina'
     name = fields.Char()
-    recurs = fields.Many2one('game.recurs')  # recurs que produeix
-    nivel = fields.Integer()  # nivel de la mina
-    production = fields.Float()  # que produeix
-    coste = fields.One2many('game.coste', 'mina')
-    ciutat = fields.Many2one('game.ciutat')
+    nivel = fields.Integer()
+    produccion = fields.Float()
+    recurs = fields.Many2one('game.recurs')
 
 
 class coste(models.Model):
-    _name = 'game.coste'
-    recurs = fields.Many2one('game.recurs')  # que recurs costa
-    nivel = fields.Integer()  # que nivel esta la mina
-    coste = fields.Float()  # el cost de la mina
-    mina = fields.Many2one('game.mina')
+    _name = 'game.costa'
+    name = fields.Char()
+    recurs = fields.Many2one('game.recurs')
+    minutes = fields.Integer()

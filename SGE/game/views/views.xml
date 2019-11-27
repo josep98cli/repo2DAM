@@ -1,9 +1,63 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
+<!--VISTES JUGADOR-->
 
-    <record model="ir.ui.view" id="game.recurs_list">
-      <field name="name">Llista recursos</field>
+<record model="ir.ui.view" id="game.jugador_tree_list">
+      <field name="name">Jugadores</field>
+      <field name="model">game.jugador</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="ciutat"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="game.jugador_form_list">
+      <field name="name">Jugadores</field>
+      <field name="model">game.jugador</field>
+      <field name="arch" type="xml">
+        <form>
+          <field name="name"/>
+          <field name="ciutat"/>
+        </form>
+      </field>
+    </record>
+
+    <!-- VISTES CIUTAT -->
+      <record model="ir.ui.view" id="game.ciutat_form_list">
+      <field name="name">Ciutats</field>
+      <field name="model">game.ciutat</field>
+      <field name="arch" type="xml">
+        <form>
+          <field name="name" />
+          <field name="vida"/>
+          <field name="recursos"/>
+          <field name="mines"/>
+            <field name="image" widget="image"/>
+
+        </form>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="game.ciutat_tree_list">
+      <field name="name">Ciutats</field>
+      <field name="model">game.ciutat</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" string="Nom ciutats:"/>
+          <field name="vida"/>
+          <field name="recursos"/>
+          <field name="mines"/>
+          <field name="image" widget="image"/>
+        </tree>
+      </field>
+    </record>
+
+  <!--VISTES RECURS-->
+    <record model="ir.ui.view" id="game.recurs_tree_list">
+      <field name="name">Llista recurs</field>
       <field name="model">game.recurs</field>
       <field name="arch" type="xml">
         <tree>
@@ -14,6 +68,92 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="game.recurs_form_list">
+      <field name="name">Recurs</field>
+      <field name="model">game.recurs</field>
+      <field name="arch" type="xml">
+        <form>
+          <field name="name"/>
+          <field name="image" widget="image"/>
+          <field name="cantidad"/>
+        </form>
+      </field>
+    </record>
+    <!-- VISTES RECURSOS -->
+    <record model="ir.ui.view" id="game.recursos_form_list">
+      <field name="name">Recursos</field>
+      <field name="model">game.recursos</field>
+      <field name="arch" type="xml">
+        <form>
+          <field name="recurs"/>
+        </form>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="game.recursos_tree_list">
+      <field name="name">Llista recursos</field>
+      <field name="model">game.recursos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="recurs"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- VISTES MINES-->
+       <record model="ir.ui.view" id="game.mines_form_list">
+      <field name="name">Mines</field>
+      <field name="model">game.mines</field>
+      <field name="arch" type="xml">
+        <form>
+          <field name="name"/>
+        </form>
+      </field>
+    </record>
+
+        <record model="ir.ui.view" id="game.mines_tree_list">
+      <field name="name">Mines</field>
+      <field name="model">game.mines</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+  <!-- VISTAS MINA -->
+         <record model="ir.ui.view" id="game.mina_form_list">
+      <field name="name">Mina</field>
+      <field name="model">game.mina</field>
+      <field name="arch" type="xml">
+        <form>
+            <field name="name"/>
+            <field name="nivel"/>
+            <field name="produccion"/>
+            <field name="recurs"/>
+        </form>
+      </field>
+    </record>
+    <!--
+    <record model="ir.ui.view" id="game.mina_form_list">
+      <field name="name">Mina</field>
+      <field name="model">game.mina</field>
+      <field name="arch" type="xml">
+        <form>
+          <field name="name"/>
+        </form>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="game.mina_tree_list">
+      <field name="name">Mina</field>
+      <field name="model">game.mina</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>-->
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="game.jugador_action_window">
@@ -29,11 +169,29 @@
     </record>
 
     <record model="ir.actions.act_window" id="game.recurs_action_window">
-      <field name="name">Recursos</field>
+      <field name="name">Recurs</field>
       <field name="res_model">game.recurs</field>
       <field name="view_mode">tree,form</field>
     </record>
-    <!-- server action to the one above -->
+    <record model="ir.actions.act_window" id="game.recursos_action_window">
+      <field name="name">Recursos</field>
+      <field name="res_model">game.recursos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+      <record model="ir.actions.act_window" id="game.mines_action_window">
+      <field name="name">Mines</field>
+      <field name="res_model">game.mines</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+      <record model="ir.actions.act_window" id="game.mina_action_window">
+      <field name="name">Mina</field>
+      <field name="res_model">game.mina</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  <!--server action to the one above -->
 
     <!--<record model="ir.actions.server" id="game.action_server">
       <field name="name">game server</field>
@@ -65,8 +223,9 @@
     <menuitem name="Ciutats" id="game.ciutat" parent="game.jugador"
               action="game.ciutat_action_window"/>
 
-     <menuitem name="Recursos" id="game.recurs" parent="game.jugador"
+     <menuitem name="Recurs" id="game.recurs" parent="game.jugador"
               action="game.recurs_action_window"/>
-
+    <menuitem name="Mines" id="game.mina" parent="game.jugador"
+              action="game.mina_action_window"/>
   </data>
 </odoo>
