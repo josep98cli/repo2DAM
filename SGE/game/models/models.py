@@ -7,7 +7,7 @@ import random
 class jugador(models.Model):
     _name = 'game.jugador'
     # imageJugador = fields.Binary()
-    name = fields.Char(string='Nom jugadors',
+    name = fields.Char(string='Nombre jugador',
                        default=lambda self: self._get_default_name(), )
     ciutat = fields.One2many('game.ciutat', 'jugador')
 
@@ -36,7 +36,7 @@ class jugador(models.Model):
 
 class ciutat(models.Model):
     _name = 'game.ciutat'
-    name = fields.Char(string='Nom ciutats',
+    name = fields.Char(string='Nombre ciudades',
                        default=lambda self: self._get_default_name(), )
     image = fields.Binary()
 
@@ -51,6 +51,7 @@ class ciutat(models.Model):
     jugador = fields.Many2one('game.jugador')
     recursos = fields.One2many('game.recursos', 'ciutat')
     mines = fields.One2many('game.mines', 'ciutat')
+    recurs = fields.Many2one('game.recurs')
 
     @api.model
     def create(self, values):
@@ -88,6 +89,7 @@ class recurs(models.Model):
     image = fields.Binary()
     cantidad = fields.Float()
     mina = fields.One2many('game.mina', 'recurs')
+    ciutat = fields.Many2one('game.ciutat', 'recurs')
 
 
 class mines(models.Model):
@@ -95,6 +97,12 @@ class mines(models.Model):
     name = fields.Char()
     ciutat = fields.Many2one('game.ciutat')
     mina = fields.Many2one('game.mina')
+
+    @api.multi
+    def calcular_cantidad(self):
+        for i in self.ciutat.recursos:
+            if i.name == self.mina.recurs.name:
+                print(i.name)
 
 
 class mina(models.Model):
@@ -105,10 +113,3 @@ class mina(models.Model):
     recurs = fields.Many2one('game.recurs')
     minutos = fields.Integer()
     coste = fields.Float(default=lambda self: 600)
-
-    @api.multi
-    def calcular_cantidad(self):
-        if self.recurs.cantidad >= self.coste:
-            self.recurs.cantidad -= self.coste
-            self.nivel += 1
-            self.produccion = (self.nivel * 200) + self.produccion

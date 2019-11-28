@@ -707,7 +707,7 @@ RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
             <field name="name">Central de fusion termica</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
-            <field name="coste">0</field>
+            <field name="coste">300</field>
             <field name="recurs" eval="ref('game.cerio')"/>
         </record>
 
@@ -715,7 +715,7 @@ RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
             <field name="name">Mina de arco electrico</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
-            <field name="coste">0</field>
+            <field name="coste">200</field>
             <field name="recurs" eval="ref('game.holmio')"/>
         </record>
 
@@ -723,7 +723,7 @@ RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
             <field name="name">Mina de cavitacion</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
-              <field name="coste">0</field>
+              <field name="coste">100</field>
             <field name="recurs" eval="ref('game.lutecio')"/>
         </record>
 
@@ -731,7 +731,7 @@ RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
             <field name="name">Mina mediante rayo laser</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
-              <field name="coste">0</field>
+              <field name="coste">10</field>
             <field name="recurs" eval="ref('game.itrio')"/>
         </record>
 
