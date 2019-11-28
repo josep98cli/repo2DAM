@@ -9,7 +9,7 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
-          <field name="ciutat"/>
+          <field name="ciutat" string="Ciudades"/>
         </tree>
       </field>
     </record>
@@ -19,15 +19,17 @@
       <field name="model">game.jugador</field>
       <field name="arch" type="xml">
         <form>
-          <field name="name"/>
-          <field name="ciutat"/>
+            <group>
+                <field name="name"/>
+                <field name="ciutat" string="Ciudades"/>
+            </group>
         </form>
       </field>
     </record>
 
     <!-- VISTES CIUTAT -->
       <record model="ir.ui.view" id="game.ciutat_form_list">
-      <field name="name">Ciutats</field>
+      <field name="name">Ciudades</field>
       <field name="model">game.ciutat</field>
       <field name="arch" type="xml">
         <form>
@@ -42,22 +44,26 @@
     </record>
 
      <record model="ir.ui.view" id="game.ciutat_tree_list">
-      <field name="name">Ciutats</field>
+      <field name="name">Ciudades</field>
       <field name="model">game.ciutat</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="name" string="Nom ciutats:"/>
+          <field name="name" string="Ciudades:"/>
           <field name="vida"/>
           <field name="recursos"/>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
           <field name="mines"/>
           <field name="image" widget="image"/>
+=======
+          <field name="mines" string="Minas"/>
+>>>>>>> Millora aspectes views.xml i funcionament
         </tree>
       </field>
     </record>
 
   <!--VISTES RECURS-->
     <record model="ir.ui.view" id="game.recurs_tree_list">
-      <field name="name">Llista recurs</field>
+      <field name="name">Lista recurso</field>
       <field name="model">game.recurs</field>
       <field name="arch" type="xml">
         <tree>
@@ -69,13 +75,15 @@
     </record>
 
     <record model="ir.ui.view" id="game.recurs_form_list">
-      <field name="name">Recurs</field>
+      <field name="name">Recurso</field>
       <field name="model">game.recurs</field>
       <field name="arch" type="xml">
         <form>
+            <group>
           <field name="name"/>
           <field name="image" widget="image"/>
           <field name="cantidad"/>
+            </group>
         </form>
       </field>
     </record>
@@ -91,7 +99,7 @@
     </record>
 
      <record model="ir.ui.view" id="game.recursos_tree_list">
-      <field name="name">Llista recursos</field>
+      <field name="name">Lista recursos</field>
       <field name="model">game.recursos</field>
       <field name="arch" type="xml">
         <tree>
@@ -102,21 +110,32 @@
 
     <!-- VISTES MINES-->
        <record model="ir.ui.view" id="game.mines_form_list">
-      <field name="name">Mines</field>
+      <field name="name">Minas</field>
       <field name="model">game.mines</field>
       <field name="arch" type="xml">
         <form>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
           <field name="name"/>
+=======
+            <group><field name="mina"/></group>
+             <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
+
+>>>>>>> Millora aspectes views.xml i funcionament
         </form>
       </field>
     </record>
 
         <record model="ir.ui.view" id="game.mines_tree_list">
-      <field name="name">Mines</field>
+      <field name="name">Minas</field>
       <field name="model">game.mines</field>
       <field name="arch" type="xml">
         <tree>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
           <field name="name"/>
+=======
+          <field name="mina"/>
+             <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
+>>>>>>> Millora aspectes views.xml i funcionament
         </tree>
       </field>
     </record>
@@ -131,6 +150,15 @@
             <field name="nivel"/>
             <field name="produccion"/>
             <field name="recurs"/>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+=======
+            </group>
+            <group>
+                <field name="minutos" string="Tiempo para mejorar"/>
+                <field name="coste"/>
+            </group>
+
+>>>>>>> Millora aspectes views.xml i funcionament
         </form>
       </field>
     </record>
@@ -163,13 +191,13 @@
     </record>
 
     <record model="ir.actions.act_window" id="game.ciutat_action_window">
-      <field name="name">Ciutats</field>
+      <field name="name">Ciudades</field>
       <field name="res_model">game.ciutat</field>
       <field name="view_mode">tree,form</field>
     </record>
 
     <record model="ir.actions.act_window" id="game.recurs_action_window">
-      <field name="name">Recurs</field>
+      <field name="name">Recurso</field>
       <field name="res_model">game.recurs</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -180,7 +208,7 @@
     </record>
 
       <record model="ir.actions.act_window" id="game.mines_action_window">
-      <field name="name">Mines</field>
+      <field name="name">Minas</field>
       <field name="res_model">game.mines</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -220,12 +248,17 @@
     <menuitem name="Jugador" id="game.jugador" parent="game.menu_root"
               action="game.jugador_action_window"/>
 
-    <menuitem name="Ciutats" id="game.ciutat" parent="game.jugador"
+    <menuitem name="Ciudades" id="game.ciutat" parent="game.jugador"
               action="game.ciutat_action_window"/>
 
-     <menuitem name="Recurs" id="game.recurs" parent="game.jugador"
+     <menuitem name="Recursos" id="game.recurs" parent="game.jugador"
               action="game.recurs_action_window"/>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
     <menuitem name="Mines" id="game.mina" parent="game.jugador"
+=======
+
+    <menuitem name="Minas" id="game.mina" parent="game.jugador"
+>>>>>>> Millora aspectes views.xml i funcionament
               action="game.mina_action_window"/>
   </data>
 </odoo>

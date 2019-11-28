@@ -837,6 +837,10 @@ oAS9V7CiwzjQEKpP952Xn//Z
             <field name="name">Central de fusion termica</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+=======
+            <field name="coste">300</field>
+>>>>>>> Millora aspectes views.xml i funcionament
             <field name="recurs" eval="ref('game.cerio')"/>
         </record>
 
@@ -844,6 +848,10 @@ oAS9V7CiwzjQEKpP952Xn//Z
             <field name="name">Mina de arco electrico</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+=======
+            <field name="coste">200</field>
+>>>>>>> Millora aspectes views.xml i funcionament
             <field name="recurs" eval="ref('game.holmio')"/>
         </record>
 
@@ -851,6 +859,10 @@ oAS9V7CiwzjQEKpP952Xn//Z
             <field name="name">Mina de cavitacion</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+=======
+              <field name="coste">100</field>
+>>>>>>> Millora aspectes views.xml i funcionament
             <field name="recurs" eval="ref('game.lutecio')"/>
         </record>
 
@@ -858,6 +870,10 @@ oAS9V7CiwzjQEKpP952Xn//Z
             <field name="name">Mina mediante rayo laser</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+=======
+              <field name="coste">10</field>
+>>>>>>> Millora aspectes views.xml i funcionament
             <field name="recurs" eval="ref('game.itrio')"/>
         </record>
 

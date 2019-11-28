@@ -7,7 +7,7 @@ import random
 class jugador(models.Model):
     _name = 'game.jugador'
     # imageJugador = fields.Binary()
-    name = fields.Char(string='Nom jugadors',
+    name = fields.Char(string='Nombre jugador',
                        default=lambda self: self._get_default_name(), )
 
     @api.model
@@ -38,7 +38,7 @@ class jugador(models.Model):
 
 class ciutat(models.Model):
     _name = 'game.ciutat'
-    name = fields.Char(string='Nom ciutats',
+    name = fields.Char(string='Nombre ciudades',
                        default=lambda self: self._get_default_name(), )
 
     image = fields.Binary()
@@ -54,6 +54,7 @@ class ciutat(models.Model):
     jugador = fields.Many2one('game.jugador')
     recursos = fields.One2many('game.recursos', 'ciutat')
     mines = fields.One2many('game.mines', 'ciutat')
+    recurs = fields.Many2one('game.recurs')
 
     @api.model
     def create(self, values):
@@ -89,6 +90,11 @@ class recurs(models.Model):
     name = fields.Char()
     image = fields.Binary()
     cantidad = fields.Float()
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+=======
+    mina = fields.One2many('game.mina', 'recurs')
+    ciutat = fields.Many2one('game.ciutat', 'recurs')
+>>>>>>> Millora aspectes views.xml i funcionament
 
 
 class mines(models.Model):
@@ -97,6 +103,12 @@ class mines(models.Model):
     ciutat = fields.Many2one('game.ciutat')
     mina = fields.Many2one('game.mina')
 
+    @api.multi
+    def calcular_cantidad(self):
+        for i in self.ciutat.recursos:
+            if i.name == self.mina.recurs.name:
+                print(i.name)
+
 
 class mina(models.Model):
     _name = 'game.mina'
@@ -104,6 +116,7 @@ class mina(models.Model):
     nivel = fields.Integer()
     produccion = fields.Float()
     recurs = fields.Many2one('game.recurs')
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 
 
 class coste(models.Model):
@@ -111,3 +124,7 @@ class coste(models.Model):
     name = fields.Char()
     recurs = fields.Many2one('game.recurs')
     minutes = fields.Integer()
+=======
+    minutos = fields.Integer()
+    coste = fields.Float(default=lambda self: 600)
+>>>>>>> Millora aspectes views.xml i funcionament
