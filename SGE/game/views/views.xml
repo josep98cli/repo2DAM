@@ -31,12 +31,19 @@
       <field name="model">game.ciutat</field>
       <field name="arch" type="xml">
         <form>
-          <field name="name" />
-          <field name="vida"/>
-          <field name="recursos"/>
-          <field name="mines"/>
-            <field name="image" widget="image"/>
+          <group>
+            <field name="name" class="oe_read_only"/>
+          </group>
 
+          <group> <field name="vida" class="oe_read_only"/></group>
+          <group>
+            <field name="recursos" class="oe_read_only"/>
+            <field name="mines" class="oe_read_only"/>
+          </group>
+
+          <group>
+            <img src="game/static/ciutat_img.jpg" alt="ciutat"/>
+          </group>
         </form>
       </field>
     </record>
@@ -50,7 +57,6 @@
           <field name="vida"/>
           <field name="recursos"/>
           <field name="mines"/>
-          <field name="image" widget="image"/>
         </tree>
       </field>
     </record>
@@ -106,7 +112,8 @@
       <field name="model">game.mines</field>
       <field name="arch" type="xml">
         <form>
-          <field name="name"/>
+          <field name="mina"/>
+
         </form>
       </field>
     </record>
@@ -116,7 +123,8 @@
       <field name="model">game.mines</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="name"/>
+          <field name="mina"/>
+
         </tree>
       </field>
     </record>
@@ -127,34 +135,37 @@
       <field name="model">game.mina</field>
       <field name="arch" type="xml">
         <form>
-            <field name="name"/>
-            <field name="nivel"/>
-            <field name="produccion"/>
+          <group><field name="name" />
+            <field name="nivel"/></group>
+            <group><field name="produccion"/>
             <field name="recurs"/>
+            </group>
+            <group>
+                <field name="minutos" string="Tiempo para mejorar"/>
+                <field name="coste"/>
+            </group>
+            <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
         </form>
       </field>
     </record>
-    <!--
-    <record model="ir.ui.view" id="game.mina_form_list">
+
+    <record model="ir.ui.view" id="game.mina_tree_list">
       <field name="name">Mina</field>
       <field name="model">game.mina</field>
       <field name="arch" type="xml">
         <form>
           <field name="name"/>
+            <field name="name"/>
+            <field name="nivel"/>
+            <field name="produccion"/>
+            <field name="recurs"/>
+
         </form>
       </field>
     </record>
 
-     <record model="ir.ui.view" id="game.mina_tree_list">
-      <field name="name">Mina</field>
-      <field name="model">game.mina</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-        </tree>
-      </field>
-    </record>-->
-    <!-- actions opening views on models -->
+
+    <!--ACTIONS-->
 
     <record model="ir.actions.act_window" id="game.jugador_action_window">
       <field name="name">Jugador</field>
@@ -225,6 +236,7 @@
 
      <menuitem name="Recurs" id="game.recurs" parent="game.jugador"
               action="game.recurs_action_window"/>
+
     <menuitem name="Mines" id="game.mina" parent="game.jugador"
               action="game.mina_action_window"/>
   </data>
