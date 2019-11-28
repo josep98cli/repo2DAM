@@ -9,6 +9,7 @@ class jugador(models.Model):
     # imageJugador = fields.Binary()
     name = fields.Char(string='Nombre jugador',
                        default=lambda self: self._get_default_name(), )
+    ciutat = fields.One2many('game.ciutat', 'jugador')
 
     @api.model
     def _get_default_name(self):
@@ -17,8 +18,6 @@ class jugador(models.Model):
 
         random_name = random.choice(lista_nombres)
         return random_name
-
-    ciutat = fields.One2many('game.ciutat', 'jugador')
 
     @api.model
     def create(self, values):
@@ -29,10 +28,9 @@ class jugador(models.Model):
         f = self.env['game.ciutat'].create({
             'name': str(random.choice(names)),
             'vida': 1000,
-            'jugador': res.id,
-            'image': self.env.ref('game.img_ciutat').image
-
+            'jugador': res.id
         })
+
         return res
 
 
@@ -40,7 +38,6 @@ class ciutat(models.Model):
     _name = 'game.ciutat'
     name = fields.Char(string='Nombre ciudades',
                        default=lambda self: self._get_default_name(), )
-
     image = fields.Binary()
 
     @api.model
@@ -60,19 +57,20 @@ class ciutat(models.Model):
     def create(self, values):
         res = super(ciutat, self).create(values)
         array_recursos = ['game.cerio', 'game.holmio', 'game.lutecio', 'game.itrio']
-        array_mines = ['game.central_fusion', 'game.arco_electrico', 'game.cavitacion', 'rayo_laser']
+        array_mines = ['game.central_fusion', 'game.arco_electrico', 'game.cavitacion', 'game.rayo_laser']
+
         for i in array_recursos:
-            res.recursos.create({
+            r = res.recursos.create({
                 'ciutat': res.id,
                 'recurs': self.env.ref(i).id,
                 'name': self.env.ref(i).name
             })
-        for i in array_mines:
-            res.mines.create({
+
+        for j in array_mines:
+            m = res.mines.create({
                 'ciutat': res.id,
-                'name': self.env.ref(i).name,
-                'nivel': self.env.ref(i).nivel,
-                'produccion': self.env.ref(i).nivel
+                'mina': self.env.ref(j).id,
+                'name': self.env.ref(j).name
             })
 
         return res
@@ -91,10 +89,14 @@ class recurs(models.Model):
     image = fields.Binary()
     cantidad = fields.Float()
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 =======
     mina = fields.One2many('game.mina', 'recurs')
     ciutat = fields.Many2one('game.ciutat', 'recurs')
 >>>>>>> Millora aspectes views.xml i funcionament
+=======
+    mina = fields.One2many('game.mina', 'recurs')
+>>>>>>> Odoo
 
 
 class mines(models.Model):
@@ -117,6 +119,7 @@ class mina(models.Model):
     produccion = fields.Float()
     recurs = fields.Many2one('game.recurs')
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 
 
 class coste(models.Model):
@@ -128,3 +131,14 @@ class coste(models.Model):
     minutos = fields.Integer()
     coste = fields.Float(default=lambda self: 600)
 >>>>>>> Millora aspectes views.xml i funcionament
+=======
+    minutos = fields.Integer()
+    coste = fields.Float(default=lambda self: 600)
+
+    @api.multi
+    def calcular_cantidad(self):
+        if self.recurs.cantidad >= self.coste:
+            self.recurs.cantidad -= self.coste
+            self.nivel += 1
+            self.produccion = (self.nivel * 200) + self.produccion
+>>>>>>> Odoo

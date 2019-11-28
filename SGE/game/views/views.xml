@@ -33,12 +33,19 @@
       <field name="model">game.ciutat</field>
       <field name="arch" type="xml">
         <form>
-          <field name="name" />
-          <field name="vida"/>
-          <field name="recursos"/>
-          <field name="mines"/>
-            <field name="image" widget="image"/>
+          <group>
+            <field name="name" class="oe_read_only"/>
+          </group>
 
+          <group> <field name="vida" class="oe_read_only"/></group>
+          <group>
+            <field name="recursos" class="oe_read_only"/>
+            <field name="mines" class="oe_read_only"/>
+          </group>
+
+          <group>
+            <img src="game/static/ciutat_img.jpg" alt="ciutat"/>
+          </group>
         </form>
       </field>
     </record>
@@ -53,10 +60,13 @@
           <field name="recursos"/>
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
           <field name="mines"/>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
           <field name="image" widget="image"/>
 =======
           <field name="mines" string="Minas"/>
 >>>>>>> Millora aspectes views.xml i funcionament
+=======
+>>>>>>> Odoo
         </tree>
       </field>
     </record>
@@ -115,12 +125,17 @@
       <field name="arch" type="xml">
         <form>
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
           <field name="name"/>
 =======
             <group><field name="mina"/></group>
              <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
 
 >>>>>>> Millora aspectes views.xml i funcionament
+=======
+          <field name="mina"/>
+
+>>>>>>> Odoo
         </form>
       </field>
     </record>
@@ -131,11 +146,16 @@
       <field name="arch" type="xml">
         <tree>
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
           <field name="name"/>
 =======
           <field name="mina"/>
              <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
 >>>>>>> Millora aspectes views.xml i funcionament
+=======
+          <field name="mina"/>
+
+>>>>>>> Odoo
         </tree>
       </field>
     </record>
@@ -146,43 +166,47 @@
       <field name="model">game.mina</field>
       <field name="arch" type="xml">
         <form>
-            <field name="name"/>
-            <field name="nivel"/>
-            <field name="produccion"/>
+          <group><field name="name" />
+            <field name="nivel"/></group>
+            <group><field name="produccion"/>
             <field name="recurs"/>
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 =======
+=======
+>>>>>>> Odoo
             </group>
             <group>
                 <field name="minutos" string="Tiempo para mejorar"/>
                 <field name="coste"/>
             </group>
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 
 >>>>>>> Millora aspectes views.xml i funcionament
+=======
+            <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
+>>>>>>> Odoo
         </form>
       </field>
     </record>
-    <!--
-    <record model="ir.ui.view" id="game.mina_form_list">
+
+    <record model="ir.ui.view" id="game.mina_tree_list">
       <field name="name">Mina</field>
       <field name="model">game.mina</field>
       <field name="arch" type="xml">
         <form>
           <field name="name"/>
+            <field name="name"/>
+            <field name="nivel"/>
+            <field name="produccion"/>
+            <field name="recurs"/>
+
         </form>
       </field>
     </record>
 
-     <record model="ir.ui.view" id="game.mina_tree_list">
-      <field name="name">Mina</field>
-      <field name="model">game.mina</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-        </tree>
-      </field>
-    </record>-->
-    <!-- actions opening views on models -->
+
+    <!--ACTIONS-->
 
     <record model="ir.actions.act_window" id="game.jugador_action_window">
       <field name="name">Jugador</field>
@@ -254,6 +278,10 @@
      <menuitem name="Recursos" id="game.recurs" parent="game.jugador"
               action="game.recurs_action_window"/>
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
+=======
+
+>>>>>>> Odoo
     <menuitem name="Mines" id="game.mina" parent="game.jugador"
 =======
 
