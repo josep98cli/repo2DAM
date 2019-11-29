@@ -88,6 +88,7 @@ class recurs(models.Model):
     name = fields.Char()
     image = fields.Binary()
     cantidad = fields.Float()
+<<<<<<< HEAD
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 =======
@@ -97,6 +98,10 @@ class recurs(models.Model):
 =======
     mina = fields.One2many('game.mina', 'recurs')
 >>>>>>> Odoo
+=======
+    mina = fields.One2many('game.mina', 'recurs')
+    ciutat = fields.Many2one('game.ciutat', 'recurs')
+>>>>>>> master
 
 
 class mines(models.Model):
@@ -118,6 +123,7 @@ class mina(models.Model):
     nivel = fields.Integer()
     produccion = fields.Float()
     recurs = fields.Many2one('game.recurs')
+<<<<<<< HEAD
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 
@@ -142,3 +148,7 @@ class coste(models.Model):
             self.nivel += 1
             self.produccion = (self.nivel * 200) + self.produccion
 >>>>>>> Odoo
+=======
+    minutos = fields.Integer()
+    coste = fields.Float(default=lambda self: 600)
+>>>>>>> master

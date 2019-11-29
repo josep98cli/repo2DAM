@@ -58,6 +58,7 @@
           <field name="name" string="Ciudades:"/>
           <field name="vida"/>
           <field name="recursos"/>
+<<<<<<< HEAD
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
           <field name="mines"/>
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
@@ -67,6 +68,9 @@
 >>>>>>> Millora aspectes views.xml i funcionament
 =======
 >>>>>>> Odoo
+=======
+          <field name="mines" string="Minas"/>
+>>>>>>> master
         </tree>
       </field>
     </record>
@@ -124,6 +128,7 @@
       <field name="model">game.mines</field>
       <field name="arch" type="xml">
         <form>
+<<<<<<< HEAD
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
           <field name="name"/>
@@ -136,6 +141,11 @@
           <field name="mina"/>
 
 >>>>>>> Odoo
+=======
+            <group><field name="mina"/></group>
+             <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
+
+>>>>>>> master
         </form>
       </field>
     </record>
@@ -145,6 +155,7 @@
       <field name="model">game.mines</field>
       <field name="arch" type="xml">
         <tree>
+<<<<<<< HEAD
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
           <field name="name"/>
@@ -156,6 +167,10 @@
           <field name="mina"/>
 
 >>>>>>> Odoo
+=======
+          <field name="mina"/>
+             <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
+>>>>>>> master
         </tree>
       </field>
     </record>
@@ -170,22 +185,29 @@
             <field name="nivel"/></group>
             <group><field name="produccion"/>
             <field name="recurs"/>
+<<<<<<< HEAD
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 =======
 =======
 >>>>>>> Odoo
+=======
+>>>>>>> master
             </group>
             <group>
                 <field name="minutos" string="Tiempo para mejorar"/>
                 <field name="coste"/>
             </group>
+<<<<<<< HEAD
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 
 >>>>>>> Millora aspectes views.xml i funcionament
 =======
             <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
 >>>>>>> Odoo
+=======
+
+>>>>>>> master
         </form>
       </field>
     </record>
@@ -277,6 +299,7 @@
 
      <menuitem name="Recursos" id="game.recurs" parent="game.jugador"
               action="game.recurs_action_window"/>
+<<<<<<< HEAD
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 <<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
 =======
@@ -287,6 +310,10 @@
 
     <menuitem name="Minas" id="game.mina" parent="game.jugador"
 >>>>>>> Millora aspectes views.xml i funcionament
+=======
+
+    <menuitem name="Minas" id="game.mina" parent="game.jugador"
+>>>>>>> master
               action="game.mina_action_window"/>
   </data>
 </odoo>
