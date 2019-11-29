@@ -707,18 +707,7 @@ RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
             <field name="name">Central de fusion termica</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
-<<<<<<< HEAD
-<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
-<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
-=======
             <field name="coste">300</field>
->>>>>>> Millora aspectes views.xml i funcionament
-=======
-            <field name="coste">0</field>
->>>>>>> Odoo
-=======
-            <field name="coste">300</field>
->>>>>>> master
             <field name="recurs" eval="ref('game.cerio')"/>
         </record>
 
@@ -726,18 +715,7 @@ RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
             <field name="name">Mina de arco electrico</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
-<<<<<<< HEAD
-<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
-<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
-=======
             <field name="coste">200</field>
->>>>>>> Millora aspectes views.xml i funcionament
-=======
-            <field name="coste">0</field>
->>>>>>> Odoo
-=======
-            <field name="coste">200</field>
->>>>>>> master
             <field name="recurs" eval="ref('game.holmio')"/>
         </record>
 
@@ -745,18 +723,7 @@ RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
             <field name="name">Mina de cavitacion</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
-<<<<<<< HEAD
-<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
-<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
-=======
               <field name="coste">100</field>
->>>>>>> Millora aspectes views.xml i funcionament
-=======
-              <field name="coste">0</field>
->>>>>>> Odoo
-=======
-              <field name="coste">100</field>
->>>>>>> master
             <field name="recurs" eval="ref('game.lutecio')"/>
         </record>
 
@@ -764,18 +731,7 @@ RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
             <field name="name">Mina mediante rayo laser</field>
             <field name="nivel">0</field>
             <field name="produccion">0</field>
-<<<<<<< HEAD
-<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
-<<<<<<< 5c07f1c81aaf93c945833991c80727a284c9241d
-=======
               <field name="coste">10</field>
->>>>>>> Millora aspectes views.xml i funcionament
-=======
-              <field name="coste">0</field>
->>>>>>> Odoo
-=======
-              <field name="coste">10</field>
->>>>>>> master
             <field name="recurs" eval="ref('game.itrio')"/>
         </record>
 
