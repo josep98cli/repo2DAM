@@ -117,8 +117,6 @@
       <field name="arch" type="xml">
         <form>
             <group><field name="mina"/></group>
-             <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
-
         </form>
       </field>
     </record>
@@ -129,7 +127,7 @@
       <field name="arch" type="xml">
         <tree>
           <field name="mina"/>
-             <button name="calcular_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
+            <button name="llamar_calc_cantidad" type="object" string="Mejorar" class="oe_highlight" />
         </tree>
       </field>
     </record>
@@ -147,7 +145,6 @@
             </group>
             <group>
                 <field name="minutos" string="Tiempo para mejorar"/>
-                <field name="coste"/>
             </group>
 
         </form>

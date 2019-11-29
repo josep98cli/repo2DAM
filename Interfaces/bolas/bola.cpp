@@ -25,7 +25,7 @@ void Bola::mover(float altura, float anchura){
     		vX = -fabs(vX);
     	}
     	
-    	if(x <= 0 ){
+    	if(x <= 10 ){
     		vX = fabs(vX);
     	}
     	
@@ -38,7 +38,7 @@ void Bola::mover(float altura, float anchura){
     		vY = -fabs(vY);
     	}
     	
-    	if(y <= 0 ){
+    	if(y <= 10 ){
     		vY = fabs(vY);
     	}
     	
@@ -81,9 +81,9 @@ void Bola::chocar(Bola & otra){
 	}
 	
 	if(abajo->vY > arriba->vY){
-		float aux = abajo -> vY;
+		float aux2 = abajo -> vY;
 		abajo->vY = arriba -> vY;
-		arriba->vY = aux;
+		arriba->vY = aux2;
 	}	
 
 }

@@ -47,7 +47,7 @@ class ciutat(models.Model):
         random_name = random.choice(lista_nombres)
         return random_name
 
-    vida = fields.Float()
+    vida = fields.Float(default=1000)
     jugador = fields.Many2one('game.jugador')
     recursos = fields.One2many('game.recursos', 'ciutat')
     mines = fields.One2many('game.mines', 'ciutat')
@@ -81,6 +81,11 @@ class recursos(models.Model):
     name = fields.Char()
     ciutat = fields.Many2one('game.ciutat')
     recurs = fields.Many2one('game.recurs')
+    cantidad = fields.Float()
+
+    @api.multi
+    def calcular_cantidad(self, recurs1):
+        print(self)
 
 
 class recurs(models.Model):
@@ -90,6 +95,7 @@ class recurs(models.Model):
     cantidad = fields.Float()
     mina = fields.One2many('game.mina', 'recurs')
     ciutat = fields.Many2one('game.ciutat', 'recurs')
+    recurs = fields.One2many('game.coste', 'recurs')
 
 
 class mines(models.Model):
@@ -99,10 +105,8 @@ class mines(models.Model):
     mina = fields.Many2one('game.mina')
 
     @api.multi
-    def calcular_cantidad(self):
-        for i in self.ciutat.recursos:
-            if i.name == self.mina.recurs.name:
-                print(i.name)
+    def llamar_calc_cantidad(self):
+        self.ciutat.recursos.calcular_cantidad(self.mina.recurs)
 
 
 class mina(models.Model):
@@ -112,4 +116,11 @@ class mina(models.Model):
     produccion = fields.Float()
     recurs = fields.Many2one('game.recurs')
     minutos = fields.Integer()
-    coste = fields.Float(default=lambda self: 600)
+    coste = fields.One2many('game.coste', 'mina')
+
+
+class coste(models.Model):
+    _name = 'game.coste'
+    cantidad = fields.Float()
+    mina = fields.Many2one('game.mina')
+    recurs = fields.Many2one('game.recurs')

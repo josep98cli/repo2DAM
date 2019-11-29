@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(p
 
 	QTimer * temporizador = new QTimer();
 	/*programar el temporizador*/
-	temporizador->setInterval(30);
+	temporizador->setInterval(10);
 	temporizador->setSingleShot(false);
 	temporizador->start();
 	/*arrancar el temporizador*/
@@ -28,10 +28,6 @@ MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(p
 		posY = generador.bounded(0,600);
 		bolas.append(new Bola(posX,posY,velX,velY));
 	}
-	
-	b = new Bola(100,100,5,5);
-	
-    	
     
 }
 
