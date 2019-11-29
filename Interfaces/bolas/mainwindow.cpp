@@ -1,57 +1,72 @@
-
-#include <QTimer>
-#include <QPainter>
-#include <math.h>
 #include "mainwindow.h"
+#include <QPainter>
+#include <QTimer>
+#include <math.h>
+#include <iostream>
+#include <stdio.h>
+#include <QVector>
+#include "bola.h"
+#include <QDebug>
+MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(parent,flags) {
 
-
-MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(parent,flags){
-	
-	QTimer *temporizador = new QTimer();
-
+	QTimer * temporizador = new QTimer();
 	/*programar el temporizador*/
-	temporizador->setInterval(100);
+	temporizador->setInterval(30);
 	temporizador->setSingleShot(false);
 	temporizador->start();
-
 	/*arrancar el temporizador*/
-	connect(temporizador,SIGNAL(timeout()), this, SLOT(slotRepintar()));
-
-
+	
+	
+	connect(temporizador,SIGNAL(timeout()),this, SLOT(slotRepintar()));
+	
 	resize(800,600);
-	posX = posY = (rand()%500)+1;
-	 
+	
+	for(int i = 0; i<5; i++){
+		velX = generador.bounded(-2,10);
+		velY = generador.bounded(-2,10);
+		posX = generador.bounded(0,800);
+		posY = generador.bounded(0,600);
+		bolas.append(new Bola(posX,posY,velX,velY));
+	}
+	
+	b = new Bola(100,100,5,5);
+	
+    	
+    
 }
+
 
 
 void MainWindow::paintEvent(QPaintEvent *e){
 	
+	
 	QPainter pintor(this);
-	/*Rebotes izquierda y derecha*/
-	if(posX>=780)
-		velX = -fabs(velX);
-		
 	
-	if(posX<=10)
-		velX= fabs(velX);
-
+	for(int i = 0; i<bolas.size(); i++){
+		bolas[i]->pintarBola(pintor, 40,40);
+		bolas[i]->mover(height(),width());
+		
+		for(int j = 0; j<bolas.size(); j++){
+			bolas[i]->chocar(*bolas[j]);
+		}
+	}
 	
-	posX =posX+velX;
+	
+	
+	
+    		
 
-	/*Rebotes arriba y abajo*/
-	if(posY>=580)
-		velY = -fabs(velY);
-		
-	if(posY<=20)
-		velY = fabs(velY);
-		
-	posY = posY + velY;
-
-	pintor.drawEllipse(posX,posY,20,20);	
 }
 
 
-void MainWindow::slotRepintar(){
-	update();
 
+
+
+void MainWindow::slotRepintar(void){
+	
+	update();	
+	
 }
+
+
+
