@@ -59,6 +59,7 @@
           <field name="vida"/>
           <field name="recursos"/>
           <field name="mines" string="Minas"/>
+
         </tree>
       </field>
     </record>
@@ -95,7 +96,8 @@
       <field name="model">game.recursos</field>
       <field name="arch" type="xml">
         <form>
-          <field name="recurs"/>
+            <field name="name"/>
+            <field name="cantidad"/>
         </form>
       </field>
     </record>
@@ -105,7 +107,8 @@
       <field name="model">game.recursos</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="recurs"/>
+            <field name="name"/>
+             <field name="cantidad"/>
         </tree>
       </field>
     </record>
@@ -127,6 +130,10 @@
       <field name="arch" type="xml">
         <tree>
           <field name="mina"/>
+            <field name="nivel"/>
+            <field name="produccion"/>
+            <field name="coste"/>
+            <field name="minutos" string="Tiempo de mejora :"/>
             <button name="llamar_calc_cantidad" type="object" string="Mejorar" class="oe_highlight" />
         </tree>
       </field>
@@ -139,14 +146,10 @@
       <field name="arch" type="xml">
         <form>
           <group><field name="name" />
-            <field name="nivel"/></group>
-            <group><field name="produccion"/>
-            <field name="recurs"/>
             </group>
             <group>
-                <field name="minutos" string="Tiempo para mejorar"/>
+            <field name="recurs"/>
             </group>
-
         </form>
       </field>
     </record>
@@ -158,10 +161,7 @@
         <form>
           <field name="name"/>
             <field name="name"/>
-            <field name="nivel"/>
-            <field name="produccion"/>
             <field name="recurs"/>
-
         </form>
       </field>
     </record>
@@ -204,6 +204,18 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+     <record model="ir.cron" forcecreate="True" id="game.cron_update">
+            <field name="name">Game: Cron Update</field>
+            <field name="model_id" ref="model_game_jugador"/>
+            <field name="state">code</field>
+            <field name="code">model.update_recursos()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="activity_user_type">specific</field>
+            <field name="doall" eval="False" />
+          </record>
   <!--server action to the one above -->
 
     <!--<record model="ir.actions.server" id="game.action_server">
@@ -239,7 +251,8 @@
      <menuitem name="Recursos" id="game.recurs" parent="game.jugador"
               action="game.recurs_action_window"/>
 
-    <menuitem name="Minas" id="game.mina" parent="game.jugador"
+    <menuitem name="Minas" id="game.minas" parent="game.jugador"
               action="game.mina_action_window"/>
   </data>
+
 </odoo>

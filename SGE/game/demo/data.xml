@@ -1,8 +1,8 @@
 <odoo>
     <data>
-
+        <!--INFORMACIO DE ELS MATERIALS-->
         <record id="game.cerio" model="game.recurs">
-            <field name="name">Celio</field>
+            <field name="name">Cerio</field>
             <field name="image">iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAgu3pUWHRSYXcgcHJvZmlsZSB0eXBl
 IGV4aWYAAHja5ZtXklw5kkX/sYpZApRDLAfSbHYwy59zEdEskl3V1mL+plgkM4MR7+G5uMKBdOd/
 /vu6/+K/2mJx2WorvRTPf7nnHgdfNP/57/N38Pn9+f5L8ftv4dfX3Y9/iLyU9M7Pt+V83z943f74
@@ -213,8 +213,6 @@ x+GBTFCWjsfD7a2NtRubhGDdkGZsI5cvFqarjhMgngjOGWP9wcCemWnv7AXOJEiSf3zj36any089
 OVXVvi6aO+23Pl00csEBAFmaUZZ5nmfouqbrlHJZlg+LJYRACH3tTHdauwkBPr0B4WfHp68f4Svt
 TgVkn+PF/5dMd787/fYvxrdY32J9o/GfpimGcVyTRz8AAAAASUVORK5CYII=
             </field>
-            <field name="cantidad">500.0</field>
-
         </record>
 
         <record id="game.holmio" model="game.recurs">
@@ -396,7 +394,6 @@ DcLvC7rUwabquwUHcGyiIqOlqwHGRQ6PynvqqUH2BWyjzzqniSAYFQOqhYrvUcpGw4qYY4RdOE3h
 4uSgLZRDGum98V9cTWls9w/IFChc8AnQBP5xxxlEBL0GkbBfA8VAk3dfEu4rlr90ajU+Rg65ZY/n
 D98MgP8AV9rr+n//2Q==
 </field>
-            <field name="cantidad">100.0</field>
         </record>
 
         <record id="game.lutecio" model="game.recurs">
@@ -576,7 +573,6 @@ vfQDCNK2XpaYwiil+P0//965nwDx1lSOiF/+91/nxfs1HK9eAABwPk8T40KbwrkCc3TOIYHg8ODh
 eVFUQnClpFZKG/MDt55+POI1aM45p3R5ecEYizE+e/oEiUmpicgYU1SbqnJnZ/f4O2PiJ0S8K7yQ
 kNjrDTYAwTn8WLifCvHO/al/xCT7yewfh/vgQef/y/4Hc4LDnZoGByMAAAAASUVORK5CYII=
             </field>
-            <field name="cantidad">50.0</field>
         </record>
 
         <record id="game.itrio" model="game.recurs">
@@ -697,7 +693,6 @@ B4OJGy7y45xUDIl/TdN5UuoXZYQdsb/XF8RUCIBlkPwZ93ijgLxGv9h0UFZqkhYAIdIYeLhd0hUo
 RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
 
             </field>
-            <field name="cantidad">0.0</field>
         </record>
 
 
@@ -705,35 +700,24 @@ RM/OLjVcvukN0VG7HhEYgFZPc6Wwtp5XmRf8ABOO8Mrt8no2Mh04HCeNA9X1O09XeQb8f//Z
 
         <record id="game.central_fusion" model="game.mina">
             <field name="name">Central de fusion termica</field>
-            <field name="nivel">0</field>
-            <field name="produccion">0</field>
-            <field name="coste">300</field>
             <field name="recurs" eval="ref('game.cerio')"/>
         </record>
 
           <record id="game.arco_electrico" model="game.mina">
             <field name="name">Mina de arco electrico</field>
-            <field name="nivel">0</field>
-            <field name="produccion">0</field>
-            <field name="coste">200</field>
             <field name="recurs" eval="ref('game.holmio')"/>
         </record>
 
           <record id="game.cavitacion" model="game.mina">
             <field name="name">Mina de cavitacion</field>
-            <field name="nivel">0</field>
-            <field name="produccion">0</field>
-              <field name="coste">100</field>
             <field name="recurs" eval="ref('game.lutecio')"/>
         </record>
 
           <record id="game.rayo_laser" model="game.mina">
             <field name="name">Mina mediante rayo laser</field>
-            <field name="nivel">0</field>
-            <field name="produccion">0</field>
-              <field name="coste">10</field>
             <field name="recurs" eval="ref('game.itrio')"/>
         </record>
+
 
     </data>
 </odoo>
