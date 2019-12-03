@@ -121,7 +121,7 @@ class recursos(models.Model):
                             if m.minutos == 0:
                                 m.nivel += 1
                                 m.produccion += (nivel + 1) * 100
-                                m.minutos = (2 * (nivel+1))
+                                m.minutos = (2 * (nivel + 1))
                                 m.coste = coste
                                 r.cantidad -= coste
 
