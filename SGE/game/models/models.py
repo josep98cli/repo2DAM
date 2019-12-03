@@ -39,15 +39,17 @@ class jugador(models.Model):
     def update_recursos(self):
         jugador_total = self.env['game.jugador'].search([])
         for j in jugador_total:
-            for r in j.ciutat.recursos:
-                for m in j.ciutat.mines:
-                    print(m.mejora)
-                    if m.mina.recurs.name == r.name:
-                        if m.minutos == 0:
-                            r.cantidad += m.produccion
-                            m.mejora = False
-                        elif m.mejora:
-                            m.write({'minutos': m.minutos - 1})
+            for c in j.ciutat:
+                for r in c.recursos:
+                    for m in c.mines:
+                        if m.mina.recurs.name == r.name:
+                            if m.minutos == 0:
+                                r.cantidad += m.produccion
+                                m.mejora = False
+                                m.write({'status': 'Mejorada'})
+                            elif m.mejora:
+                                m.write({'status': 'Mejorando...'})
+                                m.write({'minutos': m.minutos - 1})
 
 
 class ciutat(models.Model):
@@ -68,7 +70,7 @@ class ciutat(models.Model):
     recursos = fields.One2many('game.recursos', 'ciutat')
     mines = fields.One2many('game.mines', 'ciutat')
 
-    @api.model
+    @api.multi
     def create(self, values):
         res = super(ciutat, self).create(values)
         array_recursos = ['game.cerio', 'game.holmio', 'game.lutecio', 'game.itrio']
@@ -118,11 +120,11 @@ class recursos(models.Model):
                             m.mejora = True
                             if m.minutos == 0:
                                 m.nivel += 1
-                                m.produccion += (nivel + 1) * 300
-                                m.minutos = (m.minutos + 1) * 2
+                                m.produccion += (nivel + 1) * 100
+                                m.minutos = (2 * (nivel+1))
                                 m.coste = coste
                                 r.cantidad -= coste
-                    print(m.mejora)
+
                 else:
                     raise except_orm('ERROR',
                                      'Faltan recursos para hacer la mejora')
@@ -132,7 +134,6 @@ class recurs(models.Model):
     _name = 'game.recurs'
     name = fields.Char()
     image = fields.Binary()
-    cantidad = fields.Float()
     mina = fields.One2many('game.mina', 'recurs')
     ciutat = fields.Many2one('game.ciutat', 'recurs')
 
@@ -147,6 +148,7 @@ class mines(models.Model):
     nivel = fields.Integer()
     minutos = fields.Integer()
     mejora = fields.Boolean(default=False)
+    status = fields.Char()
 
     @api.multi
     def llamar_calc_cantidad(self):

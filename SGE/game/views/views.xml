@@ -19,8 +19,11 @@
       <field name="model">game.jugador</field>
       <field name="arch" type="xml">
         <form>
+            <br/>
+            <div class="title">
+                <h3><field name="name"/></h3>
+            </div>
             <group>
-                <field name="name"/>
                 <field name="ciutat" string="Ciudades"/>
             </group>
         </form>
@@ -33,12 +36,15 @@
       <field name="model">game.ciutat</field>
       <field name="arch" type="xml">
         <form>
-          <group>
-            <field name="name" class="oe_read_only"/>
-          </group>
 
-          <group> <field name="vida" class="oe_read_only"/></group>
+            <header>
+                <field name="name" class="oe_read_only"/>
+            </header>
+
           <group>
+              <field name="vida" class="oe_read_only"/></group>
+          <group>
+
             <field name="recursos" class="oe_read_only"/>
             <field name="mines" class="oe_read_only"/>
           </group>
@@ -72,7 +78,6 @@
         <tree>
           <field name="name"/>
           <field name="image" widget="image"/>
-          <field name="cantidad"/>
         </tree>
       </field>
     </record>
@@ -82,21 +87,25 @@
       <field name="model">game.recurs</field>
       <field name="arch" type="xml">
         <form>
+          <header>
+              <field name="name"/>
+          </header>
             <group>
-          <field name="name"/>
           <field name="image" widget="image"/>
-          <field name="cantidad"/>
             </group>
         </form>
       </field>
     </record>
+
     <!-- VISTES RECURSOS -->
     <record model="ir.ui.view" id="game.recursos_form_list">
       <field name="name">Recursos</field>
       <field name="model">game.recursos</field>
       <field name="arch" type="xml">
         <form>
-            <field name="name"/>
+            <header>
+                <field name="name"/>
+            </header>
             <field name="cantidad"/>
         </form>
       </field>
@@ -119,7 +128,15 @@
       <field name="model">game.mines</field>
       <field name="arch" type="xml">
         <form>
-            <group><field name="mina"/></group>
+            <header>
+                <field name="mina" />
+            </header>
+
+            <group>
+                <field name="status"/>
+            <field name="produccion"/>
+            <field name="coste"/>
+            </group>
         </form>
       </field>
     </record>
@@ -130,10 +147,12 @@
       <field name="arch" type="xml">
         <tree>
           <field name="mina"/>
+            <field name="minutos" string="Tiempo de mejora:"/>
+            <field name="status"/>
+            <field name="minutos" widget="progressbar" string="Avance:"/>
             <field name="nivel"/>
             <field name="produccion"/>
             <field name="coste"/>
-            <field name="minutos" string="Tiempo de mejora :"/>
             <button name="llamar_calc_cantidad" type="object" string="Mejorar" class="oe_highlight" />
         </tree>
       </field>
