@@ -5,8 +5,13 @@
 #include <iostream>
 #include <stdio.h>
 #include <QVector>
+#include <QColor>
 #include "bola.h"
 #include <QDebug>
+#include <QMenuBar>
+
+
+
 MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(parent,flags) {
 
 	QTimer * temporizador = new QTimer();
@@ -15,7 +20,6 @@ MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(p
 	temporizador->setSingleShot(false);
 	temporizador->start();
 	/*arrancar el temporizador*/
-	
 	
 	connect(temporizador,SIGNAL(timeout()),this, SLOT(slotRepintar()));
 	
@@ -28,16 +32,27 @@ MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(p
 		posY = generador.bounded(0,600);
 		bolas.append(new Bola(posX,posY,velX,velY));
 	}
-    
-}
 
+	QMenuBar *barra = this->menuBar();
+	menuArchivo = menuBar()->addMenu("Archivo");
+	barra->addMenu(menuArchivo);
+	
+
+
+	accionInformacion = new QAction("ver Info", this);
+	menuArchivo->addAction(accionInformacion);
+	
+
+	connect(accionInformacion,SIGNAL(triggered()),
+		this,SLOT(slotMostrarDialogoInfo()));
+
+}
 
 
 void MainWindow::paintEvent(QPaintEvent *e){
 	
-	
 	QPainter pintor(this);
-	
+
 	for(int i = 0; i<bolas.size(); i++){
 		bolas[i]->pintarBola(pintor, 40,40);
 		bolas[i]->mover(height(),width());
@@ -46,16 +61,7 @@ void MainWindow::paintEvent(QPaintEvent *e){
 			bolas[i]->chocar(*bolas[j]);
 		}
 	}
-	
-	
-	
-	
-    		
-
 }
-
-
-
 
 
 void MainWindow::slotRepintar(void){
@@ -64,5 +70,10 @@ void MainWindow::slotRepintar(void){
 	
 }
 
+void MainWindow::slotMostrarDialogoInfo(void){
+	
+	dialogo = new DInformacion(bolas.size(), this->width(), this->height());
+	dialogo->exec();
+}
 
 

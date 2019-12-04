@@ -8,6 +8,11 @@
 #include <stdio.h>
 #include <QVector>
 #include <QRandomGenerator>
+#include <QMenu>
+#include <QAction>
+#include "DInformacion.h"
+
+
 class MainWindow : public QMainWindow {
 Q_OBJECT
 public:
@@ -16,19 +21,22 @@ public:
 	
 
 private:
-        int posX;
-	int posY;
+        float posX;
+	float posY;
 	float velX;
 	float velY;
+
+	DInformacion *dialogo;
 	Bola * b;
 	QRandomGenerator generador;
-
 	QVector<Bola*> bolas;
-	
+	QMenu * menuArchivo;
+	QAction * accionInformacion;
         
 public slots:
 
 	void slotRepintar();
+	void slotMostrarDialogoInfo();
 	
 };
 

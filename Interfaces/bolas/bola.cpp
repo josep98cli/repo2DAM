@@ -2,20 +2,27 @@
 #include <math.h>
 #include <QPainter>
 
-Bola::Bola(float  posX, float  posY, float velX, float velY)
+Bola::Bola(float posX, float  posY, float velX, float velY)
 {
 	x = posX;
 	y = posY;
 	vX = velX;
 	vY = velY;
 	
+	color = QColor(rand()%256,rand()%256,rand()%256);
+
 }
 
+Bola::Bola(float posX, float  posY, float velX, float velY, QColor col):
+	Bola(posX,posY,velX,velY)
+{
+	color= col;
+}
+
+
 void Bola::pintarBola(QPainter & pintor, float ancho, float alto){
+	pintor.setBrush(color);
 	pintor.drawEllipse(x,y,ancho,alto);
-    	
-    	
-    	
 }
 
 void Bola::mover(float altura, float anchura){
