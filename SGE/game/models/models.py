@@ -35,21 +35,26 @@ class jugador(models.Model):
 
         return res
 
+    # metodo que llama a un funcion situada en el modelo ciudad que crea una ciudad nueva
+    @api.multi
+    def llamar_crear_ciudad(self):
+        self.ciutat.create()
+
     @api.model
-    def update_recursos(self):
-        jugador_total = self.env['game.jugador'].search([])
-        for j in jugador_total:
-            for c in j.ciutat:
-                for r in c.recursos:
-                    for m in c.mines:
-                        if m.mina.recurs.name == r.name:
-                            if m.minutos == 0:
-                                r.cantidad += m.produccion
-                                m.mejora = False
-                                m.write({'status': 'Mejorada'})
-                            elif m.mejora:
-                                m.write({'status': 'Mejorando...'})
-                                m.write({'minutos': m.minutos - 1})
+    def update_recursos(self):  # metodo para el cron
+        ciutat_total = self.env['game.ciutat'].search([])
+
+        for c in ciutat_total:
+            for r in c.recursos:
+                for m in c.mines:
+                    if m.mina.recurs.name == r.name:
+                        if m.minutos == 0:
+                            r.cantidad += m.produccion
+                            m.mejora = False
+                            m.write({'status': 'Mejorada'})
+                        elif m.mejora:
+                            m.write({'status': 'Mejorando...'})
+                            m.write({'minutos': m.minutos - 1})
 
 
 class ciutat(models.Model):
@@ -58,6 +63,7 @@ class ciutat(models.Model):
                        default=lambda self: self._get_default_name(), )
     image = fields.Binary()
 
+    # metodo para coger el nombre por defecto de la ciudad
     @api.model
     def _get_default_name(self):
         lista_nombres = ['Vulcano', 'Minshara', 'Khan', 'Voyager', 'Tau', 'Cyanga V', 'Defiant', 'Mudd', 'Elanna',
@@ -70,6 +76,7 @@ class ciutat(models.Model):
     recursos = fields.One2many('game.recursos', 'ciutat')
     mines = fields.One2many('game.mines', 'ciutat')
 
+    # override a oncreate
     @api.multi
     def create(self, values):
         res = super(ciutat, self).create(values)
@@ -94,8 +101,6 @@ class ciutat(models.Model):
 
         return res
 
-    # r.mina.recurs.name
-
 
 class recursos(models.Model):
     _name = 'game.recursos'
@@ -104,6 +109,7 @@ class recursos(models.Model):
     recurs = fields.Many2one('game.recurs')
     cantidad = fields.Float()
 
+    # calculo del coste para upgradear una mina
     @api.multi
     def calcular_coste(self, recurs1, nivel, produccion, name_mina):
 
@@ -122,6 +128,7 @@ class recursos(models.Model):
                                 m.nivel += 1
                                 m.produccion += (nivel + 1) * 100
                                 m.minutos = (2 * (nivel + 1))
+                                m.tiempo_total = (2 * (nivel + 1))
                                 m.coste = coste
                                 r.cantidad -= coste
 
@@ -149,10 +156,19 @@ class mines(models.Model):
     minutos = fields.Integer()
     mejora = fields.Boolean(default=False)
     status = fields.Char()
+    const_percent = fields.Float(compute='_get_const_percent')
+    tiempo_total = fields.Float()
 
+    # metodo que llama a la funcion de calcular cantidad
     @api.multi
     def llamar_calc_cantidad(self):
         self.ciutat.recursos.calcular_coste(self.mina.recurs, self.nivel, self.minutos, self.name)
+
+    @api.depends('minutos')
+    def _get_const_percent(self):
+        for r in self:
+            if r.minutos > 0:
+                r.const_percent = 100 -(r.minutos/r.tiempo_total)*100
 
 
 class mina(models.Model):

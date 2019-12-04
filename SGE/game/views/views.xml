@@ -7,7 +7,7 @@
       <field name="name">Jugadores</field>
       <field name="model">game.jugador</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree colors="blue">
           <field name="name"/>
           <field name="ciutat" string="Ciudades"/>
         </tree>
@@ -26,6 +26,7 @@
             <group>
                 <field name="ciutat" string="Ciudades"/>
             </group>
+            <button name="llamar_crear_ciudad" string="Crear ciudad" type="object"/>
         </form>
       </field>
     </record>
@@ -72,7 +73,7 @@
 
   <!--VISTES RECURS-->
     <record model="ir.ui.view" id="game.recurs_tree_list">
-      <field name="name">Lista recurso</field>
+      <field name="name">Lista recursos</field>
       <field name="model">game.recurs</field>
       <field name="arch" type="xml">
         <tree>
@@ -133,10 +134,19 @@
             </header>
 
             <group>
-                <field name="status"/>
-            <field name="produccion"/>
-            <field name="coste"/>
+                <field name="status" />
+                <field name="produccion"/>
+                <field name="coste"/>
             </group>
+
+             <notebook>
+                <page string="Progreso">
+                    <group>
+                        <field name="minutos" attrs="{'invisible':[('const_percent', '==', 100)]}"/>
+                        <field name="const_percent" widget="progressbar"/>
+                    </group>
+                </page>
+            </notebook>
         </form>
       </field>
     </record>
@@ -147,13 +157,14 @@
       <field name="arch" type="xml">
         <tree>
           <field name="mina"/>
-            <field name="minutos" string="Tiempo de mejora:"/>
             <field name="status"/>
-            <field name="minutos" widget="progressbar" string="Avance:"/>
             <field name="nivel"/>
             <field name="produccion"/>
             <field name="coste"/>
             <button name="llamar_calc_cantidad" type="object" string="Mejorar" class="oe_highlight" />
+            <field name="minutos" attrs="{'invisible':[('const_percent', '==', 100)]}"/>
+            <field name="const_percent" widget="progressbar"/>
+
         </tree>
       </field>
     </record>
