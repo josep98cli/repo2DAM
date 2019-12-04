@@ -7,7 +7,7 @@
       <field name="name">Jugadores</field>
       <field name="model">game.jugador</field>
       <field name="arch" type="xml">
-        <tree colors="blue">
+        <tree decoration-info="name!='false'">
           <field name="name"/>
           <field name="ciutat" string="Ciudades"/>
         </tree>
@@ -25,8 +25,9 @@
             </div>
             <group>
                 <field name="ciutat" string="Ciudades"/>
+                <field name="fecha_creacion"/>
             </group>
-            <button name="llamar_crear_ciudad" string="Crear ciudad" type="object"/>
+            <button name="crear_ciudad" string="Crear ciudad" type="object"/>
         </form>
       </field>
     </record>
@@ -61,7 +62,7 @@
       <field name="name">Ciudades</field>
       <field name="model">game.ciutat</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree decoration-danger="name != 'false'">
           <field name="name" string="Ciudades:"/>
           <field name="vida"/>
           <field name="recursos"/>
@@ -76,7 +77,7 @@
       <field name="name">Lista recursos</field>
       <field name="model">game.recurs</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree decoration-info="name != 'false'">
           <field name="name"/>
           <field name="image" widget="image"/>
         </tree>
@@ -116,7 +117,7 @@
       <field name="name">Lista recursos</field>
       <field name="model">game.recursos</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree decoration-warning="name != 'false'">
             <field name="name"/>
              <field name="cantidad"/>
         </tree>
@@ -155,7 +156,7 @@
       <field name="name">Minas</field>
       <field name="model">game.mines</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree decoration-bf="mina != 'false'">
           <field name="mina"/>
             <field name="status"/>
             <field name="nivel"/>
@@ -188,11 +189,11 @@
       <field name="name">Mina</field>
       <field name="model">game.mina</field>
       <field name="arch" type="xml">
-        <form>
+        <tree decoration-success="name != 'false'">
           <field name="name"/>
             <field name="name"/>
             <field name="recurs"/>
-        </form>
+        </tree>
       </field>
     </record>
 

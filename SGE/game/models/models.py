@@ -7,7 +7,7 @@ from openerp.exceptions import except_orm
 
 class jugador(models.Model):
     _name = 'game.jugador'
-
+    fecha_creacion = fields.Date(default=lambda self: fields.Date.today())
     # imageJugador = fields.Binary()
     name = fields.Char(string='Nombre jugador',
                        default=lambda self: self._get_default_name(), )
@@ -37,8 +37,16 @@ class jugador(models.Model):
 
     # metodo que llama a un funcion situada en el modelo ciudad que crea una ciudad nueva
     @api.multi
-    def llamar_crear_ciudad(self):
-        self.ciutat.create()
+    def crear_ciudad(self):
+        names = ['Vulcano', 'Minshara', 'Khan', 'Voyager', 'Tau', 'Cyanga V', 'Defiant', 'Mudd', 'Elanna',
+                 'Tholianos', 'Tholia', 'Medusanos']
+        self.ciutat.create({
+
+            'name': str(random.choice(names)),
+            'vida': 1000,
+            'jugador': self.id
+
+        })
 
     @api.model
     def update_recursos(self):  # metodo para el cron
@@ -168,10 +176,11 @@ class mines(models.Model):
     def _get_const_percent(self):
         for r in self:
             if r.minutos > 0:
-                r.const_percent = 100 -(r.minutos/r.tiempo_total)*100
+                r.const_percent = 100 - (r.minutos / r.tiempo_total) * 100
 
 
 class mina(models.Model):
     _name = 'game.mina'
     name = fields.Char()
     recurs = fields.Many2one('game.recurs')
+
