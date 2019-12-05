@@ -29,6 +29,7 @@
         'views/templates.xml',
         'views/cron.xml',
         'demo/data.xml',
+        'views/views_aux.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

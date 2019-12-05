@@ -8,10 +8,21 @@ from openerp.exceptions import except_orm
 class jugador(models.Model):
     _name = 'game.jugador'
     fecha_creacion = fields.Date(default=lambda self: fields.Date.today())
-    # imageJugador = fields.Binary()
+    image = fields.Binary()
     name = fields.Char(string='Nombre jugador',
                        default=lambda self: self._get_default_name(), )
     ciutat = fields.One2many('game.ciutat', 'jugador')
+
+    @api.multi
+    def eliminar_jugador(self):
+        for j in self:
+            for c in j.ciutat:
+                for r in c.recursos:
+                    r.unlink()
+                for m in c.mines:
+                    m.unlink()
+                c.unlink()
+            j.unlink()
 
     @api.model
     def _get_default_name(self):
@@ -30,12 +41,12 @@ class jugador(models.Model):
         f = self.env['game.ciutat'].create({
             'name': str(random.choice(names)),
             'vida': 1000,
-            'jugador': res.id
+            'jugador': res.id,
         })
 
         return res
 
-    # metodo que llama a un funcion situada en el modelo ciudad que crea una ciudad nueva
+    # metodo que crea una ciudad nueva desde el boton
     @api.multi
     def crear_ciudad(self):
         names = ['Vulcano', 'Minshara', 'Khan', 'Voyager', 'Tau', 'Cyanga V', 'Defiant', 'Mudd', 'Elanna',
@@ -80,7 +91,7 @@ class ciutat(models.Model):
         return random_name
 
     vida = fields.Float(default=1000)
-    jugador = fields.Many2one('game.jugador')
+    jugador = fields.Many2one('game.jugador', ondelete="cascade")
     recursos = fields.One2many('game.recursos', 'ciutat')
     mines = fields.One2many('game.mines', 'ciutat')
 
@@ -182,5 +193,5 @@ class mines(models.Model):
 class mina(models.Model):
     _name = 'game.mina'
     name = fields.Char()
+    image = fields.Char()
     recurs = fields.Many2one('game.recurs')
-
