@@ -62,7 +62,7 @@ class jugador(models.Model):
     @api.model
     def update_recursos(self):  # metodo para el cron
         ciutat_total = self.env['game.ciutat'].search([])
-
+        print('\x1b[6;30;42m' + 'Actualizando recursos..' + '\x1b[0m')
         for c in ciutat_total:
             for r in c.recursos:
                 for m in c.mines:
@@ -74,6 +74,7 @@ class jugador(models.Model):
                         elif m.mejora:
                             m.write({'status': 'Mejorando...'})
                             m.write({'minutos': m.minutos - 1})
+        print('\x1b[6;30;42m' + 'Recursos actualizados!' + '\x1b[0m')
 
 
 class ciutat(models.Model):
@@ -94,6 +95,13 @@ class ciutat(models.Model):
     jugador = fields.Many2one('game.jugador', ondelete="cascade")
     recursos = fields.One2many('game.recursos', 'ciutat')
     mines = fields.One2many('game.mines', 'ciutat')
+
+    @api.multi
+    def refresh_pag(self):
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
 
     # override a oncreate
     @api.multi
@@ -193,5 +201,5 @@ class mines(models.Model):
 class mina(models.Model):
     _name = 'game.mina'
     name = fields.Char()
-    image = fields.Char()
+    image = fields.Binary()
     recurs = fields.Many2one('game.recurs')

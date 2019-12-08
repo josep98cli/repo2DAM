@@ -10,9 +10,27 @@
                 <tree decoration-info="name!='false'">
                     <field name="name"/>
                     <field name="ciutat" string="Ciudades" widget="many2many_tags"/>
-
-                    <button name="eliminar_jugador" string="Eliminar jugador" type="object"/>
                 </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="game.jugador_form_list">
+            <field name="name">Jugadores</field>
+            <field name="model">game.jugador</field>
+            <field name="arch" type="xml">
+                <form>
+                    <br/>
+                    <div class="title">
+                        <h3>
+                            <field name="name"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <field name="ciutat" string="Ciudades"/>
+                        <field name="fecha_creacion"/>
+                    </group>
+                    <button name="crear_ciudad" string="Crear ciudad" type="object"/>
+                    <button name="reload_pag" string="Refrescar pagina" type="object"/>
+                </form>
             </field>
         </record>
 
@@ -28,7 +46,7 @@
                         </h3>
                     </div>
 
-                         <img src="game/static/spok.jpeg" alt="jugador"/>
+                    <img src="game/static/spok.jpeg" alt="jugador"/>
                     <group>
                         <field name="ciutat"/>
                         <field name="fecha_creacion"/>
@@ -45,11 +63,6 @@
             <field name="model">game.ciutat</field>
             <field name="arch" type="xml">
                 <form>
-
-                    <header style="text-align:left;">
-                        <field name="name" class="oe_read_only"/>
-                    </header>
-
                     <group>
                         <field name="vida" class="oe_read_only"/>
                     </group>
@@ -62,9 +75,12 @@
                     <group>
                         <img src="game/static/ciutat_img.jpg" alt="ciutat"/>
                     </group>
+                    <button name="refresh_pag" type="object" string="Refrescar ciudad"/>
+
                 </form>
             </field>
         </record>
+
 
         <record model="ir.ui.view" id="game.ciutat_tree_list">
             <field name="name">Ciudades</field>
@@ -87,7 +103,6 @@
             <field name="arch" type="xml">
                 <tree decoration-info="name != 'false'">
                     <field name="name" string="Nombre:"/>
-                    <field name="image" widget="image"/>
                 </tree>
             </field>
         </record>
@@ -99,7 +114,7 @@
                 <form>
                     <field name="name"/>
                     <group>
-                        <field name="image" widget="image"/>
+                        <field name="image" widget="image" alt="image"/>
                     </group>
                 </form>
             </field>
@@ -116,6 +131,7 @@
                         <field name="name"/>
                     </header>
                     <field name="cantidad"/>
+
                 </form>
             </field>
         </record>
@@ -124,7 +140,7 @@
             <field name="name">Lista recursos</field>
             <field name="model">game.recursos</field>
             <field name="arch" type="xml">
-                <tree decoration-warning="cantidad != 'false'">
+                <tree decoration-warning="cantidad != '0'">
                     <field name="name"/>
                     <field name="cantidad"/>
                 </tree>
@@ -148,9 +164,7 @@
                                 <field name="produccion"/>
                                 <field name="coste"/>
                             </group>
-
                         </page>
-
                         <page string="Progreso">
                             <group>
                                 <field name="minutos" attrs="{'invisible':[('const_percent', '==', 100)]}"/>
@@ -206,6 +220,7 @@
                 <tree decoration-success="name != 'false'">
                     <field name="name"/>
                     <field name="recurs"/>
+                     <field name="image" widget="image"/>
                 </tree>
             </field>
         </record>
@@ -286,6 +301,7 @@
 
         <menuitem name="Minas" id="game.minas" parent="game.jugador"
                   action="game.mina_action_window"/>
+
     </data>
 
 </odoo>
