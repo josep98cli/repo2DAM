@@ -3,11 +3,13 @@
 from odoo import models, fields, api, tools
 import random
 from openerp.exceptions import except_orm
+import datetime
 
 
 class jugador(models.Model):
     _name = 'game.jugador'
-    fecha_creacion = fields.Date(default=lambda self: fields.Date.today())
+    fecha_creacion = fields.Date(default=lambda self: datetime.date.today())
+    fecha_muerte = fields.Date(default=lambda self: datetime.date.today() + datetime.timedelta(days=10))
     image = fields.Binary()
     name = fields.Char(string='Nombre jugador',
                        default=lambda self: self._get_default_name(), )

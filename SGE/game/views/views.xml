@@ -13,26 +13,6 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="game.jugador_form_list">
-            <field name="name">Jugadores</field>
-            <field name="model">game.jugador</field>
-            <field name="arch" type="xml">
-                <form>
-                    <br/>
-                    <div class="title">
-                        <h3>
-                            <field name="name"/>
-                        </h3>
-                    </div>
-                    <group>
-                        <field name="ciutat" string="Ciudades"/>
-                        <field name="fecha_creacion"/>
-                    </group>
-                    <button name="crear_ciudad" string="Crear ciudad" type="object"/>
-                    <button name="reload_pag" string="Refrescar pagina" type="object"/>
-                </form>
-            </field>
-        </record>
 
         <record model="ir.ui.view" id="game.jugador_form_list">
             <field name="name">Jugadores</field>
@@ -54,6 +34,30 @@
                     <button name="crear_ciudad" string="Crear ciudad" type="object"/>
 
                 </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="session_jugador_calendar">
+            <field name="name">session.calendar</field>
+            <field name="model">game.jugador</field>
+            <field name="arch" type="xml">
+                <calendar string="Session Calendar" date_start="fecha_creacion"
+                          date_stop="fecha_muerte"
+                          color="id">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+
+          <record model="ir.ui.view" id="game.jugador_search">
+            <field name="name">Jugador search</field>
+            <field name="model">game.jugador</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="ciutat"/>
+                </search>
             </field>
         </record>
 
@@ -95,6 +99,8 @@
                 </tree>
             </field>
         </record>
+
+
 
         <!--VISTES RECURS-->
         <record model="ir.ui.view" id="game.recurs_tree_list">
@@ -231,7 +237,7 @@
         <record model="ir.actions.act_window" id="game.jugador_action_window">
             <field name="name">Jugador</field>
             <field name="res_model">game.jugador</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,calendar,search</field>
         </record>
 
         <record model="ir.actions.act_window" id="game.ciutat_action_window">
