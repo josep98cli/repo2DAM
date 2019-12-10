@@ -33,14 +33,8 @@ public class Menu_inicial extends AppCompatActivity implements View.OnClickListe
 
         //recupero activity
         String var_usuario = getIntent().getStringExtra("variable_usuario");
-        String nombreUsuario="";
-        for (int i=0; i<var_usuario.length();i++){
-            if (var_usuario.charAt(i)!= '@'){
-                nombreUsuario+=var_usuario.charAt(i);
-            }else{
-                break;
-            }
-        }
+
+
         textoUsuario.setText("Bienvenido " + var_usuario);
     }
 
@@ -55,6 +49,11 @@ public class Menu_inicial extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonInf:
                 Intent intent = new Intent(Menu_inicial.this, Informacion.class);
                 startActivity(intent);
+                break;
+            case R.id.buttonContactos:
+                Intent intent3 = new Intent(Menu_inicial.this, PrincipalClassRecycler.class);
+                startActivity(intent3);
+                break;
         }
     }
 }

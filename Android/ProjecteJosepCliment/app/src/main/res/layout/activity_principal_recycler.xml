@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Insertar Contacto" android:id="@+id/tv1"/>
+    <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/etTelefono" android:hint="Telefono"/>
+
+    <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/etnombre" android:hint="Nombre"/>
+
+
+   -<RadioGroup android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:id="@+id/rg_grupo">
+
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Grupo:" android:id="@+id/tvgrupo_rg"/>
+
+    <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Familiar" android:id="@+id/rbf"/>
+
+    <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Amigos" android:id="@+id/rba"/>
+
+    <RadioButton
+        android:id="@+id/rbt"
+        android:layout_width="101dp"
+        android:layout_height="wrap_content"
+        android:text="Trabajo" />
+</RadioGroup>
+
+    <Button android:layout_height="wrap_content" android:layout_width="match_parent" android:text="INSERTAR" android:id="@+id/button_insertar"/>
+
+    <androidx.recyclerview.widget.RecyclerView android:layout_height="match_parent" android:layout_width="match_parent" android:id="@+id/rv_contactos"/>
+
+</LinearLayout>
