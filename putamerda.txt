@@ -1,8 +1,15 @@
+
+	
 +First, we will check if the volume is activate
+
 
 +Your smartphone has three button on the right. Press the first on
 
-+If your scrollbar it's all blue you have the maxim volume in the phone. Can you hear now?
+
+
++If your scrollbar it's all blue you have the maxim volume in the phone. You can her now?
+
+
 
 
 -----------------------------------------------------------
@@ -12,4 +19,3 @@
 +Okay and now?
 
 +Okay, it's already being update thanks.
-

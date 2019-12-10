@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:padding="5dp" android:layout_height="?android:attr/listPreferredItemHeight" android:layout_width="match_parent" android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView android:layout_height="?android:attr/listPreferredItemHeight" android:layout_width="?android:attr/listPreferredItemHeight" android:layout_alignParentLeft="true" android:id="@+id/img_sexo"/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/tv_nombre" android:maxLines="1" android:textStyle="bold" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_alignParentTop="true" android:layout_toRightOf="@id/img_sexo" android:text="Nombre Persona"/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/tvTelefono" android:maxLines="1" android:layout_toRightOf="@id/img_sexo" android:text="Telefono" android:textColor="@color/colorAccent" android:layout_below="@id/tv_nombre"/>
+
+</RelativeLayout>
