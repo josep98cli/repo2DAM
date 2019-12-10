@@ -1,0 +1,92 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.projectejosepcliment"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+8-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml
+10
+11    <application
+11-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:4:5-46:19
+12        android:allowBackup="true"
+12-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:5:9-35
+13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+13-->[androidx.core:core:1.0.1] C:\Users\josep\.gradle\caches\transforms-2\files-2.1\46da25c3e2ae6308b2227b660caa604d\core-1.0.1\AndroidManifest.xml:22:18-86
+14        android:debuggable="true"
+15        android:icon="@mipmap/ic_launcher"
+15-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:6:9-43
+16        android:label="@string/app_name"
+16-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:7:9-41
+17        android:roundIcon="@mipmap/ic_launcher_round"
+17-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:8:9-54
+18        android:supportsRtl="true"
+18-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:9:9-35
+19        android:testOnly="true"
+20        android:theme="@style/AppTheme" >
+20-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:10:9-40
+21        <activity android:name="com.example.projectejosepcliment.MainActivity" >
+21-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:11:9-17:20
+21-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:11:19-47
+22            <intent-filter>
+22-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:12:13-16:29
+23                <action android:name="android.intent.action.MAIN" />
+23-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:13:17-69
+23-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:13:25-66
+24
+25                <category android:name="android.intent.category.LAUNCHER" />
+25-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:15:17-77
+25-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:15:27-74
+26            </intent-filter>
+27        </activity>
+28        <activity
+28-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:18:9-25:20
+29            android:name="com.example.projectejosepcliment.Menu_inicial"
+29-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:19:13-41
+30            android:label="@string/app_name"
+30-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:20:13-45
+31            android:parentActivityName="com.example.projectejosepcliment.MainActivity" >
+31-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:21:13-55
+32            <meta-data
+32-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:22:13-24:49
+33                android:name="android.support.PARENT_ACTIVITY"
+33-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:23:17-63
+34                android:value=".Menu_inicial" />
+34-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:24:17-46
+35        </activity>
+36        <activity
+36-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:27:9-34:20
+37            android:name="com.example.projectejosepcliment.Calculadora"
+37-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:28:13-40
+38            android:label="@string/app_name"
+38-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:29:13-45
+39            android:parentActivityName="com.example.projectejosepcliment.Menu_inicial" >
+39-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:30:13-55
+40            <meta-data
+40-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:22:13-24:49
+41                android:name="android.support.PARENT_ACTIVITY"
+41-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:23:17-63
+42                android:value=".Calculadora" />
+42-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:24:17-46
+43        </activity>
+44        <activity
+44-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:35:9-42:16
+45            android:name="com.example.projectejosepcliment.Informacion"
+45-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:36:9-36
+46            android:label="@string/app_name"
+46-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:37:9-41
+47            android:parentActivityName="com.example.projectejosepcliment.Menu_inicial" >
+47-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:38:9-51
+48            <meta-data
+48-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:22:13-24:49
+49                android:name="android.support.PARENT_ACTIVITY"
+49-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:23:17-63
+50                android:value=".Informacion" />
+50-->G:\2dam\repo2DAM\Android\ProjecteJosepCliment\app\src\main\AndroidManifest.xml:24:17-46
+51        </activity>
+52    </application>
+53
+54</manifest>
