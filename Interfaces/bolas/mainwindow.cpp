@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(p
 
 void MainWindow::paintEvent(QPaintEvent *e){
 	
+
 	QPainter pintor(this);
 
 	for(int i = 0; i<bolas.size(); i++){

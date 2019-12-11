@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'DInformacion.h'
+** Meta object code from reading C++ file 'InfoDialog.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "DInformacion.h"
+#include "InfoDialog.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'DInformacion.h' doesn't include <QObject>."
+#error "The header file 'InfoDialog.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.12.2. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -20,25 +20,25 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_DInformacion_t {
+struct qt_meta_stringdata_InfoDialog_t {
     QByteArrayData data[1];
-    char stringdata0[13];
+    char stringdata0[11];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_DInformacion_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_InfoDialog_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_DInformacion_t qt_meta_stringdata_DInformacion = {
+static const qt_meta_stringdata_InfoDialog_t qt_meta_stringdata_InfoDialog = {
     {
-QT_MOC_LITERAL(0, 0, 12) // "DInformacion"
+QT_MOC_LITERAL(0, 0, 10) // "InfoDialog"
 
     },
-    "DInformacion"
+    "InfoDialog"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_DInformacion[] = {
+static const uint qt_meta_data_InfoDialog[] = {
 
  // content:
        8,       // revision
@@ -54,7 +54,7 @@ static const uint qt_meta_data_DInformacion[] = {
        0        // eod
 };
 
-void DInformacion::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void InfoDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     Q_UNUSED(_o);
     Q_UNUSED(_id);
@@ -62,32 +62,32 @@ void DInformacion::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject DInformacion::staticMetaObject = { {
+QT_INIT_METAOBJECT const QMetaObject InfoDialog::staticMetaObject = { {
     &QDialog::staticMetaObject,
-    qt_meta_stringdata_DInformacion.data,
-    qt_meta_data_DInformacion,
+    qt_meta_stringdata_InfoDialog.data,
+    qt_meta_data_InfoDialog,
     qt_static_metacall,
     nullptr,
     nullptr
 } };
 
 
-const QMetaObject *DInformacion::metaObject() const
+const QMetaObject *InfoDialog::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *DInformacion::qt_metacast(const char *_clname)
+void *InfoDialog::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_DInformacion.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_InfoDialog.stringdata0))
         return static_cast<void*>(this);
-    if (!strcmp(_clname, "Ui::DInformacion"))
-        return static_cast< Ui::DInformacion*>(this);
+    if (!strcmp(_clname, "Ui::InfoDialog"))
+        return static_cast< Ui::InfoDialog*>(this);
     return QDialog::qt_metacast(_clname);
 }
 
-int DInformacion::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int InfoDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QDialog::qt_metacall(_c, _id, _a);
     return _id;

@@ -2,26 +2,28 @@
 #define BOLA_H
 
 #include <QPainter>
-#include <QColor>
-
 
 class Bola{
 
 public:
-        Bola(float , float , float , float );
-	Bola(float , float , float , float , QColor);
-	void pintarBola(QPainter &, float, float);
+        Bola(bool, float , float , float , float, float );
+        Bola(bool, float , float , float , float, float, QColor );
+	void pintarBola(QPainter &);
 	void mover(float, float);
-	void chocar(Bola &);
+	bool chocar(Bola &);	
+	
 	float calcDistancia(Bola );
-	QColor color;
-
-private:
+	float radio;
+	int vida;
         float x;
 	float y;
 	float vX;
 	float vY;
-	
+	float vidaIncial;
+	bool jugador;
+	QColor color;
+
+
 };
 
 #endif 
