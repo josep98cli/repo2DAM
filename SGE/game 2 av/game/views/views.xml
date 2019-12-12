@@ -1,0 +1,418 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <!--VISTES JUGADOR-->
+
+        <record model="ir.ui.view" id="game.jugador_tree_list">
+            <field name="name">Jugadores</field>
+            <field name="model">game.jugador</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="name!='false'">
+                    <field name="name"/>
+                    <field name="ciutat" string="Ciudades" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.jugador_form_list">
+            <field name="name">Jugadores</field>
+            <field name="model">game.jugador</field>
+            <field name="arch" type="xml">
+                <form>
+                    <br/>
+                    <div class="title">
+                        <h3>
+                            <field name="name"/>
+                        </h3>
+                    </div>
+
+                    <img src="game/static/spok.jpeg" alt="jugador"/>
+                    <group>
+                        <field name="ciutat"/>
+                        <field name="fecha_creacion"/>
+                    </group>
+                    <button name="crear_ciudad" string="Crear ciudad" type="object"/>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="session_jugador_calendar">
+            <field name="name">session.calendar</field>
+            <field name="model">game.jugador</field>
+            <field name="arch" type="xml">
+                <calendar string="Session Calendar" date_start="fecha_creacion"
+                          date_stop="fecha_muerte"
+                          color="id">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+
+          <record model="ir.ui.view" id="game.jugador_search">
+            <field name="name">Jugador search</field>
+            <field name="model">game.jugador</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="ciutat"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- VISTES CIUTAT -->
+        <record model="ir.ui.view" id="game.ciutat_form_list">
+            <field name="name">Ciudades</field>
+            <field name="model">game.ciutat</field>
+            <field name="arch" type="xml">
+                <form>
+                    <notebook>
+
+                        <page string="Recursos">
+                            <field name="vida" class="oe_read_only"/>
+                            <field name="recursos" class="oe_read_only" mode="kanban"/>
+                        </page>
+
+                        <page string="Mines">
+                        <field name="mines" class="oe_read_only"/>
+                        </page>
+
+                        <page string="Info ciudad">
+                        <img src="game/static/ciutat_img.jpg" alt="ciutat"/>
+                        <button name="refresh_pag" type="object" string="Refrescar ciudad"/>
+                        </page>
+
+                        <page string="Ejercito">
+                            <field name="ejercito" string="Tropas:"/>
+                        </page>
+                    </notebook>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="game.ciutat_tree_list">
+            <field name="name">Ciudades</field>
+            <field name="model">game.ciutat</field>
+            <field name="arch" type="xml">
+                <tree decoration-danger="name != 'false'">
+                    <field name="name" string="Ciudades:"/>
+                    <field name="vida"/>
+                    <field name="recursos" widget="many2many_tags"/>
+                    <field name="mines" string="Minas"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+
+        <!--VISTES RECURS-->
+
+        <record model="ir.ui.view" id="game.recurs_tree_list">
+            <field name="name">Lista recursos</field>
+            <field name="model">game.recurs</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="name != 'false'">
+                    <field name="name" string="Nombre:"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.recurs_form_list">
+            <field name="name">Recurso</field>
+            <field name="model">game.recurs</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="name"/>
+                    <group>
+                        <field name="image" widget="image" alt="image"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- VISTES RECURSOS -->
+
+        <record model="ir.ui.view" id="game.recursos_form_list">
+            <field name="name">Recursos</field>
+            <field name="model">game.recursos</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="name"/>
+                    </header>
+                    <field name="cantidad"/>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.recursos_tree_list">
+            <field name="name">Lista recursos</field>
+            <field name="model">game.recursos</field>
+            <field name="arch" type="xml">
+                <tree decoration-warning="cantidad != '0'">
+                    <field name="name"/>
+                    <field name="cantidad"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTES MINES-->
+
+        <record model="ir.ui.view" id="game.mines_form_list">
+            <field name="name">Minas</field>
+            <field name="model">game.mines</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="mina"/>
+                    </header>
+                    <notebook>
+                        <page string="Informacion de la mina">
+                            <group>
+                                <field name="status"/>
+                                <field name="produccion"/>
+                                <field name="coste"/>
+                            </group>
+                        </page>
+                        <page string="Progreso">
+                            <group>
+                                <field name="minutos" attrs="{'invisible':[('const_percent', '==', 100)]}"/>
+                                <field name="const_percent" widget="progressbar"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.mines_tree_list">
+            <field name="name">Minas</field>
+            <field name="model">game.mines</field>
+            <field name="arch" type="xml">
+                <tree decoration-bf="mina != 'false'">
+                    <field name="mina"/>
+                    <field name="status"/>
+                    <field name="nivel"/>
+                    <field name="produccion"/>
+                    <field name="coste"/>
+
+                    <button name="llamar_calc_cantidad" type="object" string="Mejorar" class="oe_highlight"/>
+
+                    <field name="minutos" attrs="{'invisible':[('const_percent', '==', 100)]}"/>
+                    <field name="const_percent" widget="progressbar"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTAS MINA -->
+        <record model="ir.ui.view" id="game.mina_form_list">
+            <field name="name">Mina</field>
+            <field name="model">game.mina</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="recurs"/>
+                        <field name="image" alt="mina" widget="image"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.mina_tree_list">
+            <field name="name">Mina</field>
+            <field name="model">game.mina</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="name != 'false'">
+                    <field name="name"/>
+                    <field name="recurs"/>
+                     <field name="image" widget="image"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--VISTES EJERCITO-->
+
+         <record model="ir.ui.view" id="game.ejercito_form_list">
+            <field name="name">Mina</field>
+            <field name="model">game.ejercito</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="naves"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.ejercito_tree_list">
+            <field name="name">Mina</field>
+            <field name="model">game.ejercito</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="naves != 'false'">
+                    <field name="naves" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTAS NAVES-->
+
+             <record model="ir.ui.view" id="game.naves_form_list">
+            <field name="name">Naves</field>
+            <field name="model">game.naves</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="nave"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.naves_tree_list">
+            <field name="name">Naves</field>
+            <field name="model">game.naves</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="nave != 'false'">
+                    <field name="nave"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--VISTES NAVE-->
+
+        <record model="ir.ui.view" id="game.nave_form_list">
+            <field name="name">Nave</field>
+            <field name="model">game.nave</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="tipo"/>
+                        <field name="vida"/>
+                        <field name="ataque"/>
+                        <field name="armadura"/>
+                        <field name="coste_cerio" attr="{'invisible':[('coste_cerio' '=' 0)]}"/>
+                        <field name="coste_holmio" attr="{'invisible':[('coste_holmio' '=' 0)]}"/>
+                        <field name="coste_lutecio" attr="{'invisible':[('coste_lutecio' '=' 0)]}"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <!--ACTIONS-->
+
+        <record model="ir.actions.act_window" id="game.jugador_action_window">
+            <field name="name">Jugador</field>
+            <field name="res_model">game.jugador</field>
+            <field name="view_mode">tree,form,calendar,search</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="game.ciutat_action_window">
+            <field name="name">Ciudades</field>
+            <field name="res_model">game.ciutat</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="game.recurs_action_window">
+            <field name="name">Recurso</field>
+            <field name="res_model">game.recurs</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="game.recursos_action_window">
+            <field name="name">Recursos</field>
+            <field name="res_model">game.recursos</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="game.mines_action_window">
+            <field name="name">Minas</field>
+            <field name="res_model">game.mines</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="game.mina_action_window">
+            <field name="name">Mina</field>
+            <field name="res_model">game.mina</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="game.ejercito_action_window">
+            <field name="name">Ejercito</field>
+            <field name="res_model">game.ejercito</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="game.naves_action_window">
+            <field name="name">Naves</field>
+            <field name="res_model">game.naves</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="game.nave_action_window">
+            <field name="name">Nave</field>
+            <field name="res_model">game.nave</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!--server action to the one above -->
+
+        <!--<record model="ir.actions.server" id="game.action_server">
+          <field name="name">game server</field>
+          <field name="model_id" ref="model_game_game"/>
+          <field name="state">code</field>
+          <field name="code">
+            action = {
+              "type": "ir.actions.act_window",
+              "view_mode": "tree,form",
+              "res_model": self._name,
+            }
+          </field>
+        </record> -->
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="Game" id="game.menu_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Menu 1" id="game.menu_1" parent="game.menu_root"/>
+
+        <!-- actions -->
+
+        <menuitem name="Jugador" id="game.jugador" parent="game.menu_root"
+                  action="game.jugador_action_window"/>
+
+        <menuitem name="Ciudades" id="game.ciutat" parent="game.jugador"
+                  action="game.ciutat_action_window"/>
+
+        <menuitem name="Recursos" id="game.recurs" parent="game.jugador"
+                  action="game.recurs_action_window"/>
+
+        <menuitem name="Minas" id="game.minas" parent="game.jugador"
+                  action="game.mina_action_window"/>
+
+        <menuitem name="Ejercito" id="game.ejercito" parent="game.jugador"
+                  action="game.ejercito_action_window"/>
+
+        <menuitem name="Naves" id="game.naves" parent="game.jugador"
+                  action="game.naves_action_window"/>
+
+        <menuitem name="Nave" id="game.nave" parent="game.jugador"
+                  action="game.nave_action_window"/>
+
+    </data>
+
+</odoo>
