@@ -7,11 +7,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad314267-89d7-49bc-b996-95f61188a056" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../ANDROID/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ANDROID/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../SGE/game/demo/data.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../SGE/game/demo/data.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../SGE/game/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../SGE/game/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../SGE/game/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../SGE/game/security/ir.model.access.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../SGE/game/views/views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../SGE/game/views/views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/.qmake.stash" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/Bola.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/InfoDialog.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/InfoDialog.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/InfoDialog.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/InfoDialog.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/bola.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/bola.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/bolas.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/haz.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/mainwindow.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/mainwindow.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/moc_InfoDialog.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/moc_InfoDialog.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/bolas/ui_InfoDialog.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Interfaces/editor.zip" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +38,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
   <component name="ExternalProjectsManager">
@@ -32,15 +49,15 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="6" column="35" lean-forward="true" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+              <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="35" />
             </state>
           </provider>
-          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -73,9 +90,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="995" />
-    <option name="y" value="169" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="603" />
+    <option name="y" value="99" />
     <option name="width" value="925" />
     <option name="height" value="789" />
   </component>
@@ -86,33 +103,13 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ProyectoPrimerTrimestre" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="ProyectoPrimerTrimestre" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="ProyectoPrimerTrimestre" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="proyectoprimertrimestre" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="settings.editor.selected.configurable" value="preferences.updates" />
   </component>
@@ -204,30 +201,30 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="995" y="169" width="925" height="789" extended-state="0" />
+    <frame x="70" y="27" width="1850" height="1053" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" visible="true" weight="0.24118316" />
-      <window_info id="Structure" side_tool="true" />
-      <window_info id="Build Variants" side_tool="true" />
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="Resources Explorer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Logcat" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="TODO" />
-      <window_info anchor="bottom" id="Android Profiler" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Build" visible="true" weight="0.46401227" />
-      <window_info anchor="right" id="Device File Explorer" side_tool="true" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Gradle" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info active="true" anchor="right" id="Preview" visible="true" weight="0.7235495" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.11751663" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Designer" order="6" />
+      <window_info id="Resources Explorer" order="7" />
+      <window_info id="Capture Tool" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Logcat" order="1" />
+      <window_info anchor="bottom" id="TODO" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="5" visible="true" weight="0.46346784" />
+      <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" />
+      <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Gradle" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info anchor="right" id="Preview" order="4" weight="0.7233925" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
     </layout>
   </component>
   <component name="editorHistoryManager">
@@ -241,7 +238,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" column="35" lean-forward="true" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="35" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
