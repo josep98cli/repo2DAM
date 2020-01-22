@@ -29,23 +29,38 @@ public class JFPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        menuSocios = new javax.swing.JMenuItem();
+        menuLibros = new javax.swing.JMenuItem();
+        menuPestramos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Biblioteca");
 
-        jMenuItem1.setText("Socios");
-        jMenu1.add(jMenuItem1);
+        menuSocios.setText("Socios");
+        menuSocios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSociosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuSocios);
 
-        jMenuItem2.setText("Libros");
-        jMenu1.add(jMenuItem2);
+        menuLibros.setText("Libros");
+        menuLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLibrosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuLibros);
 
-        jMenuItem3.setText("Prestamos");
-        jMenu1.add(jMenuItem3);
+        menuPestramos.setText("Prestamos");
+        menuPestramos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPestramosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuPestramos);
 
         jMenuBar1.add(jMenu1);
 
@@ -67,6 +82,21 @@ public class JFPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuSociosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSociosActionPerformed
+        JPSocio socio = new JPSocio();
+        setContentPane(socio);
+    }//GEN-LAST:event_menuSociosActionPerformed
+
+    private void menuLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLibrosActionPerformed
+        JPLibro lib = new JPLibro();
+        setContentPane(lib);
+    }//GEN-LAST:event_menuLibrosActionPerformed
+
+    private void menuPestramosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPestramosActionPerformed
+       JPPrestamo prestamos = new JPPrestamo();
+        setContentPane(prestamos);
+    }//GEN-LAST:event_menuPestramosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,14 +131,18 @@ public class JFPrincipal extends javax.swing.JFrame {
                 new JFPrincipal().setVisible(true);
             }
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem menuLibros;
+    private javax.swing.JMenuItem menuPestramos;
+    private javax.swing.JMenuItem menuSocios;
     // End of variables declaration//GEN-END:variables
+
+    
 }

@@ -34,13 +34,17 @@ public class GestionDB {
         }
     }
     
-    public static Connection getConexion() {
+    public static GestionDB crearGestionDB() {
 
         if (db == null) {
             db = new GestionDB();
         }
-        return db.conexion;
+        return db;
 
+    }
+    
+    public Connection getConexion(){
+        return db.conexion; 
     }
      public static void desconectar() {
         try {
