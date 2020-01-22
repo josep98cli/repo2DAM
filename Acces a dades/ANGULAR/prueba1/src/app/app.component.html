@@ -1,0 +1,25 @@
+<div id="contenedor">
+  <p>Nombre : {{nombre}}</p>
+  <p>Edad : {{edad}}</p>
+  <p *ngIf="edad>=18 else menor">Es mayor de edad</p>
+  <ng-template #menor>
+    <p>Es menor de edad</p>
+  </ng-template>
+  <p>Direccion : {{direccion()}}</p>
+
+  <ul>
+    <li *ngFor="let element of numeros">{{element}}</li>
+  </ul>
+</div>
+
+<div id="contador">
+  <p>{{contador}}</p>
+  <button (click)="incrementar()">Sumar</button>
+  <button (click)="decrementar()">Restar</button>
+</div>
+
+<hr>
+<div>
+  <p>Nombre: {{nombre}}</p>
+  <p>Ingresa el nombre<input type="text" [(ngModel)]="nombre"></p>
+</div>
