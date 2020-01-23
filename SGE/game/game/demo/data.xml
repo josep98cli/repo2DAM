@@ -1,7 +1,5 @@
 <odoo>
     <data>
-        <!--INFORMACIO JUGADOR-->
-
 
         <!--INFORMACIO DE ELS MATERIALS-->
         <record id="game.cerio" model="game.recurs">
@@ -1161,97 +1159,39 @@ cgau0/5FDiA4aubiJ+HU1IxxW7FtfPk160lgVZY9QCmuBySjv9ls+Yr4E1n/2Q==
               </field>
         </record>
 
-    <!--INFORMACIO SOLDATS-->
+        <!--INFORMACIO DE LES NAUS-->
 
-        <record id="game.soldado_raso" model="game.soldado">
-            <field name="name">Soldado raso</field>
-            <field name="ataque">10</field>
-            <field name="vida">100</field>
-            <field name="velocidad">5</field>
-            <field name="piloto">false</field>
-            <field name="comandante">false</field>
-            <field name="recurs" eval="ref('game.itrio')"/>
-            <field name="cantidad">1000</field>
-        </record>
-
-        <record id="game.soldado_avanzado" model="game.soldado">
-            <field name="name">Soldado avanzado</field>
-            <field name="ataque">30</field>
+        <record id="game.nave_basica" model="game.nave">
+            <field name="name">Nave basica de combate</field>
+            <field name="tipo">Combate</field>
             <field name="vida">150</field>
-            <field name="velocidad">3</field>
-            <field name="piloto">true</field>
-            <field name="comandante">false</field>
-            <field name="recurs" eval="ref('game.lutecio')"/>
-            <field name="cantidad">3000</field>
+            <field name="ataque">35</field>
+            <field name="armadura">15</field>
+            <field name="coste_cerio">2000</field>
+            <field name="coste_holmio">500</field>
         </record>
 
-        <record id="game.teniente" model="game.soldado">
-            <field name="name">Teniente</field>
-            <field name="ataque">20</field>
-            <field name="vida">200</field>
-            <field name="velocidad">5</field>
-            <field name="piloto">false</field>
-            <field name="comandante">true</field>
-            <field name="recurs" eval="ref('game.lutecio')"/>
-            <field name="cantidad">5000</field>
-        </record>
-
-        <record id="game.piloto" model="game.soldado">
-            <field name="name">Piloto</field>
-            <field name="ataque">30</field>
-            <field name="vida">180</field>
-            <field name="velocidad">15</field>
-            <field name="piloto">true</field>
-            <field name="comandante">false</field>
-            <field name="recurs" eval="ref('game.lutecio')"/>
-            <field name="cantidad">8000</field>
-        </record>
-
-        <record id="game.comandante" model="game.soldado">
-            <field name="name">Comandante</field>
-            <field name="ataque">40</field>
-            <field name="vida">210</field>
-            <field name="velocidad">10</field>
-            <field name="piloto">true</field>
-            <field name="comandante">true</field>
-            <field name="recurs" eval="ref('game.lutecio')"/>
-            <field name="cantidad">10000</field>
-        </record>
-
-        <!--INFORMACIO NAUS-->
-
-        <record id="game.nave_basica" model="game.naves">
-            <field name="name">Nave Basica</field>
-            <field name="ataque">100</field>
+         <record id="game.nave_media" model="game.nave">
+            <field name="name">Nave media de combate</field>
+            <field name="tipo">Combate</field>
             <field name="vida">300</field>
-            <field name="velocidad">20</field>
-            <field name="cap_transporte">0</field>
-            <field name="recurs" eval="ref('game.lutecio')"/>
-            <field name="cantidad">6000</field>
+            <field name="ataque">60</field>
+            <field name="armadura">25</field>
+            <field name="coste_cerio">500</field>
+            <field name="coste_holmio">2500</field>
+             <field name="coste_lutecio">500</field>
         </record>
 
-
-        <record id="game.nave_de_asalto" model="game.naves">
-            <field name="name">Nave de asalto</field>
-            <field name="ataque">300</field>
-            <field name="vida">400</field>
-            <field name="velocidad">3</field>
-            <field name="cap_transporte">2000</field>
-            <field name="recurs" eval="ref('game.holmio')"/>
-            <field name="cantidad">8000</field>
-
+        <record id="game.nave_alta" model="game.nave">
+            <field name="name">Nave alta de combate</field>
+            <field name="tipo">Combate</field>
+            <field name="vida">500</field>
+            <field name="ataque">100</field>
+            <field name="armadura">40</field>
+            <field name="coste_cerio">2000</field>
+            <field name="coste_itrio">1000</field>
+             <field name="coste_lutecio">1500</field>
         </record>
-
-        <record id="game.nave_pesada" model="game.naves">
-            <field name="name">Nave pesada</field>
-            <field name="ataque">500</field>
-            <field name="vida">700</field>
-            <field name="velocidad">1</field>
-            <field name="cap_transporte">5000</field>
-            <field name="recurs" eval="ref('game.itrio')"/>
-            <field name="cantidad">20000</field>
-        </record>
-
 
     </data>
 </odoo>

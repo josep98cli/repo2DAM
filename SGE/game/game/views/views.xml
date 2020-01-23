@@ -1,5 +1,6 @@
 <odoo>
     <data>
+        <!-- explicit list view definition -->
         <!--VISTES JUGADOR-->
 
         <record model="ir.ui.view" id="game.jugador_tree_list">
@@ -49,7 +50,7 @@
         </record>
 
 
-        <record model="ir.ui.view" id="game.jugador_search">
+          <record model="ir.ui.view" id="game.jugador_search">
             <field name="name">Jugador search</field>
             <field name="model">game.jugador</field>
             <field name="arch" type="xml">
@@ -67,29 +68,26 @@
             <field name="arch" type="xml">
                 <form>
                     <notebook>
-                        <page string="Informacion basica">
-                            <div>
-                                <field name="vida" class="oe_read_only"/>
-                            </div>
 
-                            <img src="game/static/ciutat_img.jpg" alt="ciutat"/>
-                            <div>
-                                <button name="refresh_pag" type="object" string="Refrescar ciudad"/>
-                            </div>
-                        </page>
-                        <page string="Recursos primarios">
+                        <page string="Recursos">
+                            <field name="vida" class="oe_read_only"/>
                             <field name="recursos" class="oe_read_only" mode="kanban"/>
                         </page>
 
-                        <page string="Minas">
-                            <field name="mines" class="oe_read_only"/>
+                        <page string="Mines">
+                        <field name="mines" class="oe_read_only"/>
+                        </page>
+
+                        <page string="Info ciudad">
+                        <img src="game/static/ciutat_img.jpg" alt="ciutat"/>
+                        <button name="refresh_pag" type="object" string="Refrescar ciudad"/>
                         </page>
 
                         <page string="Ejercito">
-                            <field name="soldado"/>
-                            <field name="naves"/>
+                            <field name="ejercito" string="Tropas:"/>
                         </page>
                     </notebook>
+
                 </form>
             </field>
         </record>
@@ -103,14 +101,16 @@
                     <field name="name" string="Ciudades:"/>
                     <field name="vida"/>
                     <field name="recursos" widget="many2many_tags"/>
-                    <field name="mines" string="Minas" widget="many2many_tags"/>
-                    <field name="soldado" string="Soldados"/>
+                    <field name="mines" string="Minas"/>
+
                 </tree>
             </field>
         </record>
 
 
+
         <!--VISTES RECURS-->
+
         <record model="ir.ui.view" id="game.recurs_tree_list">
             <field name="name">Lista recursos</field>
             <field name="model">game.recurs</field>
@@ -234,112 +234,81 @@
                 <tree decoration-success="name != 'false'">
                     <field name="name"/>
                     <field name="recurs"/>
-                    <field name="image" widget="image"/>
+                     <field name="image" widget="image"/>
                 </tree>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="game.soldado_tree_list">
-            <field name="name">Soldados</field>
-            <field name="model">game.soldado</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name" string="Nombre"/>
-                    <field name="ataque" string="Ataque"/>
-                    <field name="vida" string="Vida"/>
-                    <field name="velocidad" string="Velocidad"/>
-                    <field name="recurs" string="Recurso"/>
-                    <field name="cantidad" string="Cantidad"/>
-                    <field name="cant_tropas" string="Tropas disponibles"/>
-                    <button name="comprar_soldado" type="object" string="Comprar"/>
-                </tree>
-            </field>
-        </record>
+        <!--VISTES EJERCITO-->
 
-        <record model="ir.ui.view" id="game.soldado_form_list">
-            <field name="name">Soldados</field>
-            <field name="model">game.soldado</field>
+         <record model="ir.ui.view" id="game.ejercito_form_list">
+            <field name="name">Mina</field>
+            <field name="model">game.ejercito</field>
             <field name="arch" type="xml">
                 <form>
-                    <h2>Tipo de soldado</h2>
-                    <field name="name"/>
-                    <div>
-                        <h3>Propiedades del soldado</h3>
-                        <h5>Ataque</h5>
-                        <field name="ataque"/>
-                        <h5>Vida</h5>
-                        <field name="vida"/>
-                        <h5>Velocidad</h5>
-                        <field name="velocidad"/>
-                    </div>
-                    <h5>Coste</h5>
-                    <field name="recurs"/>
-                    <h6>Cantidad</h6>
-                    <field name="cantidad"/>
-
-                    <div>
-                        <h5>
-                            Cantidad de tropas
-                        </h5>
-                    </div>
+                    <group>
+                        <field name="naves"/>
+                    </group>
                 </form>
             </field>
         </record>
 
+        <record model="ir.ui.view" id="game.ejercito_tree_list">
+            <field name="name">Mina</field>
+            <field name="model">game.ejercito</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="naves != 'false'">
+                    <field name="naves" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- VISTAS NAVES-->
+
+             <record model="ir.ui.view" id="game.naves_form_list">
+            <field name="name">Naves</field>
+            <field name="model">game.naves</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="nave"/>
+                    </group>
+                </form>
+            </field>
+        </record>
 
         <record model="ir.ui.view" id="game.naves_tree_list">
             <field name="name">Naves</field>
             <field name="model">game.naves</field>
             <field name="arch" type="xml">
-                <tree>
-                    <field name="name"/>
-                    <field name="ataque"/>
-                    <field name="vida"/>
-                    <field name="velocidad"/>
-                    <field name="cap_transporte"/>
-                     <field name="cant_tropas"/>
-                    <field name="cantidad"/>
-                     <button name="comprar_naves" type="object" string="Comprar"/>
+                <tree decoration-success="nave != 'false'">
+                    <field name="nave"/>
                 </tree>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="game.naves_form_list">
-            <field name="name">Naves</field>
-            <field name="model">game.naves</field>
+        <!--VISTES NAVE-->
+
+        <record model="ir.ui.view" id="game.nave_form_list">
+            <field name="name">Nave</field>
+            <field name="model">game.nave</field>
             <field name="arch" type="xml">
                 <form>
-                    <field name="name"/>
-                    <field name="ataque"/>
-                    <field name="vida"/>
-                    <field name="velocidad"/>
-                    <field name="cap_transporte"/>
-                    <field name="cant_tropas"/>
-                </form>
-            </field>
-        </record>
-
-
-        <!--WIZARDS-->
-             <record model="ir.ui.view" id="wizard_mmog_wars_view">
-            <field name="name">wizard.mmog.wars</field>
-            <field name="model">mmog.wars</field>
-            <field name="arch" type="xml">
-                <form string="Select fortress">
                     <group>
-                        <field name="atacante"/>
-                        <field name="defensor"/>
+                        <field name="name"/>
+                        <field name="tipo"/>
+                        <field name="vida"/>
+                        <field name="ataque"/>
+                        <field name="armadura"/>
+                        <field name="coste_cerio" attr="{'invisible':[('coste_cerio' '=' 0)]}"/>
+                        <field name="coste_holmio" attr="{'invisible':[('coste_holmio' '=' 0)]}"/>
+                        <field name="coste_lutecio" attr="{'invisible':[('coste_lutecio' '=' 0)]}"/>
                     </group>
-                    <footer>
-                        <button name="ataque" type="object"
-                                string="Atacar" class="oe_highlight"/>
-                        <button special="cancel" string="Cancel"/>
-                    </footer>
-
                 </form>
             </field>
         </record>
+
 
         <!--ACTIONS-->
 
@@ -378,9 +347,9 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <record model="ir.actions.act_window" id="game.soldado_action_window">
-            <field name="name">Soldados</field>
-            <field name="res_model">game.soldado</field>
+        <record model="ir.actions.act_window" id="game.ejercito_action_window">
+            <field name="name">Ejercito</field>
+            <field name="res_model">game.ejercito</field>
             <field name="view_mode">tree,form</field>
         </record>
 
@@ -390,6 +359,11 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+        <record model="ir.actions.act_window" id="game.nave_action_window">
+            <field name="name">Nave</field>
+            <field name="res_model">game.nave</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
 
         <!--server action to the one above -->
@@ -430,12 +404,14 @@
         <menuitem name="Minas" id="game.minas" parent="game.jugador"
                   action="game.mina_action_window"/>
 
-        <menuitem name="Soldados" id="game.soldado" parent="game.jugador"
-                  action="game.soldado_action_window"/>
+        <menuitem name="Ejercito" id="game.ejercito" parent="game.jugador"
+                  action="game.ejercito_action_window"/>
 
         <menuitem name="Naves" id="game.naves" parent="game.jugador"
                   action="game.naves_action_window"/>
 
+        <menuitem name="Nave" id="game.nave" parent="game.jugador"
+                  action="game.nave_action_window"/>
 
     </data>
 

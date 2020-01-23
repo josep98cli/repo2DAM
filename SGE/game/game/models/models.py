@@ -97,8 +97,7 @@ class ciutat(models.Model):
     jugador = fields.Many2one('game.jugador', ondelete="cascade")
     recursos = fields.One2many('game.recursos', 'ciutat')
     mines = fields.One2many('game.mines', 'ciutat')
-    soldado = fields.One2many('game.soldado', 'ciutat')
-    naves = fields.One2many('game.naves', 'ciutat')
+    ejercito = fields.One2many('game.ejercito', 'ciutat')
 
     @api.multi
     def refresh_pag(self):
@@ -113,10 +112,6 @@ class ciutat(models.Model):
         res = super(ciutat, self).create(values)
         array_recursos = ['game.cerio', 'game.holmio', 'game.lutecio', 'game.itrio']
         array_mines = ['game.central_fusion', 'game.arco_electrico', 'game.cavitacion', 'game.rayo_laser']
-        array_soldats = ['game.soldado_raso', 'game.soldado_avanzado', 'game.teniente', 'game.piloto',
-                         'game.comandante']
-
-        array_naves = ['game.nave_basica', 'game.nave_de_asalto', 'game.nave_pesada']
 
         for i in array_recursos:
             r = res.recursos.create({
@@ -132,33 +127,6 @@ class ciutat(models.Model):
                 'mina': self.env.ref(j).id,
                 'name': self.env.ref(j).name,
                 'coste': 100
-            })
-
-        for k in array_soldats:
-            q = res.soldado.create({
-                'ciutat': res.id,
-
-                'name': self.env.ref(k).name,
-                'ataque': self.env.ref(k).ataque,
-                'vida': self.env.ref(k).vida,
-                'velocidad': self.env.ref(k).velocidad,
-                'piloto': self.env.ref(k).piloto,
-                'comandante': self.env.ref(k).comandante,
-                'cantidad': self.env.ref(k).cantidad,
-                'recurs': self.env.ref(k).recurs.id
-            })
-
-        for x in array_naves:
-            n = res.naves.create({
-                'ciutat': res.id,
-                'name': self.env.ref(x).name,
-                'ataque': self.env.ref(x).ataque,
-                'vida': self.env.ref(x).vida,
-                'velocidad': self.env.ref(x).velocidad,
-                'cantidad': self.env.ref(x).cantidad,
-                'recurs': self.env.ref(x).recurs.id,
-                'cap_transporte': self.env.ref(x).cap_transporte
-
             })
 
         return res
@@ -186,13 +154,42 @@ class recursos(models.Model):
                     for m in r.ciutat.mines:
                         if m.name == name_mina:
                             m.mejora = True
-                            if m.minutos == 0:
-                                m.nivel += 1
-                                m.produccion += (nivel + 1) * 100
-                                m.minutos = (2 * (nivel + 1))
-                                m.tiempo_total = (2 * (nivel + 1))
-                                m.coste = coste
-                                r.cantidad -= coste
+
+                            if m.name == 'Central de fusion termica':
+                                if m.minutos == 0:
+                                    m.nivel += 1
+                                    m.produccion += (nivel + 1) * 100
+                                    m.minutos = (2 * (nivel + 1))
+                                    m.tiempo_total = (2 * (nivel + 1))
+                                    m.coste = coste
+                                    r.cantidad -= coste
+
+                            if m.name == 'Mina de arco electrico':
+                                if m.minutos == 0:
+                                    m.nivel += 1
+                                    m.produccion += (nivel + 1) * 75
+                                    m.minutos = (2 * (nivel + 1))
+                                    m.tiempo_total = (2 * (nivel + 1))
+                                    m.coste = coste * 2
+                                    r.cantidad -= coste
+
+                            if m.name == 'Mina de cavitacion':
+                                if m.minutos == 0:
+                                    m.nivel += 1
+                                    m.produccion += (nivel + 1) * 50
+                                    m.minutos = (2 * (nivel + 1))
+                                    m.tiempo_total = (2 * (nivel + 1))
+                                    m.coste = coste * 3
+                                    r.cantidad -= coste
+
+                            if m.name == 'Mina mediante rayo laser':
+                                if m.minutos == 0:
+                                    m.nivel += 1
+                                    m.produccion += (nivel + 1) * 25
+                                    m.minutos = (2 * (nivel + 1))
+                                    m.tiempo_total = (2 * (nivel + 1))
+                                    m.coste = coste * 4
+                                    r.cantidad -= coste
 
                 else:
                     raise except_orm('ERROR',
@@ -204,9 +201,8 @@ class recurs(models.Model):
     name = fields.Char()
     image = fields.Binary()
     mina = fields.One2many('game.mina', 'recurs')
-    ciutat = fields.Many2one('game.ciutat')
-    soldado = fields.One2many('game.soldado', 'recurs')
-    naves = fields.One2many('game.naves', 'recurs')
+
+# CLASE MINES
 
 
 class mines(models.Model):
@@ -242,61 +238,30 @@ class mina(models.Model):
     recurs = fields.Many2one('game.recurs')
 
 
-class soldado(models.Model):
-    _name = 'game.soldado'
+class ejercito(models.Model):
+    _name = 'game.ejercito'
     name = fields.Char()
+    naves = fields.One2many('game.naves', 'ejercito')
     ciutat = fields.Many2one('game.ciutat')
-    ataque = fields.Float()
-    vida = fields.Float()
-    velocidad = fields.Float()
-    piloto = fields.Boolean()
-    comandante = fields.Boolean()
-    recurs = fields.Many2one('game.recurs')
-    cantidad = fields.Integer()
-    cant_tropas = fields.Integer(default=0)
-
-    @api.multi
-    def comprar_soldado(self):
-        for c in self.ciutat:
-            for rs in c.recursos:
-                for r in rs.recurs:
-                    if r.id == self.recurs.id:
-                        if rs.cantidad >= self.cantidad:
-                            rs.cantidad -= self.cantidad
-                            self.cant_tropas += 1
-                        else:
-                            raise except_orm('ERROR',
-                                             'No tienes suficientes recursos para comprar al soldado')
 
 
 class naves(models.Model):
     _name = 'game.naves'
     name = fields.Char()
-    ciutat = fields.Many2one('game.ciutat')
-    ataque = fields.Float()
-    cap_transporte = fields.Integer()
+    nave = fields.Many2one('game.nave')
+    cantidad = fields.Float()
+    ejercito = fields.Many2one('game.ejercito')
+
+
+class nave(models.Model):
+    _name = 'game.nave'
+    name = fields.Char()
+    tipo = fields.Char()
+    image = fields.Binary()
     vida = fields.Float()
-    velocidad = fields.Integer()
-    recurs = fields.Many2one('game.recurs')
-    cantidad = fields.Integer()
-    cant_tropas = fields.Integer(default=0)
-
-    @api.multi
-    def comprar_naves(self):
-        for c in self.ciutat:
-            for rs in c.recursos:
-                for r in rs.recurs:
-                    if r.id == self.recurs.id:
-                        if rs.cantidad >= self.cantidad:
-                            rs.cantidad -= self.cantidad
-                            self.cant_tropas += 1
-                        else:
-                            raise except_orm('ERROR',
-                                             'No tienes suficientes recursos para comprar al soldado')
-
-
-class wars(models.TransientModel):
-    _name = 'mmog.wars'
-    atacante = fields.Many2one('game.jugador')
-    defensor = fields.Many2one('game.jugador')
-
+    coste_cerio = fields.Float(default=0)
+    coste_holmio = fields.Float(default=0)
+    coste_lutecio = fields.Float(default=0)
+    coste_itrio = fields.Float(default=0)
+    ataque = fields.Float()
+    armadura = fields.Float()

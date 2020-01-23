@@ -12,11 +12,11 @@
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="40"
-    class="com.example.practica_7_guillem.DetalleRobotFragment"/>
+    class="com.example.practica_7_josepcliment.DetalleRobotFragment"/>
     <fragment
         android:id="@+id/fgrag_detalle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="60"
-        class="com.example.practica_7_guillem.DetalleRobotFragment"/>
+        class="com.example.practica_7_josepcliment.DetalleRobotFragment"/>
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.practica_7_guillem.FormularioRobot">
+    tools:context="com.example.practica_7_josepcliment.FormularioRobot">
 
     <TextView
         android:id="@+id/tvNuevoRobot"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="25dp"
-        android:text="@string/nuevo_robot"
+        android:text="Crear robot"
         android:textAlignment="viewStart"
         android:textColor="@color/colorTituloNuevoRobot"
         android:textSize="50sp"
@@ -132,5 +132,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="@drawable/selector_boto"
-        android:text="@string/crear_robot" />
+        android:text="Crear" />
 </LinearLayout>
