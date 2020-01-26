@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent">
+    <PreferenceCategory android:title="Cuenta">
+        <EditTextPreference android:key="username" android:title="Usuario" android:summary="Introduce el nombre de usuario"/>
+        <EditTextPreference android:key="password" android:title="Contraseña" android:summary="Introduce una contraseña nueva"/>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="Actualizar">
+        <CheckBoxPreference android:key="actualizaciones" android:title="Actualizaciones automáticas"  android:summary="Si está activado los datos se actualizarán automáticamente cada vez que ejecutes la aplicación."/>
+        <ListPreference android:key="servidor" android:title="Servidor de descarga" android:summary="Selecciona el servidor desde el que se actualizará la aplicación." android:dialogTitle="Servidores disponibles" android:entryValues="@array/valkores_servidor" android:entries="@array/servidores"/>
+    </PreferenceCategory>
+
+    <Preference
+        android:title="Visita la web!">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://www.webnode.es/ayuda/index.php?/Knowledgebase/Article/View/1896/"
+            />
+    </Preference>
+
+    </PreferenceScreen>

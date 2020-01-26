@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Practica8_Josep_Climent</string>
+    <string-array name="servidores">
+        <item>España</item>
+        <item>Italia</item>
+        <item>Rusia</item>
+        <item>Reino Unido</item>
+    </string-array>
+
+    <string-array name="valkores_servidor">
+        <item>ESP</item>
+        <item>ITA</item>
+        <item>RUS</item>
+        <item>UKK</item>
+    </string-array>
+</resources>
