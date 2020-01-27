@@ -17,6 +17,7 @@
 #include <QMimeData>
 #include <QPoint>
 #include <QDrag>
+#include "DialogoGraficos.h"
 
 MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(parent,flags) {
 	
@@ -69,6 +70,9 @@ void MainWindow::crearQActions(){
 
 	accionControlBolas = new QAction("Control Bolas", this);
 	connect(accionControlBolas, SIGNAL(triggered()), this, SLOT(slotControlBolas()));
+
+	accionGraficos = new QAction("Graficos", this);
+	connect(accionGraficos, SIGNAL(triggered()), this, SLOT(slotGraficos()));
 }
 
 void MainWindow::crearMenus(){
@@ -76,9 +80,11 @@ void MainWindow::crearMenus(){
 	menuArchivo = menuBar()->addMenu("Archivo");
 	menuDialogos = menuBar()->addMenu("Dialogos");
         menuArchivo ->addAction(accionDialogo);
+	menuDialogos->addAction(accionGraficos);
         menuDialogos->addAction(accionExamen);
         menuDialogos->addAction(accionTabla);
 	menuDialogos->addAction(accionControlBolas);
+	
         this->setContextMenuPolicy(Qt::ActionsContextMenu);
         this->addAction(accionDialogo);
 	this->addAction(accionExamen);
@@ -102,7 +108,10 @@ void MainWindow::paintEvent(QPaintEvent *e){
 		for(int j = 0; j<bolas.size(); j++){
 			if(bolas[i]->chocar(*bolas[j])){
 				bolas[j]->vida-=10;
+				bolas[j]->numColisiones+=1;
+
 				bolas[i]->vida-=10;
+				bolas[i]->numColisiones+=1;
 			}
 		}
 		if(jugador->chocar(*bolas[i])){
@@ -344,7 +353,11 @@ void MainWindow::performDrag()
 }
 
 
+void MainWindow::slotGraficos(){
+	DialogoGraficos *grafico = new DialogoGraficos(&bolas);
+	grafico->show();
 
+}
 
 
 

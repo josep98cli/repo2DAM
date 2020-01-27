@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <QVector>
 
+
 class MainWindow : public QMainWindow {
 Q_OBJECT
 	
@@ -52,6 +53,7 @@ private:
 	QVector<Bola*> bolas;
 	QPoint posSalida;
 	QPoint startPos;
+	QAction * accionGraficos;
 	
 	
         
@@ -62,6 +64,7 @@ public slots:
 	void slotExamen();
 	void slotInfoTabla();
 	void slotControlBolas();
+	void slotGraficos();
 };
 
 #endif 

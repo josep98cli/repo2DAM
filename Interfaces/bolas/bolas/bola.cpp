@@ -14,6 +14,7 @@ Bola::Bola(bool esJugador,float  posX, float  posY, float velX, float velY, floa
 	color = QColor(rand()%256,rand()%256,rand()%256);
 	imagen = QImage("./img/bola1.png"); 
 	imagen = imagen.scaled(Bola::radio, Bola::radio);
+	numColisiones = 0;
 	
 	
 }
@@ -31,6 +32,7 @@ Bola::Bola(bool esJugador,float  posX, float  posY, float velX, float velY, floa
 	color = col;
 	imagen = QImage("./img/bola1.png");
 	imagen = imagen.scaled(Bola::radio, Bola::radio);
+	numColisiones = 0;
 	
 }
 
@@ -47,6 +49,7 @@ Bola::Bola(bool esJugador,float  posX, float  posY, float velX, float velY, floa
 	color = QColor(rand()%256,rand()%256,rand()%256);
 	imagen = img; 
 	imagen = img.scaled(Bola::radio, Bola::radio);
+	numColisiones = 0;
 	
 	
 }
