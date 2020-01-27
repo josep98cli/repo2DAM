@@ -1,0 +1,9 @@
+#dado{
+    background-color: green;
+    height: 50px;
+    text-align: center;
+}
+
+#dado_estils .mensaje_acertado{
+    text-align: center;
+}

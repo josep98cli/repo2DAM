@@ -11,15 +11,26 @@
     <li *ngFor="let element of numeros">{{element}}</li>
   </ul>
 </div>
-
+<hr>
 <div id="contador">
   <p>{{contador}}</p>
   <button (click)="incrementar()">Sumar</button>
-  <button (click)="decrementar()">Restar</button>
+  <button (mouseenter)="decrementar()">Restar</button>
 </div>
 
 <hr>
-<div>
+<div id="inputs">
   <p>Nombre: {{nombre}}</p>
-  <p>Ingresa el nombre<input type="text" [(ngModel)]="nombre"></p>
+  <p>Ingresa el nombre<input class="inputNombre" type="text" [(ngModel)]="nombre"></p>
 </div>
+
+<div id="dado_estils">
+<app-dado #dado1></app-dado>
+<button (click)="lanzar()">Lanzar dado</button>
+<p>{{mensaje}}</p>
+</div>
+
+
+<table>
+  <td *ngFor="let element of nombres">{{element}}</td>
+</table>
