@@ -89,6 +89,10 @@
                             <field name="soldado"/>
                             <field name="naves"/>
                         </page>
+
+                        <page string="Guerra">
+                            <field name="wars"/>
+                        </page>
                     </notebook>
                 </form>
             </field>
@@ -239,6 +243,7 @@
             </field>
         </record>
 
+        <!--VISTES SOLDADO-->
 
         <record model="ir.ui.view" id="game.soldado_tree_list">
             <field name="name">Soldados</field>
@@ -287,6 +292,7 @@
             </field>
         </record>
 
+        <!--VISTES NAVES-->
 
         <record model="ir.ui.view" id="game.naves_tree_list">
             <field name="name">Naves</field>
@@ -322,9 +328,9 @@
 
 
         <!--WIZARDS-->
-             <record model="ir.ui.view" id="wizard_mmog_wars_view">
-            <field name="name">wizard.mmog.wars</field>
-            <field name="model">mmog.wars</field>
+             <record model="ir.ui.view" id="game.wars_form_list">
+            <field name="name">Wars</field>
+            <field name="model">game.wars</field>
             <field name="arch" type="xml">
                 <form string="Select fortress">
                     <group>
@@ -338,6 +344,18 @@
                     </footer>
 
                 </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.wars_tree_list">
+            <field name="name">Wars</field>
+            <field name="model">game.wars</field>
+            <field name="arch" type="xml">
+                <tree>
+                        <field name="atacante"/>
+                        <field name="defensor"/>
+                    <field name="state"/>
+                </tree>
             </field>
         </record>
 
@@ -390,6 +408,11 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+          <record model="ir.actions.act_window" id="game.wars_action_window">
+            <field name="name">Wars</field>
+            <field name="res_model">game.wars</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
 
         <!--server action to the one above -->
@@ -436,7 +459,8 @@
         <menuitem name="Naves" id="game.naves" parent="game.jugador"
                   action="game.naves_action_window"/>
 
-
+        <menuitem name="War" id ="game.wars" parent="game.jugador"
+                  action="game.wars_action_window"/>
     </data>
 
 </odoo>

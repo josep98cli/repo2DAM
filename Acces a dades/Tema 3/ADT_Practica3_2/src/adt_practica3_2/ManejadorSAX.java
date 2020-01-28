@@ -16,6 +16,7 @@ import org.xml.sax.SAXException;
  */
 public class ManejadorSAX extends DefaultHandler{
     ArrayList<Receta> listaRecetas = new ArrayList();
+    
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         System.out.println("\nProcesando texto dentro de una etiqueta... ");  

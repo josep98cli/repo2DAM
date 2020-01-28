@@ -15,6 +15,7 @@ class jugador(models.Model):
                        default=lambda self: self._get_default_name(), )
     ciutat = fields.One2many('game.ciutat', 'jugador')
 
+
     @api.multi
     def eliminar_jugador(self):
         for j in self:
@@ -97,9 +98,9 @@ class ciutat(models.Model):
     jugador = fields.Many2one('game.jugador', ondelete="cascade")
     recursos = fields.One2many('game.recursos', 'ciutat')
     mines = fields.One2many('game.mines', 'ciutat')
-    soldado = fields.One2many('game.soldado', 'ciutat')
-    naves = fields.One2many('game.naves', 'ciutat')
-
+    soldado = fields.One2many('game.soldado', 'ciutat', ondelete="cascade")
+    naves = fields.One2many('game.naves', 'ciutat', ondelete="cascade")
+    wars = fields.Many2many('game.wars')
     @api.multi
     def refresh_pag(self):
         return {
@@ -295,8 +296,8 @@ class naves(models.Model):
                                              'No tienes suficientes recursos para comprar al soldado')
 
 
-class wars(models.TransientModel):
-    _name = 'mmog.wars'
-    atacante = fields.Many2one('game.jugador')
-    defensor = fields.Many2one('game.jugador')
-
+class wars(models.Model):
+    _name = 'game.wars'
+    atacante = fields.Many2many('game.ciutat')
+    defensor = fields.Many2many('game.ciutat')
+    state = fields.Selection([('1', 'Crear guerra'), ('2', 'Elegir ciudad'), ('3', 'Guerra en accion'), ('4', 'Finalizado')])

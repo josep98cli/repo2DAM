@@ -1171,7 +1171,7 @@ cgau0/5FDiA4aubiJ+HU1IxxW7FtfPk160lgVZY9QCmuBySjv9ls+Yr4E1n/2Q==
             <field name="piloto">false</field>
             <field name="comandante">false</field>
             <field name="recurs" eval="ref('game.itrio')"/>
-            <field name="cantidad">1000</field>
+            <field name="cantidad">1300</field>
         </record>
 
         <record id="game.soldado_avanzado" model="game.soldado">
@@ -1203,7 +1203,7 @@ cgau0/5FDiA4aubiJ+HU1IxxW7FtfPk160lgVZY9QCmuBySjv9ls+Yr4E1n/2Q==
             <field name="velocidad">15</field>
             <field name="piloto">true</field>
             <field name="comandante">false</field>
-            <field name="recurs" eval="ref('game.lutecio')"/>
+            <field name="recurs" eval="ref('game.itrio')"/>
             <field name="cantidad">8000</field>
         </record>
 
@@ -1214,7 +1214,7 @@ cgau0/5FDiA4aubiJ+HU1IxxW7FtfPk160lgVZY9QCmuBySjv9ls+Yr4E1n/2Q==
             <field name="velocidad">10</field>
             <field name="piloto">true</field>
             <field name="comandante">true</field>
-            <field name="recurs" eval="ref('game.lutecio')"/>
+            <field name="recurs" eval="ref('game.itrio')"/>
             <field name="cantidad">10000</field>
         </record>
 
