@@ -15,7 +15,6 @@ class jugador(models.Model):
                        default=lambda self: self._get_default_name(), )
     ciutat = fields.One2many('game.ciutat', 'jugador')
 
-
     @api.multi
     def eliminar_jugador(self):
         for j in self:
@@ -101,6 +100,7 @@ class ciutat(models.Model):
     soldado = fields.One2many('game.soldado', 'ciutat', ondelete="cascade")
     naves = fields.One2many('game.naves', 'ciutat', ondelete="cascade")
     wars = fields.Many2many('game.wars')
+
     @api.multi
     def refresh_pag(self):
         return {
@@ -298,6 +298,13 @@ class naves(models.Model):
 
 class wars(models.Model):
     _name = 'game.wars'
-    atacante = fields.Many2many('game.ciutat')
-    defensor = fields.Many2many('game.ciutat')
-    state = fields.Selection([('1', 'Crear guerra'), ('2', 'Elegir ciudad'), ('3', 'Guerra en accion'), ('4', 'Finalizado')])
+    jugador = fields.Many2one('game.jugador', default=lambda self: self.get_jugador_activo(),)
+    atacante = fields.Many2many('game.ciutat', domain="[('id','not in', defensor), ('jugador', '=', jugador)]")
+    defensor = fields.Many2many('game.ciutat', domain="[('id', 'not in', atacante)]")
+
+    @api.multi
+    def get_jugador_activo(self):
+        return self.browse(self.jugador._context.get('active_id'))
+
+
+

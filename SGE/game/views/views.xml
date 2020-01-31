@@ -70,6 +70,7 @@
                         <page string="Informacion basica">
                             <div>
                                 <field name="vida" class="oe_read_only"/>
+                                <field name="jugador" class="oe_read_only"/>
                             </div>
 
                             <img src="game/static/ciutat_img.jpg" alt="ciutat"/>
@@ -105,10 +106,12 @@
             <field name="arch" type="xml">
                 <tree decoration-danger="name != 'false'">
                     <field name="name" string="Ciudades:"/>
+                    <field name="jugador" string="Jugador"/>
                     <field name="vida"/>
                     <field name="recursos" widget="many2many_tags"/>
                     <field name="mines" string="Minas" widget="many2many_tags"/>
-                    <field name="soldado" string="Soldados"/>
+                    <field name="soldado" string="Soldados" widget="many2many_tags"/>
+                    <field name="naves" string="Naves" widget="many2many_tags"/>
                 </tree>
             </field>
         </record>
@@ -327,7 +330,7 @@
         </record>
 
 
-        <!--WIZARDS-->
+        <!--WARS-->
              <record model="ir.ui.view" id="game.wars_form_list">
             <field name="name">Wars</field>
             <field name="model">game.wars</field>
@@ -336,6 +339,7 @@
                     <group>
                         <field name="atacante"/>
                         <field name="defensor"/>
+                        <field name="jugador"/>
                     </group>
                     <footer>
                         <button name="ataque" type="object"
@@ -354,7 +358,7 @@
                 <tree>
                         <field name="atacante"/>
                         <field name="defensor"/>
-                    <field name="state"/>
+                        <field name="jugador"/>
                 </tree>
             </field>
         </record>
