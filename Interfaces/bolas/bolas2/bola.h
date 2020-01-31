@@ -8,12 +8,14 @@ class Bola{
 public:
         Bola(bool, float , float , float , float, float);
         Bola(bool, float , float , float , float, float, QColor );
-	 Bola(bool, float , float , float , float, float, QImage );
+	Bola(bool, float , float , float , float, float, QImage );
 	void pintarBola(QPainter &);
 	void mover(float, float);
 	bool chocar(Bola &);
 	float calcDistancia(Bola );
 	static const int vidaInicial = 100;
+	static int numBolas;
+	int numBola;
 
 	int vida;
         float x;
@@ -28,6 +30,7 @@ public:
 	int numColisiones;
 	QVector <Bola*> bolasHijas;
 	Bola * padre;
+	bool pintarImg;
 
 private:
 

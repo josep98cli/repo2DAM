@@ -18,10 +18,11 @@
 #include <QPoint>
 #include <QDrag>
 #include "DialogoGraficos.h"
+#include "QDialogTree.h"
 
 MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(parent,flags) {
 	
-	
+	Bola::numBolas = 0;
 	QTimer * temporizador = new QTimer();
 	/*programar el temporizador*/
 	temporizador->setInterval(10);
@@ -59,6 +60,10 @@ MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(p
 }
 
 void MainWindow::crearQActions(){
+	
+	accionTreeView = new QAction("Tree view", this);
+	connect(accionTreeView, SIGNAL(triggered()), this, SLOT(slotTreeView()));
+	
 	accionDialogo = new QAction("Información",this);
 	connect(accionDialogo, SIGNAL(triggered()),this, SLOT(slotDialogo()));
 	
@@ -84,11 +89,13 @@ void MainWindow::crearMenus(){
         menuDialogos->addAction(accionExamen);
         menuDialogos->addAction(accionTabla);
 	menuDialogos->addAction(accionControlBolas);
+	menuDialogos->addAction(accionTreeView);
 	
         this->setContextMenuPolicy(Qt::ActionsContextMenu);
         this->addAction(accionDialogo);
 	this->addAction(accionExamen);
 	this->addAction(accionTabla);
+	this->addAction(accionTreeView);
 	
 	
 }
@@ -106,14 +113,28 @@ void MainWindow::paintEvent(QPaintEvent *e){
 		bolas[i]->mover(height(),width());
 		
 		for(int j = 0; j<bolas.size(); j++){
-			if(bolas[i]->chocar(*bolas[j])){
+			if(bolas[i]->chocar(*bolas[j])  ){
 				bolas[j]->vida-=0;
 				bolas[j]->numColisiones+=1;
-
+			
 				bolas[i]->vida-=0;
 				bolas[i]->numColisiones+=1;
+
+			  if (  bolas.size()<20 &&
+				(rand()%100<20) &&
+				 bolas[i]->bolasHijas.size()<2){
+				Bola* newBola = new Bola(false,rand()%800,
+				rand()%600,3,3,40,
+				QColor(rand()%256,rand()%256,rand()%256));
+			
+				bolas.append(newBola);
+				newBola->padre=bolas[i];
+			  }
+				
 			}
 		}
+
+
 		if(jugador->chocar(*bolas[i])){
 			jugador->vida-=0;
 			bolas[i]->vida-=0;
@@ -142,10 +163,6 @@ void MainWindow::paintEvent(QPaintEvent *e){
 		pintor.setBrush(Qt::red);
 		pintor.drawRect(jugador->Bola::x + anchoVerde,jugador->Bola::y,anchoRojo,3);
 		
-	
-	
-	
-    		
 
 }
 
@@ -360,7 +377,11 @@ void MainWindow::slotGraficos(){
 }
 
 
+void MainWindow::slotTreeView(){
+	QDialogTree * tree = new QDialogTree(&bolas);
+	tree->show();
 
+}
 
 
 
