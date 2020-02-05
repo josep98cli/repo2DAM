@@ -56,6 +56,13 @@ MainWindow::MainWindow(QWidget * parent ,Qt::WindowFlags flags ) : QMainWindow(p
     	
     	
     	setMouseTracking(true);
+
+	/*if(QSystemTrayIcon::isSystemTRayAvailable() == true){
+		trayIcon = new QSystemTrayIcon(this);
+		trayIcon->setContextMenu(menuDialogos);
+		trayIcon->setIcon(QIcon(""));
+		trayIcon->show();	
+	}*/
     	
 }
 

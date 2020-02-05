@@ -12,7 +12,7 @@ class QDialogTree : public QDialog, public Ui::QDialogTree{
 
 public:
 	QDialogTree(QVector<Bola*>*,QWidget * parent = 0);
-	ModelTree * tree;
+	ModelTree * model;
 };
 
 
@@ -22,18 +22,19 @@ class ModelTree : public QAbstractItemModel{
 public:
 
 	QVector<Bola*> *bolas;
-	ModelTree(QVector<Bola*>*, QObject * parent);
+	ModelTree(QVector<Bola*>*, QObject * parent = nullptr);
 
-	QModelIndex index ( int row, int column, const QModelIndex & parent = 		QModelIndex());
-	QModelIndex parent ( const QModelIndex & index ) ;
+	QModelIndex index ( int row, int column, const QModelIndex & parent = 		QModelIndex())const;
+	QModelIndex parent ( const QModelIndex & index ) const;
 
 	int rowCount ( const QModelIndex & parent = QModelIndex() ) const ;
 	int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
 	QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;
 
 	int bolasCount()const;
-	Bola * topBola(int);
+	Bola * topBola(int)const;
 
+	
 };
 
 #endif 

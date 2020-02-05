@@ -293,18 +293,28 @@ class naves(models.Model):
                             self.cant_tropas += 1
                         else:
                             raise except_orm('ERROR',
-                                             'No tienes suficientes recursos para comprar al soldado')
+                                             'No tienes suficientes recursos para comprar la nave')
 
 
 class wars(models.Model):
     _name = 'game.wars'
-    jugador = fields.Many2one('game.jugador', default=lambda self: self.get_jugador_activo(),)
-    atacante = fields.Many2many('game.ciutat', domain="[('id','not in', defensor), ('jugador', '=', jugador)]")
+    jugador = fields.Many2one('game.jugador')
+    atacante = fields.Many2many('game.ciutat', domain="[('id','not in', defensor), ('jugador','=', jugador)]")
     defensor = fields.Many2many('game.ciutat', domain="[('id', 'not in', atacante)]")
 
     @api.multi
-    def get_jugador_activo(self):
-        return self.browse(self.jugador._context.get('active_id'))
+    def ataque(self):
+        cant_total_nav = 0
+        cant_total_sold = 0
 
+        for a in self.atacante:
+            for cn in a.naves:
+                cant_total_nav += cn.cant_tropas
+            for cs in a.soldado:
+                cant_total_sold += cs.cant_tropas
 
-
+            if cant_total_nav == 0 & cant_total_sold == 0:
+                raise except_orm('ERROR',
+                                 'No tienes ninguna tropa para poder atacar')
+            else:
+                print("PEPE")
