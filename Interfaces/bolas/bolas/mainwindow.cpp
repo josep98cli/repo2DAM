@@ -107,16 +107,16 @@ void MainWindow::paintEvent(QPaintEvent *e){
 		
 		for(int j = 0; j<bolas.size(); j++){
 			if(bolas[i]->chocar(*bolas[j])){
-				bolas[j]->vida-=10;
+				bolas[j]->vida-=0;
 				bolas[j]->numColisiones+=1;
 
-				bolas[i]->vida-=10;
+				bolas[i]->vida-=0;
 				bolas[i]->numColisiones+=1;
 			}
 		}
 		if(jugador->chocar(*bolas[i])){
-			jugador->vida-=10;
-			bolas[i]->vida-=10;
+			jugador->vida-=0;
+			bolas[i]->vida-=0;
 		}
 	}
 	

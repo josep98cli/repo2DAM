@@ -26,6 +26,8 @@ public:
 	bool resaltada = false;
 	QImage imagen;
 	int numColisiones;
+	QVector <Bola*> bolasHijas;
+	Bola * padre;
 
 private:
 

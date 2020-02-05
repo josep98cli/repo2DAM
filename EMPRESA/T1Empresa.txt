@@ -2,6 +2,7 @@
 
 UD 1 ---- LA INICIATIVA EMPRENDEDORA
 
+NOMBRE: Fizzlect
 
 Tipo de actividad: Organizacion de torneos de videojuegos
 Productos a vender: Entradas para participar en los torneos e eventos
@@ -72,8 +73,47 @@ Segmento: El mercado de esta empresa estara segmentado por el gusto ya que no ha
 
 
 	 
+GASTOS:
 
+ALQUILER: https://www.habitaclia.com/i18340003422504?list=true
+		650€ mes
 
+	  Distribucion del local:
+		
+    		Superficie 105 m2
+    		Altura 4 m
+		Fachada 8 m2
+    		Sup. almacen 20 m2
+    		1 Aseo
+    		Despacho
+    		Trastero
+    		Escaparate
+
+	  Caracteristicas generales:
+
+			
+		    Calefacción
+		    Planta diáfana
+		    Sin amueblar
+		    Aire acondicionado
+		    Año construcción 2004
+		    Certificado energético :
+		    Exento
+		
+	  
+Inmobiliario:
+ 
+	20 mesas x 200€ = 4000€
+	20 sillas x 70€ = 1400€
+	
+	21 ordenadores
+		21 torres * 440,55€ = 9251,55€
+		21 pantallas * 90,55€ = 1895,25€
+		21 raton, teclado y cascos * 15€ = 315€
+	Total gastos inmobiliario = 16861,6€
+	
+	
+		 
 
 
 

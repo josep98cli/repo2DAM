@@ -1,0 +1,6 @@
+Llançament 1: cara(50005/49995)
+Llançament 1: creu(49474/49526)
+Llançament 1: cara(49660/49340)
+Llançament 1: creu(49191/49809)
+Llançament 1: creu(46322/46678)
+Llançament 1: cara(50030/49970)

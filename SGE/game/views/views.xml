@@ -70,10 +70,13 @@
                         <page string="Informacion basica">
                             <div>
                                 <field name="vida" class="oe_read_only"/>
+                                <br/>
+                                <field name="jugador" class="oe_read_only"/>
                             </div>
 
                             <img src="game/static/ciutat_img.jpg" alt="ciutat"/>
                             <div>
+                                <br/>
                                 <button name="refresh_pag" type="object" string="Refrescar ciudad"/>
                             </div>
                         </page>
@@ -105,11 +108,24 @@
             <field name="arch" type="xml">
                 <tree decoration-danger="name != 'false'">
                     <field name="name" string="Ciudades:"/>
+                    <field name="jugador" string="Jugador"/>
                     <field name="vida"/>
                     <field name="recursos" widget="many2many_tags"/>
                     <field name="mines" string="Minas" widget="many2many_tags"/>
-                    <field name="soldado" string="Soldados"/>
+                    <field name="soldado" string="Soldados" widget="many2many_tags"/>
+                    <field name="naves" string="Naves" widget="many2many_tags"/>
                 </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.ciutat_search">
+            <field name="name">Ciutat search</field>
+            <field name="model">game.ciutat</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="jugador"/>
+                </search>
             </field>
         </record>
 
@@ -138,6 +154,18 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="game.recurs_search">
+            <field name="name">Recurs search</field>
+            <field name="model">game.recurs</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+
+
         <!-- VISTES RECURSOS -->
 
         <record model="ir.ui.view" id="game.recursos_form_list">
@@ -162,6 +190,18 @@
                     <field name="name"/>
                     <field name="cantidad"/>
                 </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.recursos_search">
+            <field name="name">Recursos search</field>
+            <field name="model">game.recursos</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="cantidad"/>
+                    <field name="ciutat"/>
+                </search>
             </field>
         </record>
 
@@ -214,6 +254,21 @@
             </field>
         </record>
 
+
+         <record model="ir.ui.view" id="game.mines_search">
+            <field name="name">Mines search</field>
+            <field name="model">game.mines</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="mina"/>
+                    <field name="status"/>
+                    <field name="nivel"/>
+                    <field name="coste"/>
+                </search>
+            </field>
+        </record>
+
+
         <!-- VISTAS MINA -->
         <record model="ir.ui.view" id="game.mina_form_list">
             <field name="name">Mina</field>
@@ -240,6 +295,17 @@
                     <field name="recurs"/>
                     <field name="image" widget="image"/>
                 </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="game.mina_search">
+            <field name="name">Mina search</field>
+            <field name="model">game.mina</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="recurs"/>
+                </search>
             </field>
         </record>
 
@@ -292,6 +358,23 @@
             </field>
         </record>
 
+
+        <record model="ir.ui.view" id="game.soldado_search">
+            <field name="name">Soldado search</field>
+            <field name="model">game.soldado</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="ataque"/>
+                    <field name="vida"/>
+                    <field name="velocidad"/>
+                    <field name="recurs"/>
+                    <field name="cantidad"/>
+                </search>
+            </field>
+        </record>
+
+
         <!--VISTES NAVES-->
 
         <record model="ir.ui.view" id="game.naves_tree_list">
@@ -327,7 +410,23 @@
         </record>
 
 
-        <!--WIZARDS-->
+        <record model="ir.ui.view" id="game.naves_search">
+            <field name="name">Naves search</field>
+            <field name="model">game.naves</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="ataque"/>
+                    <field name="vida"/>
+                    <field name="velocidad"/>
+                    <field name="cap_transporte"/>
+                    <field name="cant_tropas"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!--WARS-->
              <record model="ir.ui.view" id="game.wars_form_list">
             <field name="name">Wars</field>
             <field name="model">game.wars</field>
@@ -336,6 +435,7 @@
                     <group>
                         <field name="atacante"/>
                         <field name="defensor"/>
+                        <field name="jugador"/>
                     </group>
                     <footer>
                         <button name="ataque" type="object"
@@ -354,8 +454,21 @@
                 <tree>
                         <field name="atacante"/>
                         <field name="defensor"/>
-                    <field name="state"/>
+                        <field name="jugador"/>
                 </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="game.wars_search">
+            <field name="name">Wars search</field>
+            <field name="model">game.wars</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="atacante"/>
+                    <field name="defensor"/>
+                    <field name="jugador"/>
+                </search>
             </field>
         </record>
 
@@ -370,48 +483,48 @@
         <record model="ir.actions.act_window" id="game.ciutat_action_window">
             <field name="name">Ciudades</field>
             <field name="res_model">game.ciutat</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search</field>
         </record>
 
         <record model="ir.actions.act_window" id="game.recurs_action_window">
             <field name="name">Recurso</field>
             <field name="res_model">game.recurs</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search</field>
         </record>
         <record model="ir.actions.act_window" id="game.recursos_action_window">
             <field name="name">Recursos</field>
             <field name="res_model">game.recursos</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search</field>
         </record>
 
         <record model="ir.actions.act_window" id="game.mines_action_window">
             <field name="name">Minas</field>
             <field name="res_model">game.mines</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search</field>
         </record>
 
         <record model="ir.actions.act_window" id="game.mina_action_window">
             <field name="name">Mina</field>
             <field name="res_model">game.mina</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search</field>
         </record>
 
         <record model="ir.actions.act_window" id="game.soldado_action_window">
             <field name="name">Soldados</field>
             <field name="res_model">game.soldado</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search</field>
         </record>
 
         <record model="ir.actions.act_window" id="game.naves_action_window">
             <field name="name">Naves</field>
             <field name="res_model">game.naves</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search</field>
         </record>
 
           <record model="ir.actions.act_window" id="game.wars_action_window">
             <field name="name">Wars</field>
             <field name="res_model">game.wars</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search</field>
         </record>
 
 

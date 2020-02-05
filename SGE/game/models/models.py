@@ -15,7 +15,6 @@ class jugador(models.Model):
                        default=lambda self: self._get_default_name(), )
     ciutat = fields.One2many('game.ciutat', 'jugador')
 
-
     @api.multi
     def eliminar_jugador(self):
         for j in self:
@@ -101,6 +100,7 @@ class ciutat(models.Model):
     soldado = fields.One2many('game.soldado', 'ciutat', ondelete="cascade")
     naves = fields.One2many('game.naves', 'ciutat', ondelete="cascade")
     wars = fields.Many2many('game.wars')
+
     @api.multi
     def refresh_pag(self):
         return {
@@ -293,11 +293,28 @@ class naves(models.Model):
                             self.cant_tropas += 1
                         else:
                             raise except_orm('ERROR',
-                                             'No tienes suficientes recursos para comprar al soldado')
+                                             'No tienes suficientes recursos para comprar la nave')
 
 
 class wars(models.Model):
     _name = 'game.wars'
-    atacante = fields.Many2many('game.ciutat')
-    defensor = fields.Many2many('game.ciutat')
-    state = fields.Selection([('1', 'Crear guerra'), ('2', 'Elegir ciudad'), ('3', 'Guerra en accion'), ('4', 'Finalizado')])
+    jugador = fields.Many2one('game.jugador')
+    atacante = fields.Many2many('game.ciutat', domain="[('id','not in', defensor), ('jugador','=', jugador)]")
+    defensor = fields.Many2many('game.ciutat', domain="[('id', 'not in', atacante)]")
+
+    @api.multi
+    def ataque(self):
+        cant_total_nav = 0
+        cant_total_sold = 0
+
+        for a in self.atacante:
+            for cn in a.naves:
+                cant_total_nav += cn.cant_tropas
+            for cs in a.soldado:
+                cant_total_sold += cs.cant_tropas
+
+            if cant_total_nav == 0 & cant_total_sold == 0:
+                raise except_orm('ERROR',
+                                 'No tienes ninguna tropa para poder atacar')
+            else:
+                print("PEPE")
