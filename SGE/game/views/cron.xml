@@ -12,5 +12,6 @@
             <field name="activity_user_type">specific</field>
             <field name="doall" eval="False" />
           </record>
+
     </data>
 </odoo>

@@ -93,9 +93,11 @@
                             <field name="naves"/>
                         </page>
 
-                        <page string="Guerra">
+                        <page string="Wars">
                             <field name="wars"/>
                         </page>
+
+
                     </notebook>
                 </form>
             </field>
@@ -435,14 +437,18 @@
                     <group>
                         <field name="atacante"/>
                         <field name="defensor"/>
-                        <field name="jugador"/>
+                        <field name="jugador" string="Declaracion de guerra de:"/>
+                        <field name="state" string ="Estado de la guerra: "/>
+                        <field name="minutos" string="Minutos para la llegada de tropas"/>
                     </group>
                     <footer>
                         <button name="ataque" type="object"
                                 string="Atacar" class="oe_highlight"/>
+                        <hr/>
+                        <button name="start_war" type="object"
+                                string="Start" class="oe_highlight"/>
                         <button special="cancel" string="Cancel"/>
                     </footer>
-
                 </form>
             </field>
         </record>
@@ -452,9 +458,12 @@
             <field name="model">game.wars</field>
             <field name="arch" type="xml">
                 <tree>
-                        <field name="atacante"/>
-                        <field name="defensor"/>
+                        <field name="atacante" widget="many2many_tags"/>
+                        <field name="defensor"  widget="many2many_tags"/>
                         <field name="jugador"/>
+                        <field name="state"/>
+                        <field name="minutos"/>
+                        <field name="empezar"/>
                 </tree>
             </field>
         </record>
@@ -466,8 +475,10 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="atacante"/>
-                    <field name="defensor"/>
+                   <field name="defensor"/>
                     <field name="jugador"/>
+                    <field name="state"/>
+                    <field name="minutos"/>
                 </search>
             </field>
         </record>

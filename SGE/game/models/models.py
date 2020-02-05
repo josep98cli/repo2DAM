@@ -4,6 +4,7 @@ from odoo import models, fields, api, tools
 import random
 from openerp.exceptions import except_orm
 import datetime
+import random
 
 
 class jugador(models.Model):
@@ -299,8 +300,13 @@ class naves(models.Model):
 class wars(models.Model):
     _name = 'game.wars'
     jugador = fields.Many2one('game.jugador')
-    atacante = fields.Many2many('game.ciutat', domain="[('id','not in', defensor), ('jugador','=', jugador)]")
-    defensor = fields.Many2many('game.ciutat', domain="[('id', 'not in', atacante)]")
+    atacante = fields.Many2many('game.ciutat', relation='atacante',
+                                domain="[('id','not in', defensor), ('jugador','=', jugador)]")
+    defensor = fields.Many2many('game.ciutat', relation='defensor',
+                                domain="[('id','not in', atacante), ('jugador','!=', jugador)]")
+    empezar = fields.Boolean(default=False)
+    minutos = fields.Integer(default=30)
+    state = fields.Char(default="Pendiente a empezar")
 
     @api.multi
     def ataque(self):
@@ -310,11 +316,83 @@ class wars(models.Model):
         for a in self.atacante:
             for cn in a.naves:
                 cant_total_nav += cn.cant_tropas
+
             for cs in a.soldado:
                 cant_total_sold += cs.cant_tropas
 
-            if cant_total_nav == 0 & cant_total_sold == 0:
-                raise except_orm('ERROR',
-                                 'No tienes ninguna tropa para poder atacar')
-            else:
-                print("PEPE")
+        if cant_total_nav == 0 and cant_total_sold == 0:
+            raise except_orm('ERROR',
+                             'No tienes ninguna tropa para poder atacar')
+        else:
+            self.empezar = True
+
+    @api.multi
+    def start_war(self):
+
+        wars_total = self.env['game.wars'].search([])
+        for w in wars_total:
+            for st in w:
+                if st.empezar:
+                    st.state = "Guerra empezada las tropas estan en marcha!"
+                    if st.minutos == 0:
+                        at_vel_total_tropas = 0
+                        at_at_total_tropas = 0
+                        at_vid_total_tropas = 0
+
+                        def_vel_total_tropas = 0
+                        def_at_total_tropas = 0
+                        def_vid_total_tropas = 0
+
+                        for a in st.atacante:
+
+                            for cn in a.naves:
+                                at_vel_total_tropas += cn.velocidad
+                                at_at_total_tropas += cn.ataque
+                                at_vid_total_tropas += cn.vida
+                            for cs in a.soldado:
+                                at_vel_total_tropas += cs.velocidad
+                                at_at_total_tropas += cs.ataque
+                                at_vid_total_tropas += cs.vida
+                        total_atacante = at_vel_total_tropas + at_at_total_tropas + at_vid_total_tropas
+
+                        print("--------")
+                        for d in st.defensor:
+
+                            for acn in d.naves:
+                                def_vel_total_tropas += acn.velocidad * acn.cant_tropas
+                                def_at_total_tropas += acn.ataque * acn.cant_tropas
+                                def_vid_total_tropas += acn.vida * acn.cant_tropas
+
+                            for dcs in d.soldado:
+                                def_vel_total_tropas += dcs.velocidad * dcs.cant_tropas
+                                def_at_total_tropas += dcs.ataque * dcs.cant_tropas
+                                def_vid_total_tropas += (dcs.vida * dcs.cant_tropas) + d.vida
+                        long_ciutat = len(st.defensor)
+                        total_defensor = (def_at_total_tropas + def_vid_total_tropas + def_vel_total_tropas)/long_ciutat
+                        print(total_atacante)
+                        print(total_defensor)
+                        total = total_atacante + total_defensor
+                        percent_ataq = (total_atacante * 90) / total
+                        percent_def = (total_defensor * 100) / total
+
+                        if percent_def < 5:
+                            percent_def = 10
+
+                        if percent_ataq > 90:
+                            percent_ataq = 90
+                        print(percent_ataq)
+                        print(percent_def)
+                        if percent_def <= random.randrange(0, 100):
+                            print("La ciudad defensora ha sido derrotada")
+                            cont = 0
+                            for s in st.defensor:
+                                if cont == 0:
+                                    s.vida = 0
+                                    cont += 1
+                                else:
+                                    s.vida -= percent_ataq
+                        else:
+                            print("Has perdido")
+
+                    else:
+                        st.minutos -= 1
