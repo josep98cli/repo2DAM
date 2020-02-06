@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api, tools
-import random
 from openerp.exceptions import except_orm
 import datetime
 import random
@@ -30,7 +29,8 @@ class jugador(models.Model):
     @api.model
     def _get_default_name(self):
         lista_nombres = ['Michael Burnham', 'Saru', 'Leonard Nimoy', 'DeForest Kelley', 'James Doohan',
-                         'Nichelle Nichols', 'George Takei', 'Grace Lee Whitney', 'Majel Barrett', 'Walter Koenig']
+                         'Nichelle Nichols', 'George Takei', 'Grace Lee Whitney', 'Majel Barrett', 'Walter Koenig',
+                         'Beve', 'Zens', 'Locarth', 'Werian', 'Cinence', 'Reptep', 'Jupixave', 'Tempans']
 
         random_name = random.choice(lista_nombres)
         return random_name
@@ -39,7 +39,8 @@ class jugador(models.Model):
     def create(self, values):
         res = super(jugador, self).create(values)
         names = ['Vulcano', 'Minshara', 'Khan', 'Voyager', 'Tau', 'Cyanga V', 'Defiant', 'Mudd', 'Elanna',
-                 'Tholianos', 'Tholia', 'Medusanos']
+                 'Tholianos', 'Tholia', 'Medusanos', 'Amaurotam', 'Utopia', 'Ragnok', 'Vetusta', 'Castle Rock',
+                 'Camplot']
 
         f = self.env['game.ciutat'].create({
             'name': str(random.choice(names)),
@@ -53,7 +54,8 @@ class jugador(models.Model):
     @api.multi
     def crear_ciudad(self):
         names = ['Vulcano', 'Minshara', 'Khan', 'Voyager', 'Tau', 'Cyanga V', 'Defiant', 'Mudd', 'Elanna',
-                 'Tholianos', 'Tholia', 'Medusanos']
+                 'Tholianos', 'Tholia', 'Medusanos', 'Amaurotam', 'Utopia', 'Ragnok', 'Vetusta', 'Castle Rock',
+                 'Camplot']
         self.ciutat.create({
 
             'name': str(random.choice(names)),
@@ -85,22 +87,25 @@ class ciutat(models.Model):
     name = fields.Char(string='Nombre ciudades',
                        default=lambda self: self._get_default_name(), )
     image = fields.Binary()
+    fecha_creacion = fields.Date(default=lambda self: datetime.date.today())
 
     # metodo para coger el nombre por defecto de la ciudad
     @api.model
     def _get_default_name(self):
         lista_nombres = ['Vulcano', 'Minshara', 'Khan', 'Voyager', 'Tau', 'Cyanga V', 'Defiant', 'Mudd', 'Elanna',
-                         'Tholianos', 'Tholia', 'Medusanos']
+                         'Tholianos', 'Tholia', 'Medusanos', 'Amaurotam', 'Utopia', 'Ragnok', 'Vetusta', 'Castle Rock',
+                         'Camplot']
         random_name = random.choice(lista_nombres)
         return random_name
 
     vida = fields.Float(default=1000)
     jugador = fields.Many2one('game.jugador', ondelete="cascade")
-    recursos = fields.One2many('game.recursos', 'ciutat')
-    mines = fields.One2many('game.mines', 'ciutat')
+    recursos = fields.One2many('game.recursos', 'ciutat', ondelete="cascade")
+    mines = fields.One2many('game.mines', 'ciutat', ondelete="cascade")
     soldado = fields.One2many('game.soldado', 'ciutat', ondelete="cascade")
     naves = fields.One2many('game.naves', 'ciutat', ondelete="cascade")
-    wars = fields.Many2many('game.wars')
+    wars = fields.Many2many('game.wars', ondelete="cascade")
+    wars_ganadas = fields.Integer(default=0)
 
     @api.multi
     def refresh_pag(self):
@@ -307,6 +312,15 @@ class wars(models.Model):
     empezar = fields.Boolean(default=False)
     minutos = fields.Integer(default=30)
     state = fields.Char(default="Pendiente a empezar")
+    acabada = fields.Boolean(default=False)
+
+    const_percent = fields.Float(compute='_get_const_percent')
+
+    @api.depends('minutos')
+    def _get_const_percent(self):
+        for r in self:
+            if r.minutos > 0:
+                r.const_percent = 100 - (r.minutos / 30) * 100
 
     @api.multi
     def ataque(self):
@@ -326,7 +340,7 @@ class wars(models.Model):
         else:
             self.empezar = True
 
-    @api.multi
+    @api.model
     def start_war(self):
 
         wars_total = self.env['game.wars'].search([])
@@ -334,7 +348,7 @@ class wars(models.Model):
             for st in w:
                 if st.empezar:
                     st.state = "Guerra empezada las tropas estan en marcha!"
-                    if st.minutos == 0:
+                    if st.minutos == 0 and not st.acabada:
                         at_vel_total_tropas = 0
                         at_at_total_tropas = 0
                         at_vid_total_tropas = 0
@@ -355,7 +369,6 @@ class wars(models.Model):
                                 at_vid_total_tropas += cs.vida
                         total_atacante = at_vel_total_tropas + at_at_total_tropas + at_vid_total_tropas
 
-                        print("--------")
                         for d in st.defensor:
 
                             for acn in d.naves:
@@ -368,9 +381,12 @@ class wars(models.Model):
                                 def_at_total_tropas += dcs.ataque * dcs.cant_tropas
                                 def_vid_total_tropas += (dcs.vida * dcs.cant_tropas) + d.vida
                         long_ciutat = len(st.defensor)
-                        total_defensor = (def_at_total_tropas + def_vid_total_tropas + def_vel_total_tropas)/long_ciutat
-                        print(total_atacante)
-                        print(total_defensor)
+                        total_defensor = (
+                                def_at_total_tropas + def_vid_total_tropas + def_vel_total_tropas)
+
+                        if long_ciutat > 0:
+                            total_defensor /= long_ciutat
+
                         total = total_atacante + total_defensor
                         percent_ataq = (total_atacante * 90) / total
                         percent_def = (total_defensor * 100) / total
@@ -380,19 +396,32 @@ class wars(models.Model):
 
                         if percent_ataq > 90:
                             percent_ataq = 90
-                        print(percent_ataq)
-                        print(percent_def)
+
                         if percent_def <= random.randrange(0, 100):
-                            print("La ciudad defensora ha sido derrotada")
+
                             cont = 0
                             for s in st.defensor:
                                 if cont == 0:
-                                    s.vida = 0
+                                    nom = s.name
+                                    s.unlink()
                                     cont += 1
+                                    raise Warning(('La ciutat' + nom + ' ha sigut destruida'))
                                 else:
                                     s.vida -= percent_ataq
-                        else:
-                            print("Has perdido")
 
+                            for a in st.atacante:
+                                a.wars_ganadas += 1
+                                for r in a.recursos:
+                                    r.cantidad += percent_def * 10
+                        else:
+                            for a in st.atacante:
+                                for s in a.soldado:
+                                    s.cant_tropas = 0
+                                for n in a.naves:
+                                    n.cant_tropas = 0
                     else:
                         st.minutos -= 1
+
+                    if st.minutos < 0:
+                        st.acabada = True
+                        st.acabada = "Guerra terminada"

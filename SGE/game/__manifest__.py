@@ -30,6 +30,7 @@
         'views/cron.xml',
         'demo/data.xml',
         'views/views_aux.xml',
+        'views/search.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
