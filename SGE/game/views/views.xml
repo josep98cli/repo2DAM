@@ -52,17 +52,7 @@
 
         <!-- VISTES CIUTAT -->
 
-        <record model="ir.ui.view" id="game.ciutat_graph">
-            <field name="name">wars graph</field>
-            <field name="model">game.ciutat</field>
-            <field name="arch" type="xml">
-                <graph string="Historial de guerras" type="bar">
-                     <field name="fecha_creacion" type="row"/>
-                    <field name="jugador" type="col"/>
-                    <field name="wars_ganadas" type="measure"/>
-                </graph>
-            </field>
-        </record>
+
 
 
         <record model="ir.ui.view" id="game.ciutat_form_list">
@@ -99,6 +89,7 @@
 
                         <page string="Wars">
                             <field name="wars"/>
+                            <field name="wars_ganadas" class="oe_read_only" string="WINS TOTALES: "/>
                         </page>
 
 
@@ -364,8 +355,8 @@
                         <field name="atacante"/>
                         <field name="defensor"/>
                         <field name="jugador" string="Declaracion de guerra de:"/>
-                        <field name="state" string ="Estado de la guerra: "/>
-                        <field name="minutos" string="Minutos para la llegada de tropas"/>
+                        <field name="state" string ="Estado de la guerra: " class="oe_read_only"/>
+                        <field name="minutos" string="Minutos para la llegada de tropas" class="oe_read_only"/>
                         <group>
                                 <field name="minutos" attrs="{'invisible':[('const_percent', '==', 100)]}"/>
                                 <field name="const_percent" widget="gauge" class="gauge_war"/>
@@ -391,15 +382,55 @@
                         <field name="atacante" widget="many2many_tags"/>
                         <field name="defensor"  widget="many2many_tags"/>
                         <field name="jugador"/>
-                        <field name="state"/>
-                        <field name="minutos"/>
-                        <field name="empezar"/>
-                        <field name="acabada"/>
+                        <field name="state" class="oe_read_only"/>
+                        <field name="minutos" class="oe_read_only"/>
+                        <field name="empezar" class="oe_read_only"/>
+                        <field name="acabada" class="oe_read_only"/>
 
                 </tree>
             </field>
         </record>
 
+
+        <!--HISTORIC-->
+
+        <record model="ir.ui.view" id="game.historic_tree_list">
+             <field name="name">Historic</field>
+            <field name="model">game.historic</field>
+            <field name="arch" type="xml">
+                    <tree>
+
+                        <field name="fecha_actual"/>
+                        <field name="ciutat"/>
+                        <field name="num_wins"/>
+                    </tree>
+            </field>
+        </record>
+
+         <record model="ir.ui.view" id="game.historic_form_list">
+             <field name="name">Historic</field>
+            <field name="model">game.historic</field>
+            <field name="arch" type="xml">
+                    <form>
+
+                        <field name="fecha_actual"/>
+                        <field name="ciutat"/>
+                        <field name="num_wins"/>
+                    </form>
+            </field>
+        </record>
+
+       <record model="ir.ui.view" id="game.historic_graph">
+            <field name="name">Historic</field>
+            <field name="model">game.historic</field>
+            <field name="arch" type="xml">
+                <graph string="Historial de guerras" type="bar">
+                     <field name="fecha_actual" type="row"/>
+                    <field name="ciutat" type="col"/>
+                    <field name="num_wins" type="measure"/>
+                </graph>
+            </field>
+        </record>
 
 
         <!--ACTIONS-->
@@ -413,7 +444,7 @@
         <record model="ir.actions.act_window" id="game.ciutat_action_window">
             <field name="name">Ciudades</field>
             <field name="res_model">game.ciutat</field>
-            <field name="view_mode">tree,form,search,graph</field>
+            <field name="view_mode">tree,form,search</field>
         </record>
 
         <record model="ir.actions.act_window" id="game.recurs_action_window">
@@ -456,6 +487,12 @@
             <field name="res_model">game.wars</field>
             <field name="view_mode">tree,form,search</field>
               <field name="context">{'search_default_acabada':1}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="game.historic_action_window">
+            <field name="name">Historic</field>
+            <field name="res_model">game.historic</field>
+            <field name="view_mode">tree,form,graph</field>
         </record>
 
 
@@ -505,6 +542,9 @@
 
         <menuitem name="War" id ="game.wars" parent="game.jugador"
                   action="game.wars_action_window"/>
+
+        <menuitem name="Historic" id="game.historic" parent="game.menu_root"
+                  action="game.historic_action_window"/>
     </data>
 
 </odoo>

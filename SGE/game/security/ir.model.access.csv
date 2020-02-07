@@ -8,3 +8,4 @@ access_game_mina,game.mina,model_game_mina,,1,1,1,1
 acces_game_soldado,game.soldado,model_game_soldado,,1,1,1,1
 acces_game_naves,game.naves,model_game_naves,,1,1,1,1
 acces_game_wars,game.wars,model_game_wars,,1,1,1,1
+acces_game_historic, game.historic,model_game_historic,,1,1,1,1

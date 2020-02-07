@@ -66,6 +66,7 @@ class jugador(models.Model):
 
     @api.model
     def update_recursos(self):  # metodo para el cron
+
         ciutat_total = self.env['game.ciutat'].search([])
         print('\x1b[6;30;42m' + 'Actualizando recursos..' + '\x1b[0m')
         for c in ciutat_total:
@@ -79,6 +80,12 @@ class jugador(models.Model):
                         elif m.mejora:
                             m.write({'status': 'Mejorando...'})
                             m.write({'minutos': m.minutos - 1})
+            if c.vida == 0:
+                c.jugador = False
+
+        
+            self.env['game.historic'].create({'ciutat': c.id, 'num_wins': c.wars_ganadas})
+
         print('\x1b[6;30;42m' + 'Recursos actualizados!' + '\x1b[0m')
 
 
@@ -104,8 +111,9 @@ class ciutat(models.Model):
     mines = fields.One2many('game.mines', 'ciutat', ondelete="cascade")
     soldado = fields.One2many('game.soldado', 'ciutat', ondelete="cascade")
     naves = fields.One2many('game.naves', 'ciutat', ondelete="cascade")
-    wars = fields.Many2many('game.wars', ondelete="cascade")
+    wars = fields.Many2many('game.wars')
     wars_ganadas = fields.Integer(default=0)
+    historic = fields.One2many('game.historic', 'ciutat')
 
     @api.multi
     def refresh_pag(self):
@@ -302,6 +310,13 @@ class naves(models.Model):
                                              'No tienes suficientes recursos para comprar la nave')
 
 
+class historic(models.Model):
+    _name = 'game.historic'
+    ciutat = fields.Many2one('game.ciutat')
+    fecha_actual = fields.Date(default=lambda self: datetime.date.today())
+    num_wins = fields.Integer()
+
+
 class wars(models.Model):
     _name = 'game.wars'
     jugador = fields.Many2one('game.jugador')
@@ -313,7 +328,6 @@ class wars(models.Model):
     minutos = fields.Integer(default=30)
     state = fields.Char(default="Pendiente a empezar")
     acabada = fields.Boolean(default=False)
-
     const_percent = fields.Float(compute='_get_const_percent')
 
     @api.depends('minutos')
@@ -368,7 +382,10 @@ class wars(models.Model):
                                 at_at_total_tropas += cs.ataque
                                 at_vid_total_tropas += cs.vida
                         total_atacante = at_vel_total_tropas + at_at_total_tropas + at_vid_total_tropas
+                        if len(st.atacante) > 0:
+                            total_atacante /= len(st.atacante)
 
+                        print("PEPE")
                         for d in st.defensor:
 
                             for acn in d.naves:
@@ -402,10 +419,8 @@ class wars(models.Model):
                             cont = 0
                             for s in st.defensor:
                                 if cont == 0:
-                                    nom = s.name
-                                    s.unlink()
-                                    cont += 1
-                                    raise Warning(('La ciutat' + nom + ' ha sigut destruida'))
+                                    s.vida = 0
+                                    s.jugador = False
                                 else:
                                     s.vida -= percent_ataq
 
@@ -419,9 +434,15 @@ class wars(models.Model):
                                     s.cant_tropas = 0
                                 for n in a.naves:
                                     n.cant_tropas = 0
-                    else:
+                            for d in st.defensor:
+                                d.wars_ganadas += 1
+
                         st.minutos -= 1
 
-                    if st.minutos < 0:
+                    elif st.minutos >= 0:
+                        st.minutos -= 1
+
+                    else:
                         st.acabada = True
+                        st.empezar = False
                         st.acabada = "Guerra terminada"
